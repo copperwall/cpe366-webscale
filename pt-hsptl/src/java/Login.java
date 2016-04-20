@@ -19,7 +19,7 @@ import javax.inject.Named;
  */
 /**
  *
- * @author stanchev
+ * @author Scott Vanderlind
  */
 @Named(value = "login")
 @SessionScoped
@@ -28,16 +28,7 @@ public class Login implements Serializable {
 
     private String login;
     private String password;
-    private UIInput loginUI;
-
-    public UIInput getLoginUI() {
-        return loginUI;
-    }
-
-    public void setLoginUI(UIInput loginUI) {
-        this.loginUI = loginUI;
-    }
-
+ 
     public String getLogin() {
         return login;
     }
@@ -54,20 +45,18 @@ public class Login implements Serializable {
         this.password = password;
     }
 
-    public void validate(FacesContext context, UIComponent component, Object value)
-            throws ValidatorException, SQLException {
-        login = loginUI.getLocalValue().toString();
-        password = value.toString();
-
-        if (!((login.equals("lubo") && password.equals("secret")))) {
-            FacesMessage errorMessage = new FacesMessage("Wrong login/password");
-            throw new ValidatorException(errorMessage);
-        }
+    public String checkCredentials() {
+        FacesContext currentInstance = FacesContext.getCurrentInstance();
+        /* Uncomment this to throw an error every time
+        currentInstance.addMessage(null,
+         new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          "Incorrect login", "Please enter a valid login"));
+        */
+        return "home";
     }
 
-    public String go() {
-        //Util.invalidateUserSession();
-        return "success";
+    public String logout() {
+        // Get the session, invalidate it.
+        return "login";
     }
-
 }
