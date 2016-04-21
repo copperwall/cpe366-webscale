@@ -46,17 +46,29 @@ public class Login implements Serializable {
     }
 
     public String checkCredentials() {
-        FacesContext currentInstance = FacesContext.getCurrentInstance();
-        /* Uncomment this to throw an error every time
-        currentInstance.addMessage(null,
-         new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          "Incorrect login", "Please enter a valid login"));
-        */
-        return "home";
+        if (this.validate(login, password)) {
+            SessionBean.setUserLogin(login);
+            return "home";
+        } else {
+            FacesContext currentInstance = FacesContext.getCurrentInstance();
+            currentInstance.addMessage(null,
+             new FacesMessage(FacesMessage.SEVERITY_ERROR,
+              "Incorrect login", "Please enter a valid login"));
+        }
+        return "login";
+    }
+    
+    /**
+     * This should probably move to an Auth class, or maybe into a User
+     * object.
+     */
+    private boolean validate(String login, String password) {
+        return true;
     }
 
     public String logout() {
         // Get the session, invalidate it.
+        SessionBean.getSession().invalidate();
         return "login";
     }
 }
