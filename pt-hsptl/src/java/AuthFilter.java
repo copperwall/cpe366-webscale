@@ -67,12 +67,12 @@ public class AuthFilter implements Filter
                 || reqURI.indexOf("/css/") >= 0
                 || reqURI.contains("javax.faces.resource")
                 //|| SessionBean.isLoggedIn()
-                || (ses.getAttribute("userlogin") != null)
+                || (ses != null && ses.getAttribute("userlogin") != null)
                     ) {
                 chain.doFilter(request, response);
             } else {
                 //chain.doFilter(request, response);
-                resp.sendRedirect(req.getContextPath() + "/faces/login.xhtml");
+                resp.sendRedirect(req.getContextPath() + "/login.xhtml");
             }
 
         } catch (Exception e) {
