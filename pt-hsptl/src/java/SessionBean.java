@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -30,8 +31,8 @@ import javax.servlet.http.HttpSession;
 @Named(value = "sessionBean")
 @SessionScoped
 @ManagedBean
-public class SessionBean
-{
+public class SessionBean implements Serializable
+{            
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(false);
@@ -53,6 +54,11 @@ public class SessionBean
             return session.getAttribute("userlogin").toString();
         }
         return "";
+    }
+    
+    public static boolean isLoggedIn() {
+        HttpSession session = getSession();
+        return session.getAttribute("userlogin") != null;
     }
     
     public String getLogin() {
