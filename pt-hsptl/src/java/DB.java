@@ -18,10 +18,11 @@ public class DB {
         
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://devopps.me:5432/project1", "postgres",
+                    "jdbc:postgresql://devopps.me/project1", "postgres",
                     "databasesrcool");
         } catch (SQLException e) {
-            System.err.println("Could not connect to postgresql");
+            System.out.println("Could not connect to postgresql");
+            System.out.println(e.getMessage());
             return null;
         }
         

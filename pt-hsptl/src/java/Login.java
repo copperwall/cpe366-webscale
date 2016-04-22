@@ -1,14 +1,14 @@
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
 
@@ -57,13 +57,33 @@ public class Login implements Serializable {
         }
         return "login";
     }
-    
+
     /**
      * This should probably move to an Auth class, or maybe into a User
      * object.
      */
     private boolean validate(String login, String password) {
-        return true;
+        DB db = new DB();
+        Connection conn = db.getConnection();
+
+        PreparedStatement checkCredentials;
+        String check = "SELECT COUNT(*) FROM employees WHERE login = ? and password = ?";
+        ResultSet rs;
+        Boolean isValid = false;
+
+        try {
+            checkCredentials = conn.prepareStatement(check);
+            checkCredentials.setString(1, login);
+            checkCredentials.setString(2, password);
+
+            rs = checkCredentials.executeQuery();
+            rs.next();
+            isValid = (rs.getInt(1) == 1);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return isValid;
     }
 
     public String logout() {
