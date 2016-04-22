@@ -21,12 +21,12 @@
         <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
-            <redirect />
+            <!-- No redirect here: redirecting to the same page breaks flash messages -->
         </navigation-case>
         <navigation-case>
             <from-outcome>home</from-outcome>
             <to-view-id>/home.xhtml</to-view-id>
-            <redirect />
+            <redirect /><!-- The redirect flag keeps the url updated -->
         </navigation-case>
     </navigation-rule>
 </faces-config>
