@@ -17,7 +17,12 @@
         <managed-bean-name>employee</managed-bean-name>
         <managed-bean-class>Employee</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean> 
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>employeeEditor</managed-bean-name>
+        <managed-bean-class>EmployeeEditor</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     
     <navigation-rule>
         <from-view-id>
@@ -34,4 +39,5 @@
             <redirect /><!-- The redirect flag keeps the url updated -->
         </navigation-case>
     </navigation-rule>
+    
 </faces-config>

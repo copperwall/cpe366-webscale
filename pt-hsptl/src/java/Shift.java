@@ -1,10 +1,3 @@
-
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
-
 /*
  * Copyright (C) 2016 scottvanderlind
  *
@@ -26,26 +19,23 @@ import javax.inject.Named;
  *
  * @author scottvanderlind
  */
-@Named(value = "employee")
-@SessionScoped
-@ManagedBean
-public class Employee extends DBO {
+public class Shift extends DBO {
     
-    public Employee() {
-        this(0);
+    public Shift() {
+        
     }
     
-    public Employee(int id) {
+    public Shift(int id) {
         // Call the super constructor first
         super();
         // Set our table and pk
-        this.setTable("employees", "employeeid");
+        this.setTable("shifts", "shiftid");
         // Bind our object attributes to the column names
         // bind(attribute, column)
-        this.bind("login", "login");
-        this.bind("password", "password");
+        this.bind("day_of_week", "day_of_week:day_of_week");
+        this.bind("time_of_day", "time_of_day:time_of_day");
         // The rold ccol is of type role_enum
-        this.bind("role", "role:role_enum");
+        this.bind("shift_type", "shift_type:shift_type");
         
         // Set our DB status. If we don't pass an ID, we're a fresh
         // object
@@ -54,33 +44,5 @@ public class Employee extends DBO {
             this.fromDb = true;
             this.load();
         }
-    }
-    
-    public String getLogin() {
-        return this.get("login");
-    }
-    
-    public String test() {
-        System.out.println("Creating new employee");
-        
-        Employee e1 = new Employee(31);
-        
-        e1.set("login", "scott");
-        e1.set("password", "anncoulter1");
-        e1.set("role", "admin");
-        
-        e1.save();
-        
-        return "home";
-    }
-    
-    public static List<Employee> getAll() {
-        List<Employee> all = new ArrayList<Employee>();
-        
-        for (int i = 1; i <= 31; i++) {
-            all.add(new Employee(i));
-        }
-        
-        return all;
     }
 }

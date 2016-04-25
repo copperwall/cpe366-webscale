@@ -57,8 +57,12 @@ public class DBO implements Serializable {
         this.pk = pk;
     }
     
+    public int getPk() {
+        return this.id;
+    }
+    
     public boolean save() {
-        System.out.println("Save called");
+        //System.out.println("Save called");
         DB db = new DB();
         Connection conn = db.getConnection();
         PreparedStatement saveStatement;
@@ -137,7 +141,7 @@ public class DBO implements Serializable {
                 saveStatement.setString(idx++, attribute);
             }
             
-            System.out.println(saveStatement.toString());
+            //System.out.println(saveStatement.toString());
             
             affectedRows = saveStatement.executeUpdate();
         } catch (SQLException ex) {
@@ -200,7 +204,7 @@ public class DBO implements Serializable {
             loadObject = conn.prepareStatement(check);
             loadObject.setInt(1, this.id);
             
-            System.out.println(loadObject.toString());
+            //System.out.println(loadObject.toString());
 
             rs = loadObject.executeQuery();
             if (rs.next()) {
@@ -221,7 +225,7 @@ public class DBO implements Serializable {
                 
                     // Get the column value from the resultset and assign it to the
                     // attributes map.
-                    System.out.println("assigning " + rs.getString(columnName) + " to " + columnName);
+                    ////System.out.println("assigning " + rs.getString(columnName) + " to " + columnName);
                     this.attributes.put(objectAttribute, rs.getString(columnName));
                 }
             } else {
