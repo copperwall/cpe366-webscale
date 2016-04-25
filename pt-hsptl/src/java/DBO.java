@@ -199,6 +199,8 @@ public class DBO implements Serializable {
         try {
             loadObject = conn.prepareStatement(check);
             loadObject.setInt(1, this.id);
+            
+            System.out.println(loadObject.toString());
 
             rs = loadObject.executeQuery();
             if (rs.next()) {
@@ -207,8 +209,19 @@ public class DBO implements Serializable {
                     // Get the attribute and column name from our bindings
                     String objectAttribute = entry.getKey();
                     String columnName = entry.getValue();
+                    
+                    String enumName = "";
+
+                    boolean isEnum;
+                    if (isEnum = columnName.contains(":")) {
+                        String[] parts = columnName.split(":");
+                        columnName = parts[0];
+                        enumName = parts[1];
+                    }
+                
                     // Get the column value from the resultset and assign it to the
                     // attributes map.
+                    System.out.println("assigning " + rs.getString(columnName) + " to " + columnName);
                     this.attributes.put(objectAttribute, rs.getString(columnName));
                 }
             } else {
