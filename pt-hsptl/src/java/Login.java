@@ -46,10 +46,14 @@ public class Login implements Serializable {
     }
 
     public String checkCredentials() {
+        System.out.println("checking");
+
         if (this.validate(login, password)) {
             SessionBean.setUserLogin(login);
+            System.out.println("Login success");
             return "home";
         } else {
+            System.out.println("Fail");
             FacesContext currentInstance = FacesContext.getCurrentInstance();
             currentInstance.addMessage(null,
              new FacesMessage(FacesMessage.SEVERITY_ERROR,

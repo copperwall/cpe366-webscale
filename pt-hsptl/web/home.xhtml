@@ -21,6 +21,10 @@
                     <c:if test="${userlogin == 'admin'}">
                         <a class="button" href="#">Manage Users</a>
                     </c:if>
+                    <h:form>
+                        <h:commandButton value="createScott" action="#{employee.test}"
+                                             class="button-primary u-full-width"/>
+                    </h:form>
                 </div>
                 <!-- Put content here -->
             </ui:define>
