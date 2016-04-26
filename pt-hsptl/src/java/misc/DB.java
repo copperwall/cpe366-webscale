@@ -15,11 +15,15 @@ import java.sql.SQLException;
  * @author Chris Opperwall
  */
 public class DB {
+
+    private static Connection conn = null;
+
     public Connection getConnection() {
-        Connection connection;
-        
+        if (this.conn != null) {
+            return conn;
+        }
         try {
-            connection = DriverManager.getConnection(
+            this.conn = DriverManager.getConnection(
                     "jdbc:postgresql://devopps.me/project1", "postgres",
                     "databasesrcool");
         } catch (SQLException e) {
@@ -28,7 +32,7 @@ public class DB {
             return null;
         }
         
-        return connection;
+        return this.conn;
     }
     
     public DB() {
