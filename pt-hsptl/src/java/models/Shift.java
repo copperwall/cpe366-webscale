@@ -1,3 +1,5 @@
+package models;
+
 /*
  * Copyright (C) 2016 scottvanderlind
  *

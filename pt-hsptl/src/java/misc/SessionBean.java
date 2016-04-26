@@ -1,3 +1,5 @@
+package misc;
+
 /*
  * Copyright (C) 2016 scottvanderlind
  *

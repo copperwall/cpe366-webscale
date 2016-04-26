@@ -1,4 +1,7 @@
+package models;
 
+
+import misc.DB;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
