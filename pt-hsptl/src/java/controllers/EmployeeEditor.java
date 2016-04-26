@@ -1,8 +1,10 @@
 package controllers;
 
+import java.io.Serializable;
 import models.Employee;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -28,24 +30,66 @@ import javax.inject.Named;
  * @author scottvanderlind
  */
 @Named(value = "employeeEditor")
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class EmployeeEditor
+public class EmployeeEditor implements Serializable
 {
+
+    private Employee editing;
+    private int id;
 
     /**
      * Creates a new instance of EmployeeEditor
      */
     public EmployeeEditor()
     {
+        try {
+            String idstring = FacesContext.getCurrentInstance().getExternalContext()
+             .getRequestParameterMap().get("id");
+            int id = Integer.parseInt(idstring);
+            // Save this employee in the controller for later...
+            this.id = id;
+            this.editing = new Employee(id);
+        } catch (Exception e) {
+            System.out.println("Caught Exception");
+        }
     }
     
+    public int getId() {
+        return this.id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return this.editing.get("login");
+    }
+
+    public void setLogin(String login) {
+        this.editing.set("login", login);
+    }
+
+    public String getPassword() {
+        return this.editing.get("password");
+    }
+
+    public void setPassword(String password) {
+        this.editing.set("password", password);
+    }
+
     public Employee getRequestedEmployee() {
-        String idstring = FacesContext.getCurrentInstance().getExternalContext()
-         .getRequestParameterMap().get("id");
-        int id = Integer.parseInt(idstring);
-        
-        return new Employee(id);
+        return this.editing;
     }
-    
+
+    public String updateEmployee() {
+        System.out.println("login: " + this.editing.get("login"));
+        System.out.println("Password: " + this.editing.get("password"));
+
+        this.editing.save();
+        //System.out.println("new login: " + this.login);
+        return "updated";
+    }
+
 }

@@ -9,10 +9,28 @@
         <ui:composition template="./layout.xhtml">
             <ui:define name="title">Employee List</ui:define><!-- Put page title here -->
             <ui:define name="content">
+                <f:metadata>
+                    <f:viewParam name="id" value="#{employeeEditor.id}" />
+                </f:metadata>
                 <div class="row">
                     <div class="offset-by-three six columns">
                         <ui:repeat value="#{employeeEditor.getRequestedEmployee()}" var="doctor">
-                            #{doctor.get("login")} | #{doctor.get("password")}<br/>
+                            <h:form>
+                                <label for="login">Login</label>
+                                <h:inputText value="#{employeeEditor.login}"
+                                                    id="login"
+                                                    class="u-full-width"/>
+                                <h:message for="login" style="color:red;margin:8px;"/>
+
+                                <label for="password">Password</label>
+                                <h:inputText value="#{employeeEditor.password}"
+                                                         id="password"
+                                                         class="u-full-width"/>
+                                <h:message for="password" style="color:red;margin:8px;"/>
+                                <hr/>
+                                <h:commandButton value="update" action="#{employeeEditor.updateEmployee}"
+                                                 class="button-primary u-full-width"/>
+                            </h:form>
                         </ui:repeat>
                     </div>
                 </div>

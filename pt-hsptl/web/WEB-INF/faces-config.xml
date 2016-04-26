@@ -5,7 +5,7 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">    
     <managed-bean>
         <managed-bean-name>login</managed-bean-name>
-        <managed-bean-class>Login</managed-bean-class>
+        <managed-bean-class>controllers.Login</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
@@ -20,8 +20,8 @@
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>employeeEditor</managed-bean-name>
-        <managed-bean-class>EmployeeEditor</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-class>controllers.EmployeeEditor</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
     
     <navigation-rule>
@@ -40,4 +40,19 @@
         </navigation-case>
     </navigation-rule>
     
+    <navigation-rule>
+        <from-view-id>
+            /employee_edit.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>updated</from-outcome>
+            <to-view-id>/employee_edit.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{employeeEditor.id}</value>
+                </view-param>
+            </redirect><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
