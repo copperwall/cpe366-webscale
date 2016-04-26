@@ -43,18 +43,13 @@ public class EmployeeEditor implements Serializable
      */
     public EmployeeEditor()
     {
-        try {
-            String idstring = FacesContext.getCurrentInstance().getExternalContext()
-             .getRequestParameterMap().get("id");
-            int id = Integer.parseInt(idstring);
-            // Save this employee in the controller for later...
-            this.id = id;
-            this.editing = new Employee(id);
-        } catch (Exception e) {
-            System.out.println("Caught Exception");
-        }
     }
     
+    public void onload() {
+        System.out.println("onload for id " + id);
+        this.editing = new Employee(id);
+    }
+
     public int getId() {
         return this.id;
     }
