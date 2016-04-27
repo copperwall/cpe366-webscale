@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+        <h1>Please select preferred work times</h1>
+    </h:head>
+    	<h:form>
+    	<h:body>
+		<p>Select preferred time</p>
+		Early Morning (7:30am - 6 :30pm): <input type="checkbox" value="earlyMorning"  /><br />
+		Morning (8:30am -7:30pm): <input type="checkbox" value="morning"  /><br /> 
+		Late (9:30am-8:30pm): <input type="checkbox" value="late"  /><br /> 
+		Overnight (8pm - 8am): <input type="checkbox" value="overnight"  /><br />
+
+		<p>Select preferred day</p>
+		Monday: <input type="checkbox" value="monday"  /><br />
+		Tuesday: <input type="checkbox" value="tuesday"  /><br /> 
+		Wednesday: <input type="checkbox" value="wednesday"  /><br /> 
+		Thursday: <input type="checkbox" value="thursday"  /><br />
+		Friday: <input type="checkbox" value="friday"  /><br />
+		Saturday: <input type="checkbox" value="saturday"  /><br />
+                Sunday (8am - 8pm): <input type="checkbox" value="sunday"  /><br />
+
+	<h:panelGrid>
+                <h:commandButton value="Submit/Add new preference" action="#{shift.updatePreference}"/>
+		<h:commandButton value="Finish" action="#{shift.updatePreference}"/>
+        </h:panelGrid>
+    </h:form>
+    </h:body>
+</html>
