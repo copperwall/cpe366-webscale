@@ -11,6 +11,8 @@
             <ui:composition template="./layout.xhtml">
                 <ui:define name="title">Please select preferred work times</ui:define>
                 <ui:define name="content">
+                    <h:form>
+                        <p>Select preferred time</p>
                         Early Morning (7:30am - 6 :30pm): <input type="checkbox" value="earlyMorning"  /><br />
                         Morning (8:30am -7:30pm): <input type="checkbox" value="morning"  /><br /> 
                         Late (9:30am-8:30pm): <input type="checkbox" value="late"  /><br /> 
@@ -26,6 +28,8 @@
                         Sunday (8am - 8pm): <input type="checkbox" value="sunday"  /><br />
                     </h:form>
 	<h:panelGrid>
+                <h:commandButton value="Submit/Add new preference" action="#"/>
+		<h:commandButton value="Finish" action="#"/>
         </h:panelGrid>
                 </ui:define>
         
