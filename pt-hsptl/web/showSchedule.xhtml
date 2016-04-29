@@ -10,18 +10,18 @@
         <ui:composition template="./layout.xhtml">
             <ui:define name="title">Here is your current schedule</ui:define>
             <ui:define name="content">
-                <h:dataTable value="#{employee}" var="schedule">
+                <h:dataTable value="#{sessionBean.getCurrentEmployee().getShifts()}" var="shifts">
                     <h:column>    				
                        <f:facet name="header">Date</f:facet>    				
-                       #{employee.getShiftDates()}
+                       #{shifts[0]}
                     </h:column>
                     <h:column>    				
                        <f:facet name="header">Day</f:facet>    				
-                       #{employee.getShiftDays()}
+                       #{shifts[1]}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Time</f:facet>
-                       #{employee.getShiftTimes()}
+                       #{shifts[2]}
                     </h:column>
                 </h:dataTable>
             </ui:define>

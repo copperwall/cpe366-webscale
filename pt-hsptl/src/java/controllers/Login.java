@@ -51,8 +51,9 @@ public class Login implements Serializable {
     public String checkCredentials() {
         System.out.println("checking");
 
-        if (this.validate(login, password)) {
-            SessionBean.setUserLogin(login);
+        int id = this.validate(login, password);
+        if (id != 0) {
+            SessionBean.setUserLogin(login, id);
             System.out.println("Login success");
             return "home";
         } else {
@@ -69,15 +70,16 @@ public class Login implements Serializable {
      * This should probably move to an Auth class, or maybe into a User
      * object.
      */
-    private boolean validate(String login, String password) {
+    private int validate(String login, String password) {
         DB db = new DB();
         Connection conn = db.getConnection();
 
         PreparedStatement checkCredentials;
-        String check = "SELECT COUNT(*) FROM employees WHERE login = ? and password = ?";
+        String check = "SELECT employeeid FROM employees WHERE login = ? and password = ?";
         ResultSet rs;
         Boolean isValid = false;
-
+        int id = 0;
+        
         try {
             checkCredentials = conn.prepareStatement(check);
             checkCredentials.setString(1, login);
@@ -85,12 +87,15 @@ public class Login implements Serializable {
 
             rs = checkCredentials.executeQuery();
             rs.next();
-            isValid = (rs.getInt(1) == 1);
+            id = rs.getInt(1);
+            isValid = (id != 0);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
 
-        return isValid;
+        if (isValid)
+            return id;
+        return 0;
     }
 
     public String logout() {

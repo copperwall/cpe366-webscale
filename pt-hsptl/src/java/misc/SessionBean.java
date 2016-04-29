@@ -25,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import models.Employee;
 /**
  *
  * @author scottvanderlind
@@ -35,6 +35,8 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 public class SessionBean implements Serializable
 {            
+    private static Employee currentEmployee;
+    
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(false);
@@ -45,9 +47,11 @@ public class SessionBean implements Serializable
                 .getExternalContext().getRequest();
     }
  
-    public static void setUserLogin(String login) {
+    public static void setUserLogin(String login, int id) {
         HttpSession session = getSession();
         session.setAttribute("userlogin", login);
+        
+        currentEmployee = new Employee(id);
     }
     
     public static String getUserLogin() {
@@ -65,6 +69,11 @@ public class SessionBean implements Serializable
     
     public String getLogin() {
         return getUserLogin();
+    }
+    
+    public Employee getCurrentEmployee()
+    {
+        return currentEmployee;
     }
 
 }
