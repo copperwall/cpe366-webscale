@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
-        <h1>Here is your current schedule</h1>
-    </h:head>
-    	<h:form>
-    	<h:body>
-               <h:dataTable value="#{employee.schedule}" var="schedule"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+            <ui:define name="title">Here is your current schedule</ui:define>
+            <ui:define name="content">
+                <h:dataTable value="#{employee}" var="schedule">
+                    <h:column>    				
+                       <f:facet name="header">Date</f:facet>    				
+                       #{employee.getShiftDates()}
+                    </h:column>
                     <h:column>    				
                        <f:facet name="header">Day</f:facet>    				
-                       #{employee.days}
+                       #{employee.getShiftDays()}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Time</f:facet>
-                       #{employee.shifts}
+                       #{employee.getShiftTimes()}
                     </h:column>
-               </h:dataTable>
-
-	<h:panelGrid>
-                <h:commandButton value="Submit/Add new preference" action="#{shift.updatePreference}"/>
-		<h:commandButton value="Finish" action="#{shift.updatePreference}"/>
-        </h:panelGrid>
-    </h:form>
+                </h:dataTable>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>

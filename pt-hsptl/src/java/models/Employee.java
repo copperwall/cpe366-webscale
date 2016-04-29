@@ -1,11 +1,15 @@
 package models;
 
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
+import misc.DB;
 
 /*
  * Copyright (C) 2016 scottvanderlind
@@ -84,5 +88,74 @@ public class Employee extends DBO {
         }
         
         return all;
+    }
+    
+    public ArrayList<String> getShiftDays()
+    {
+        Connection con = new DB().getConnection();
+        ResultSet rs;
+        ArrayList<String> days = new ArrayList<String>();
+        
+        try {
+            Statement s = con.createStatement();
+            rs = s.executeQuery("SELECT day_of_week "
+                                    + "FROM shifts s, employees_to_shifts es "
+                                    + "WHERE es.employeeid = 5"
+                                    + " and s.shiftid = es.shiftid");
+            while (rs.next())
+            {
+                days.add(rs.getString("day_of_week"));
+            
+            }
+        }
+        catch (Exception e) {System.out.println("SQL query exception: " + e.getMessage());}
+        
+        return days;
+    }
+    
+    public ArrayList<String> getShiftTimes()
+    {
+        Connection con = new DB().getConnection();
+        ResultSet rs;
+        ArrayList<String> times = new ArrayList<String>();
+        
+        try {
+            Statement s = con.createStatement();
+            rs = s.executeQuery("SELECT time_of_day "
+                                    + "FROM shifts s, employees_to_shifts es "
+                                    + "WHERE es.employeeid = 5"
+                                    + " and s.shiftid = es.shiftid");
+            while (rs.next())
+            {
+                 times.add(rs.getString("time_of_day"));
+            
+            }
+        }
+        catch (Exception e) {System.out.println("SQL query exception: " + e.getMessage());}
+        
+        return times;
+    }
+    
+    public ArrayList<String> getShiftDates()
+    {
+        Connection con = new DB().getConnection();
+        ResultSet rs;
+        ArrayList<String> dates = new ArrayList<String>();
+        try {
+            Statement s = con.createStatement();
+            rs = s.executeQuery("SELECT date "
+                                    + "FROM employees_to_shifts es "
+                                    + "WHERE es.employeeid = 5");
+            while (rs.next())
+            {
+                dates.add(rs.getString("date"));
+            
+            }
+        }
+        catch (Exception e) {System.out.println("SQL query exception: " + e.getMessage());}
+        
+        
+        
+        return dates;
     }
 }

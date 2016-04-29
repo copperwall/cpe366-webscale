@@ -20,7 +20,7 @@ package misc;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+//import javax.enterprise.context.Dependent;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
