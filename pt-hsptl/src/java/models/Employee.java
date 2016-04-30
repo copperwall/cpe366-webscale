@@ -104,7 +104,7 @@ public class Employee extends DBO<Employee> {
         try {
             Statement s = con.createStatement();
             rs = s.executeQuery("SELECT day_of_week, time_of_day, date "
-                                    + "FROM shifts s, employees_to_shifts es "
+                                    + "FROM shifts s, employee_shifts es "
                                     + "WHERE es.employeeid = " + this.getPk()
                                     + " and s.shiftid = es.shiftid");
             while (rs.next())

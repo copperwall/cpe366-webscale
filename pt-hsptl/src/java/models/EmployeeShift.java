@@ -31,11 +31,13 @@ public class EmployeeShift extends DBO<EmployeeShift> {
         // Call the super constructor first
         super();
         // Set our table and pk
-        this.setTable("employees_to_shifts", "employee_shiftid");
+        this.setTable("employee_shifts", "employee_shiftid");
         // Bind our object attributes to the column names
         // bind(attribute, column)
-        this.bind("shiftid", "shiftid");
-        this.bind("date", "date");
+        this.bind("shiftid", "shiftid:integer");
+        this.bind("employeeid", "employeeid:integer");
+        this.bind("requested", "requested:integer");
+        this.bind("date", "date:timestamp without time zone");
         
         // Set our DB status. If we don't pass an ID, we're a fresh
         // object
@@ -44,6 +46,17 @@ public class EmployeeShift extends DBO<EmployeeShift> {
             this.fromDb = true;
             this.load();
         }
+    }
+
+    public boolean save() {
+        this.calculateDate();
+        return super.save();
+    }
+
+    private void calculateDate() {
+        // TODO: Somehow, map a day_of_week,time_of_day combo to an actual
+        //       date and set it in the object.
+        this.set("date", "2016-04-14 00:00:00");
     }
 
 }

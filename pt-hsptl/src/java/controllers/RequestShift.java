@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import misc.SessionBean;
 import models.DBO;
+import models.EmployeeShift;
 import models.Shift;
 
 /**
@@ -67,7 +68,7 @@ public class RequestShift
         }
 
         String query = "SELECT * FROM shifts "
-                + "LEFT JOIN employees_to_shifts "
+                + "LEFT JOIN employee_shifts "
                 + "USING (shiftid) "
                 + "WHERE employeeid IS NULL "
                 + "AND shift_type IN (" + typeList.toString() + ")"
@@ -85,7 +86,13 @@ public class RequestShift
         FacesContext currentInstance = FacesContext.getCurrentInstance();
         System.out.println("requested " + id);
 
-        if (false) {
+        EmployeeShift shift = new EmployeeShift(0);
+
+        shift.set("employeeid", "" + SessionBean.getCurrentEmployee().getPk());
+        shift.set("shiftid", "" + id);
+        shift.set("requested", "1");
+
+        if (shift.save()) {
             return "success";
         } else {
             currentInstance.addMessage(null,
