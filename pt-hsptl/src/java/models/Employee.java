@@ -10,6 +10,7 @@ import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 import misc.DB;
+import misc.EmployeePreferences;
 
 /*
  * Copyright (C) 2016 scottvanderlind
@@ -37,13 +38,17 @@ import misc.DB;
 @ManagedBean
 public class Employee extends DBO {
     
+    private EmployeePreferences ep;
+    
     public Employee() {
         this(0);
+        ep = new EmployeePreferences();
     }
     
     public Employee(int id) {
         // Call the super constructor first
         super();
+        ep = new EmployeePreferences();
         // Set our table and pk
         this.setTable("employees", "employeeid");
         // Bind our object attributes to the column names
@@ -64,6 +69,11 @@ public class Employee extends DBO {
     
     public String getLogin() {
         return this.get("login");
+    }
+    
+    public EmployeePreferences getEmployeePreferences()
+    {
+        return ep;
     }
     
     public String test() {
@@ -90,7 +100,18 @@ public class Employee extends DBO {
         return all;
     }
     
-    
+    public void applyPreferences()
+    {
+        for (String s : ep.getPreferredTimes())
+        {
+            System.out.println(s);
+        }
+        
+        for (String s : ep.getPreferredDays())
+        {
+            System.out.println(s);
+        }
+    }
     
     public ArrayList<String[]> getShifts()
     {

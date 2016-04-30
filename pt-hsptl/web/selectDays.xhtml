@@ -12,25 +12,30 @@
                 <ui:define name="title">Please select preferred work times</ui:define>
                 <ui:define name="content">
                     <h:form>
-                        <p>Select preferred time</p>
-                        Early Morning (7:30am - 6 :30pm): <input type="checkbox" value="earlyMorning"  /><br />
-                        Morning (8:30am -7:30pm): <input type="checkbox" value="morning"  /><br /> 
-                        Late (9:30am-8:30pm): <input type="checkbox" value="late"  /><br /> 
-                        Overnight (8pm - 8am): <input type="checkbox" value="overnight"  /><br />
-
-                        <p>Select preferred day</p>
-                        Monday: <input type="checkbox" value="monday"  /><br />
-                        Tuesday: <input type="checkbox" value="tuesday"  /><br /> 
-                        Wednesday: <input type="checkbox" value="wednesday"  /><br /> 
-                        Thursday: <input type="checkbox" value="thursday"  /><br />
-                        Friday: <input type="checkbox" value="friday"  /><br />
-                        Saturday: <input type="checkbox" value="saturday"  /><br />
-                        Sunday (8am - 8pm): <input type="checkbox" value="sunday"  /><br />
+                        <h:outputText value="Select preferred times"/>
+                        <h:selectManyCheckbox value="#{sessionBean.getCurrentEmployee().getEmployeePreferences().preferredTimes}" layout="pageDirection">
+                            <f:selectItem itemValue="EM" itemLabel="Early Morning (7:30am - 6 :30pm)" />
+                            <f:selectItem itemValue="M" itemLabel="Morning (8:30am -7:30pm)" />
+                            <f:selectItem itemValue="L" itemLabel="Late (9:30am-8:30pm)" />
+                            <f:selectItem itemValue="O" itemLabel="Overnight (8pm - 8am)" />
+                        </h:selectManyCheckbox>
+                        <br></br>
+                        <h:outputText value="Select preferred days"/>
+                        <h:selectManyCheckbox value="#{sessionBean.getCurrentEmployee().getEmployeePreferences().preferredDays}" layout="lineDirection">
+                            <f:selectItem itemValue="M" itemLabel="Monday" />
+                            <f:selectItem itemValue="T" itemLabel="Tuesday" />
+                            <f:selectItem itemValue="W" itemLabel="Wednesday" />
+                            <f:selectItem itemValue="R" itemLabel="Thursday" />
+                            <f:selectItem itemValue="F" itemLabel="Friday" />
+                            <f:selectItem itemValue="Sat" itemLabel="Saturday" />
+                            <f:selectItem itemValue="S" itemLabel="Sunday (8am-8pm)" />
+                        </h:selectManyCheckbox>     
+                    
+                        <h:panelGrid>
+                            <h:commandButton value="Submit/Add new preference" action="#{sessionBean.getCurrentEmployee().applyPreferences()}" />
+                            <h:commandButton value="Finish" action="#"/>
+                        </h:panelGrid>
                     </h:form>
-	<h:panelGrid>
-                <h:commandButton value="Submit/Add new preference" action="#"/>
-		<h:commandButton value="Finish" action="#"/>
-        </h:panelGrid>
                 </ui:define>
         
             </ui:composition>
