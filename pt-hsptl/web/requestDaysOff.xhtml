@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+            <ui:define name="title">Request Days Off</ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:outputText value="Select Sick Day: "/>
+                    <h:selectOneMenu value="#{requestDaysOff.sickDay}">
+                        <f:selectItems value="#{requestDaysOff.getPossibleVacationDays()}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Request Sick Day" action="#{requestDaysOff.applySickDays()}" />
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h:outputText value="Select Vacation Day: "/>
+                    <h:selectOneMenu value="#{requestDaysOff.vacStart}">
+                        <f:selectItems value="#{requestDaysOff.getPossibleVacationDays()}"/>
+                    </h:selectOneMenu>
+                    <h:outputText value=" Through "/>
+                    <h:selectOneMenu value="#{requestDaysOff.vacEnd}">
+                        <f:selectItems value="#{requestDaysOff.getPossibleVacationDays()}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Request Vacation Day" action="#{requestDaysOff.applyVacDays()}" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
