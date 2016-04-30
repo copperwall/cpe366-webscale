@@ -21,6 +21,7 @@ import javax.annotation.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
+import misc.SessionBean;
 import models.DBO;
 import models.Shift;
 
@@ -41,8 +42,34 @@ public class RequestShift
     {
     }
     
+    /**
+     * Get shifts available to this user.
+     * Returns an arraylist of shifts that haven't been claimed by
+     * another employee of the same type.
+     * @return
+     */
     public ArrayList<Shift> getAvailableShifts() {
-        String query = "SELECT * FROM shifts LEFT JOIN employees_to_shifts USING (shiftid) WHERE employeeid IS NULL ORDER BY shiftid;";
+        String role = SessionBean.getCurrentEmployee().get("role");
+        StringBuilder typeList = new StringBuilder();
+
+        switch(role) {
+            case "technician":
+                typeList.append("'technician'");
+                break;
+            case "doctor":
+                typeList.append("'appointment','surgery'");
+                break;
+            default:
+                typeList.append("'appointment','surgery','technician'");
+                break;
+        }
+
+        String query = "SELECT * FROM shifts "
+                + "LEFT JOIN employees_to_shifts "
+                + "USING (shiftid) "
+                + "WHERE employeeid IS NULL "
+                + "AND shift_type IN (" + typeList.toString() + ")"
+                + "ORDER BY shiftid;";
         
         // Because of how reflection works in Java, we have to instantiate
         // a dummy object in order for the getCustom function to know

@@ -15,8 +15,16 @@
                         
                         <h:dataTable value="#{requestShift.getAvailableShifts()}" var="shift">
                             <h:column>    				
+                               <f:facet name="header">Shift Type</f:facet>
+                               #{shift.get("shift_type")}
+                            </h:column>
+                            <h:column>
                                <f:facet name="header">Day of Week</f:facet>    				
                                #{shift.get("day_of_week")}
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Time of Day</f:facet>
+                               #{shift.get("time_of_day")}
                             </h:column>
                         </h:dataTable>
                     </div>

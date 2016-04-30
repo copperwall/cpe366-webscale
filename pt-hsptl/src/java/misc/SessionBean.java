@@ -71,7 +71,7 @@ public class SessionBean implements Serializable
         return getUserLogin();
     }
     
-    public Employee getCurrentEmployee()
+    public static Employee getCurrentEmployee()
     {
         return currentEmployee;
     }
