@@ -36,7 +36,7 @@ import misc.EmployeePreferences;
 @Named(value = "employee")
 @SessionScoped
 @ManagedBean
-public class Employee extends DBO {
+public class Employee extends DBO<Employee> {
     
     private EmployeePreferences ep;
     
@@ -76,28 +76,10 @@ public class Employee extends DBO {
         return ep;
     }
     
-    public String test() {
-        System.out.println("Creating new employee");
-        
-        Employee e1 = new Employee(31);
-        
-        e1.set("login", "scott");
-        e1.set("password", "anncoulter1");
-        e1.set("role", "admin");
-        
-        e1.save();
-        
-        return "home";
-    }
-    
-    public static List<Employee> getAll() {
-        List<Employee> all = new ArrayList<Employee>();
-        
-        for (int i = 1; i <= 31; i++) {
-            all.add(new Employee(i));
-        }
-        
-        return all;
+    public static ArrayList<Employee> getAll() {
+        Employee e = new Employee(0);
+        String query = "SELECT * FROM employees;";
+        return e.getCustom(query);
     }
     
     public void applyPreferences()

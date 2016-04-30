@@ -21,10 +21,10 @@ package models;
  *
  * @author scottvanderlind
  */
-public class Shift extends DBO {
+public class Shift extends DBO<Shift> {
     
     public Shift() {
-        
+        this(0);
     }
     
     public Shift(int id) {
@@ -46,5 +46,9 @@ public class Shift extends DBO {
             this.fromDb = true;
             this.load();
         }
+    }
+    
+    public static void getAvailableShifts() {
+        
     }
 }
