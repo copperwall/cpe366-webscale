@@ -67,12 +67,12 @@ public class RequestShift
                 break;
         }
 
-        String query = "SELECT * FROM shifts "
-                + "LEFT JOIN employee_shifts "
+        String query = "SELECT * FROM shifts s "
+                + "LEFT JOIN employee_shifts es "
                 + "USING (shiftid) "
-                + "WHERE employeeid IS NULL "
-                + "AND shift_type IN (" + typeList.toString() + ")"
-                + "ORDER BY shiftid;";
+                + "WHERE (es.requested IS NULL OR es.requested = 0) "
+                + "AND s.shift_type IN (" + typeList.toString() + ") "
+                + "ORDER BY s.shiftid;";
         
         // Because of how reflection works in Java, we have to instantiate
         // a dummy object in order for the getCustom function to know
