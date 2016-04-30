@@ -11,10 +11,8 @@
             <ui:define name="title">Home</ui:define>
             <ui:define name="content">
                 <div class="row" id="navbar">
-                    <a class="button button-primary" href="showSchedule.xhtml">View Schedule</a>
-                    <a class="button" href="#">Submit Days Off</a>
-                    <a class="button" href="selectDays.xhtml">Submit Preferred Days</a>
-                    <a class="button" href="request_shift.xhtml">Request Shifts</a>
+                    <a class="button button-primary" href="request_shift.xhtml">Request Shifts</a>
+                    <a class="button" href="#">Request Days Off</a>
 
                     <c:if test="${userlogin == 'admin'}">
                         <a class="button" href="employee_list.xhtml">Manage Users</a>
@@ -24,18 +22,18 @@
                 <hr/>
                 <div class="row" id="schedule">
                     <h4>Your Current Schedule:</h4>
-                    <h:dataTable value="#{sessionBean.getCurrentEmployee().getShifts()}" var="shifts">
+                    <h:dataTable value="#{sessionBean.getCurrentEmployee().getSchedule()}" var="shift">
                         <h:column>    				
-                           <f:facet name="header">Date</f:facet>    				
-                           #{shifts[0]}
+                           <f:facet name="header">Day of Week</f:facet>    				
+                           #{shift.get("day_of_week")}
                         </h:column>
                         <h:column>    				
-                           <f:facet name="header">Day</f:facet>    				
-                           #{shifts[1]}
+                           <f:facet name="header">Time of Day</f:facet>    				
+                           #{shift.get("time_of_day")}
                         </h:column>
                         <h:column>
-                           <f:facet name="header">Time</f:facet>
-                           #{shifts[2]}
+                           <f:facet name="header">Shift Type</f:facet>
+                           #{shift.get("shift_type")}
                         </h:column>
                     </h:dataTable>
                 </div>

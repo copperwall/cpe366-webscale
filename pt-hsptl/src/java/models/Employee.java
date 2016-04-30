@@ -94,31 +94,17 @@ public class Employee extends DBO<Employee> {
             System.out.println(s);
         }
     }
-    
-    public ArrayList<String[]> getShifts()
-    {
-        Connection con = new DB().getConnection();
-        ResultSet rs;
-        ArrayList<String[]> shifts = new ArrayList<String[]>();
-        System.out.println("key: " + this.getPk());
-        try {
-            Statement s = con.createStatement();
-            rs = s.executeQuery("SELECT day_of_week, time_of_day, date "
-                                    + "FROM shifts s, employee_shifts es "
-                                    + "WHERE es.employeeid = " + this.getPk()
-                                    + " and s.shiftid = es.shiftid");
-            while (rs.next())
-            {
-                String[] shift = new String[3];
-                shift[0] = rs.getString("date");
-                shift[1] = rs.getString("day_of_week");
-                shift[2] = rs.getString("time_of_day");
-                
-                shifts.add(shift);
-            }
-        }
-        catch (Exception e) {System.out.println("SQL query exception: " + e.getMessage());}
-        
-        return shifts;
+
+    /**
+     * Get an employee's schedule.
+     * Returns an ArrayList of Shift objects representing the shifts that
+     * an employee is signed up for.
+     * @return 
+     */
+    public ArrayList<Shift> getSchedule() {
+        Shift s = new Shift(0);
+        String q = "SELECT * FROM shifts JOIN employee_shifts USING (shiftid) WHERE employeeid = " + this.getPk();
+
+        return s.getCustom(q);
     }
 }
