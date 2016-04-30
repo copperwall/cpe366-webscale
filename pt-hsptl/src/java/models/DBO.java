@@ -313,7 +313,7 @@ public class DBO<T> implements Serializable {
                 DBO<T> obj;
                 obj = DBO.getInstanceOf(this.getClass());
                 obj.initFromResultset(rs);
-                System.out.println("initing " + obj.getPk());
+                //System.out.println("initing " + obj.getPk());
                 results.add((T) obj);
                 //this.initFromResultset(rs);
             }

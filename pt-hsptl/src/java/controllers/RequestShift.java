@@ -18,8 +18,10 @@ package controllers;
 
 import java.util.ArrayList;
 import javax.annotation.ManagedBean;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import misc.SessionBean;
 import models.DBO;
@@ -79,7 +81,17 @@ public class RequestShift
         return s.getCustom(query);
     }
     
-    public void test() {
-        System.out.println("test");
+    public String request(int id) {
+        FacesContext currentInstance = FacesContext.getCurrentInstance();
+        System.out.println("requested " + id);
+
+        if (false) {
+            return "success";
+        } else {
+            currentInstance.addMessage(null,
+             new FacesMessage(FacesMessage.SEVERITY_ERROR,
+              "Error requesting shift", "You can't."));
+            return "fail";
+        }
     }
 }

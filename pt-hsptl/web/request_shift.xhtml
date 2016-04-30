@@ -26,6 +26,12 @@
                                <f:facet name="header">Time of Day</f:facet>
                                #{shift.get("time_of_day")}
                             </h:column>
+                            <h:column>
+                               <f:facet name="header">request</f:facet>
+                               <h:form>
+                                    <h:commandButton action="#{requestShift.request(shift.getPk())}" value="request"></h:commandButton>
+                               </h:form>
+                            </h:column>
                         </h:dataTable>
                     </div>
                 </div>

@@ -21,23 +21,21 @@ package models;
  *
  * @author scottvanderlind
  */
-public class Shift extends DBO<Shift> {
+public class EmployeeShift extends DBO<EmployeeShift> {
     
-    public Shift() {
+    public EmployeeShift() {
         this(0);
     }
     
-    public Shift(int id) {
+    public EmployeeShift(int id) {
         // Call the super constructor first
         super();
         // Set our table and pk
-        this.setTable("shifts", "shiftid");
+        this.setTable("employees_to_shifts", "employee_shiftid");
         // Bind our object attributes to the column names
         // bind(attribute, column)
-        this.bind("day_of_week", "day_of_week:day_of_week");
-        this.bind("time_of_day", "time_of_day:time_of_day");
-        // The rold ccol is of type role_enum
-        this.bind("shift_type", "shift_type:shift_type");
+        this.bind("shiftid", "shiftid");
+        this.bind("date", "date");
         
         // Set our DB status. If we don't pass an ID, we're a fresh
         // object
