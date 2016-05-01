@@ -107,4 +107,16 @@ public class Employee extends DBO<Employee> {
 
         return s.getCustom(q);
     }
+    
+    /**
+     * Get an employee's day-off-requests.
+     * Returns an ArrayList of DayOff objects owned by an employee.
+     * @return 
+     */
+    public ArrayList<DayOff> getDaysOff() {
+        DayOff d = new DayOff(0);
+        String query = "SELECT * FROM day_off_requests WHERE employeeid = " + this.getPk();
+        
+        return d.getCustom(query);
+    }
 }

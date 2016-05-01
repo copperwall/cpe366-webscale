@@ -15,18 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package controllers;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import misc.SessionBean;
+import models.DayOff;
 /**
  *
  * @author Kyle
  */
-public class RequestDaysOff {
+public class RequestDaysOff implements Serializable {
     private String vacStart;
     private String vacEnd;
     private String sickDay;
@@ -50,9 +55,25 @@ public class RequestDaysOff {
         System.out.println(vacEnd);
     }
     
-    public void applySickDays()
+    public String applySickDays()
     {
+        int employeeid = SessionBean.getCurrentEmployee().getPk();
+        FacesContext currentInstance = FacesContext.getCurrentInstance();
+
         //MAKE 3 SEPARATE selectOneMenu IN HTML for DAY, MONTH, YEAR!!!
+        DayOff day = new DayOff(0);
+        day.set("employeeid", "" + employeeid);
+        day.set("type", "sick");
+        day.set("date", sickDay);
+        
+        if (day.save()) {
+            return "success";
+        } else {
+            currentInstance.addMessage(null,
+             new FacesMessage(FacesMessage.SEVERITY_ERROR,
+              "Error requesting time", "You can't."));
+            return "fail";
+        }
     }
     
     public ArrayList<SelectItem> getPossibleVacationDays()

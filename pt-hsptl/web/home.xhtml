@@ -37,6 +37,21 @@
                         </h:column>
                     </h:dataTable>
                 </div>
+                
+                <hr/>
+                <div class="row" id="schedule">
+                    <h4>Your Time Off:</h4>
+                    <h:dataTable value="#{sessionBean.getCurrentEmployee().getDaysOff()}" var="dayoff">
+                        <h:column>    				
+                           <f:facet name="header">Date</f:facet>    				
+                           #{dayoff.get("date")}
+                        </h:column>
+                        <h:column>    				
+                           <f:facet name="header">Type</f:facet>    				
+                           #{dayoff.get("type")}
+                        </h:column>
+                    </h:dataTable>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

@@ -60,6 +60,7 @@
             </redirect><!-- The redirect flag keeps the url updated -->
         </navigation-case>
     </navigation-rule>
+    
     <navigation-rule>
         <from-view-id>
             /request_shift.xhtml
@@ -72,6 +73,22 @@
         <navigation-case>
             <from-outcome>fail</from-outcome>
             <to-view-id>/request_shift.xhtml</to-view-id>
+            <!-- No redirect here: redirecting to the same page breaks flash messages -->
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>
+            /requestDaysOff.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect/><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/requestDaysOff.xhtml</to-view-id>
             <!-- No redirect here: redirecting to the same page breaks flash messages -->
         </navigation-case>
     </navigation-rule>
