@@ -9,6 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="css/skeleton.css" rel="stylesheet" type="text/css" />
+        <link href="css/base.css" rel="stylesheet" type="text/css" />
         <title>pt hsptl - <ui:insert name="title"></ui:insert></title>
     </h:head>
     <h:body>
@@ -17,7 +18,7 @@
                 <div class="eight columns">
                     <h1>
                         <ui:insert name="header">
-                            pt hsptl
+                            <a href="/pt-hsptl">pt hsptl</a>
                         </ui:insert>
                     </h1>
                 </div>
@@ -30,6 +31,16 @@
             </div>
         </div>
         <div class="container" id="mainContainer">
+            <c:if test="${userlogin != null}">
+                <div class="row" id="navbar">
+                    <a class="button button-primary" href="request_shift.xhtml">Request Shifts</a>
+                    <a class="button" href="requestDaysOff.xhtml">Request Days Off</a>
+                    <c:if test="${userlogin == 'admin'}">
+                        <a class="button" href="employee_list.xhtml">Manage Users</a>
+                    </c:if>
+                </div>
+                <hr></hr>
+            </c:if>
             <div class="row" id="messages">
                 <h:messages/>
             </div>
