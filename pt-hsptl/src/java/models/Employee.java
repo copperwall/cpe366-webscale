@@ -84,7 +84,6 @@ public class Employee extends DBO<Employee> {
         return ep;
     }
     
-    //DIDNT HAVE TIME TO TEST THIS FUNCTION...make sure it works if youre trying to use it
     public static ArrayList<Employee> getEligibleEmployees(Shift s)
     {
         String type;
@@ -94,11 +93,11 @@ public class Employee extends DBO<Employee> {
            type = "'doctor'";
         
         String q = "SELECT * "
-                + "FROM employee e "
-                + "WHERE role = " + type
+                + "FROM employees "
+                + "WHERE role = '" + type + "'"
                 + " and employeeid not in (SELECT employeeid "
-                                        + "FROM day_off_requests do "
-                                        + "WHERE '" + s.getDate() + "' " + "= do.date)";
+                                        + "FROM day_off_requests "
+                                        + "WHERE '" + s.getDate() + "' " + "= date)";
         
         return s.getCustom(q);
     }
