@@ -81,7 +81,8 @@ public class Shift extends DBO<Shift> {
         }
         return 0;
     }
-    
+
+    // Return the time spread for the date
     public String getShiftTime() {
         switch (this.get("time_of_day")) {
             case "EARLY_MORNING":
@@ -100,6 +101,7 @@ public class Shift extends DBO<Shift> {
         return "";
     }
     
+    // Return a date string for the date of the shift
     public String getDate() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
