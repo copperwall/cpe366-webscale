@@ -18,7 +18,7 @@ package misc;
 
 import java.util.ArrayList;
 import models.Shift;
-
+import models.Employee;
 /**
  *
  * @author scottvanderlind
@@ -31,7 +31,7 @@ public class ScheduleMaker {
         // Iterate over every shift that doesn't have an employee tied to
         // it.
         for (Shift s: unassigned) {
-
+            ArrayList<Employee> eligible = Employee.getEligibleEmployees(s);
         }
     }
 }

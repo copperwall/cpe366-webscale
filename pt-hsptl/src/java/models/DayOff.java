@@ -76,17 +76,16 @@ public class DayOff extends DBO<DayOff> {
         
         // TODO: The query to get the number of queries for a certain year. 
         ArrayList<DayOff> daysOffThisYear = this.getCustom(query.toString());
-        
         if (this.get("type").equals("vacation")) {
             if (daysOffThisYear.size() < 8) {
-                return true;
+                return false;
             }
         } else {
             if (daysOffThisYear.size() < 4) {
-                return true;
+                return false;
             }
         }
         
-        return false;
+        return true;
     }
 }
