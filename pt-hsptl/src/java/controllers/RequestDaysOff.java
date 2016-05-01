@@ -79,8 +79,26 @@ public class RequestDaysOff implements Serializable {
     public ArrayList<SelectItem> getPossibleVacationDays()
     {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar start = Calendar.getInstance();
+        start.add(Calendar.DAY_OF_MONTH, 21);
+        int daysPossible = 100;
+        ArrayList<Date> dates = getDatesFromStart(start.getTime(), daysPossible);
+        ArrayList<SelectItem> vacDays = new ArrayList<SelectItem>();
+        
+        for (Date d : dates)
+        {
+            vacDays.add(new SelectItem(dateFormat.format(d)));
+        }
+        return vacDays;
+    }
+    
+    public ArrayList<SelectItem> getPossibleSickDays()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar start = Calendar.getInstance();
+        start.add(Calendar.DAY_OF_MONTH, 1);
         int daysPossible = 21;
-        ArrayList<Date> dates = getDatesFromStart(new Date(), daysPossible);
+        ArrayList<Date> dates = getDatesFromStart(start.getTime(), daysPossible);
         ArrayList<SelectItem> vacDays = new ArrayList<SelectItem>();
         
         for (Date d : dates)

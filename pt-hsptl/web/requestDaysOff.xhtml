@@ -13,7 +13,7 @@
                 <h:form>
                     <h:outputText value="Select Sick Day: "/>
                     <h:selectOneMenu value="#{requestDaysOff.sickDay}">
-                        <f:selectItems value="#{requestDaysOff.getPossibleVacationDays()}"/>
+                        <f:selectItems value="#{requestDaysOff.getPossibleSickDays()}"/>
                     </h:selectOneMenu>
                     <h:commandButton value="Request Sick Day" action="#{requestDaysOff.applySickDays()}" />
                     <br></br>
