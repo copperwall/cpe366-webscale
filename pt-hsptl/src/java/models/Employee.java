@@ -76,6 +76,25 @@ public class Employee extends DBO<Employee> {
         return ep;
     }
     
+    //DIDNT HAVE TIME TO TEST THIS FUNCTION...make sure it works if youre trying to use it
+    public static ArrayList<Employee> getEligibleEmployees(Shift s)
+    {
+        String type;
+        if (s.get("shift_type").equals("technician"))
+           type = "'technician'";
+        else
+           type = "'doctor'";
+        
+        String q = "SELECT * "
+                + "FROM employee e "
+                + "WHERE role = " + type
+                + " and employeeid not in (SELECT employeeid "
+                                        + "FROM day_off_requests do "
+                                        + "WHERE '" + s.getDate() + "' " + "= do.date)";
+        
+        return s.getCustom(q);
+    }
+    
     public static ArrayList<Employee> getAll() {
         Employee e = new Employee(0);
         String query = "SELECT * FROM employees;";
