@@ -29,6 +29,11 @@
                                                          id="password"
                                                          class="u-full-width"/>
                                 <h:message for="password" style="color:red;margin:8px;"/>
+
+                                <label for="role">Role</label>
+                                <h:selectOneMenu value="#{employeeEditor.role}" id="role">
+                                    <f:selectItems value="#{employee.getPossibleRoles()}"/>
+                                </h:selectOneMenu>
                                 <hr/>
                                 
                                 <h:commandButton value="delete" action="#{employeeEditor.delete}"

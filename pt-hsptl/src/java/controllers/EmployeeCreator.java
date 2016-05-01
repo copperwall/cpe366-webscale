@@ -1,8 +1,11 @@
 package controllers;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Employee;
 import javax.annotation.ManagedBean;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -71,6 +74,14 @@ public class EmployeeCreator implements Serializable
         this.editing.set("password", password);
     }
 
+    public String getRole() {
+        return this.editing.get("role");
+    }
+
+    public void setRole(String role) {
+        this.editing.set("role", role);
+    }
+
     public Employee getRequestedEmployee() {
         return this.editing;
     }
@@ -78,8 +89,19 @@ public class EmployeeCreator implements Serializable
     public String createEmployee() {
         System.out.println("login: " + this.editing.get("login"));
         System.out.println("Password: " + this.editing.get("password"));
+        FacesContext currentInstance = FacesContext.getCurrentInstance();
 
-        this.editing.save();
+        try {
+            this.editing.save();
+        }
+        catch (Exception e) {
+            Logger.getLogger(EmployeeCreator.class.getName()).
+                    log(Level.SEVERE, null, e);
+            currentInstance.addMessage(null,
+             new FacesMessage(FacesMessage.SEVERITY_ERROR,
+              e.getMessage(), "You can't."));
+            return "fail";
+        }
         
         this.id = this.editing.getPk();
         //System.out.println("new login: " + this.login);

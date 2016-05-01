@@ -85,6 +85,11 @@
                 </view-param>
             </redirect><!-- The redirect flag keeps the url updated -->
         </navigation-case>
+        <navigation-case>
+            <from-outcome>fail</from-outcome>
+            <to-view-id>/employee_list.xhtml</to-view-id>
+            <!-- No redirect here: redirecting to the same page breaks flash messages -->
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>

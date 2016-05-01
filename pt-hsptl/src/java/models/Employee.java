@@ -71,6 +71,14 @@ public class Employee extends DBO<Employee> {
         return this.get("login");
     }
     
+    public ArrayList<String> getPossibleRoles() {
+        ArrayList<String> roles = new ArrayList<>();
+        roles.add("technician");
+        roles.add("doctor");
+        roles.add("admin");
+        return roles;
+    }
+
     public EmployeePreferences getEmployeePreferences()
     {
         return ep;

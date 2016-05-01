@@ -34,6 +34,11 @@
                                                      id="password"
                                                      class="u-full-width"/>
                             <h:message for="password" style="color:red;margin:8px;"/>
+
+                            <label for="role">Role</label>
+                            <h:selectOneMenu value="#{employeeCreator.role}" id="role">
+                                <f:selectItems value="#{employee.getPossibleRoles()}"/>
+                            </h:selectOneMenu>
                             <h:commandButton value="create" action="#{employeeCreator.createEmployee}"
                                              class="button-primary u-pull-right"/>
                         </h:form>

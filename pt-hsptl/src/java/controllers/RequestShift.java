@@ -17,6 +17,8 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
@@ -92,13 +94,18 @@ public class RequestShift
         shift.set("shiftid", "" + id);
         shift.set("requested", "1");
 
-        if (shift.save()) {
+        try
+        {
+            shift.save();
             return "success";
-        } else {
+        }
+        catch (Exception ex) {
+            Logger.getLogger(RequestShift.class.getName()).
+                    log(Level.SEVERE, null, ex);
             currentInstance.addMessage(null,
-             new FacesMessage(FacesMessage.SEVERITY_ERROR,
-              "Error requesting shift", "You can't."));
-            return "fail";
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                ex.getMessage(), "You can't."));
+                return "fail";
         }
     }
 }

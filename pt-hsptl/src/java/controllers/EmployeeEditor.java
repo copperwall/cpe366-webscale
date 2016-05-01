@@ -74,6 +74,14 @@ public class EmployeeEditor implements Serializable
         this.editing.set("password", password);
     }
 
+    public String getRole() {
+        return this.editing.get("role");
+    }
+
+    public void setRole(String role) {
+        this.editing.set("role", role);
+    }
+
     public Employee getRequestedEmployee() {
         return this.editing;
     }
