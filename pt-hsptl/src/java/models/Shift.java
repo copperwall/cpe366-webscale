@@ -38,6 +38,8 @@ public class Shift extends DBO<Shift> {
         this.bind("time_of_day", "time_of_day:time_of_day");
         // The rold ccol is of type role_enum
         this.bind("shift_type", "shift_type:shift_type");
+        // Binds the weekid to the weekid column.
+        this.bind("weekid", "weekid:integer");
         
         // Set our DB status. If we don't pass an ID, we're a fresh
         // object
