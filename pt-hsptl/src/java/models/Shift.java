@@ -1,5 +1,13 @@
 package models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import static java.util.Locale.US;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Copyright (C) 2016 scottvanderlind
  *
@@ -48,6 +56,71 @@ public class Shift extends DBO<Shift> {
             this.fromDb = true;
             this.load();
         }
+    }
+    
+    public Week getWeek() {
+        return new Week(Integer.parseInt(this.get("weekid")));
+    }
+    
+    private int mapDay(String day) {
+        switch (day) {
+            case "MONDAY":
+                return Calendar.MONDAY;
+            case "TUESDAY":
+                return Calendar.TUESDAY;
+            case "WEDNESDAY":
+                return Calendar.WEDNESDAY;
+            case "THURSDAY":
+                return Calendar.THURSDAY;
+            case "FRIDAY":
+                return Calendar.FRIDAY;
+            case "SATURDAY":
+                return Calendar.SATURDAY;
+            case "SUNDAY":
+                return Calendar.SUNDAY;
+        }
+        return 0;
+    }
+
+    // Return the time spread for the date
+    public String getShiftTime() {
+        switch (this.get("time_of_day")) {
+            case "EARLY_MORNING":
+                return "7.30am-6.30pm";
+            case "SURGERY":
+                return "7.30am-6.30pm";
+            case "DAY":
+                return "8.30am-7.30pm";
+            case "LATE":
+                return "9.30am-8.30pm";
+            case "OVERNIGHT":
+                return "8pm – 8am";
+            case "SUNDAY":
+                return "8am – 8pm";
+        }
+        return "";
+    }
+    
+    // Return a date string for the date of the shift
+    public String getDate() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        SimpleDateFormat format1 = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
+
+        try
+        {
+            cal.setTime(sdf.parse(this.getWeek().toString()));
+        }
+        catch (ParseException ex)
+        {
+            Logger.getLogger(Shift.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while(cal.get(Calendar.DAY_OF_WEEK) != this.mapDay(this.get("day_of_week"))) {
+            cal.add(Calendar.DATE, 1);
+        }
+        //return cal.getTime().toString();
+        return format1.format(cal.getTime());
     }
 
 }
