@@ -82,7 +82,11 @@ public class EmployeeEditor implements Serializable
         System.out.println("login: " + this.editing.get("login"));
         System.out.println("Password: " + this.editing.get("password"));
 
-        this.editing.save();
+        try {
+            this.editing.save();
+        } catch (Exception e) {
+            System.err.println("Error in updating employee " + this.editing.get("employeeid"));
+        }
         //System.out.println("new login: " + this.login);
         return "updated";
     }
