@@ -32,34 +32,30 @@ import javax.inject.Named;
 @Named(value = "employeeEditor")
 @ViewScoped
 @ManagedBean
-public class EmployeeEditor implements Serializable
+public class EmployeeCreator implements Serializable
 {
 
     private Employee editing;
     private int id;
-
+    
     /**
      * Creates a new instance of EmployeeEditor
      */
-    public EmployeeEditor()
+    public EmployeeCreator()
     {
     }
     
     public void onload() {
-        System.out.println("onload for id " + id);
-        this.editing = new Employee(id);
-    }
-
-    public int getId() {
-        return this.id;
+        this.editing = new Employee(0);
     }
     
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return this.id;
     }
 
     public String getLogin() {
         return this.editing.get("login");
+        //return "";
     }
 
     public void setLogin(String login) {
@@ -68,6 +64,7 @@ public class EmployeeEditor implements Serializable
 
     public String getPassword() {
         return this.editing.get("password");
+        //return "";
     }
 
     public void setPassword(String password) {
@@ -78,18 +75,15 @@ public class EmployeeEditor implements Serializable
         return this.editing;
     }
 
-    public String updateEmployee() {
+    public String createEmployee() {
         System.out.println("login: " + this.editing.get("login"));
         System.out.println("Password: " + this.editing.get("password"));
 
         this.editing.save();
+        
+        this.id = this.editing.getPk();
         //System.out.println("new login: " + this.login);
         return "updated";
-    }
-    
-    public String delete() {
-        
-        return "deleted";
     }
 
 }

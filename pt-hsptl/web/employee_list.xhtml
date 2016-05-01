@@ -9,11 +9,34 @@
         <ui:composition template="./layout.xhtml">
             <ui:define name="title">Employee List</ui:define><!-- Put page title here -->
             <ui:define name="content">
+                <f:metadata>
+                    <f:viewAction action="#{employeeCreator.onload}" />
+                </f:metadata>
                 <div class="row">
                     <div class="offset-by-three six columns">
+                        <h4>All Employees</h4>
                         <ui:repeat value="#{employee.getAll()}" var="doctor">
                             <a href="employee_edit.xhtml?id=#{doctor.getPk()}">#{doctor.get("login")}</a><br/>
                         </ui:repeat>
+                    </div>
+                    <div class="offset-by-three six columns">
+                        <hr/>
+                        <h4>Create Employee</h4>
+                        <h:form>
+                            <label for="login">Login</label>
+                            <h:inputText value="#{employeeCreator.login}"
+                                                id="login"
+                                                class="u-full-width"/>
+                            <h:message for="login" style="color:red;margin:8px;"/>
+
+                            <label for="password">Password</label>
+                            <h:inputText value="#{employeeCreator.password}"
+                                                     id="password"
+                                                     class="u-full-width"/>
+                            <h:message for="password" style="color:red;margin:8px;"/>
+                            <h:commandButton value="create" action="#{employeeCreator.createEmployee}"
+                                             class="button-primary u-pull-right"/>
+                        </h:form>
                     </div>
                 </div>
                 <!-- Put content here -->

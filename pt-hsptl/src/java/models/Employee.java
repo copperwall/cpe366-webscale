@@ -78,7 +78,7 @@ public class Employee extends DBO<Employee> {
     
     public static ArrayList<Employee> getAll() {
         Employee e = new Employee(0);
-        String query = "SELECT * FROM employees;";
+        String query = "SELECT * FROM employees ORDER BY employeeid;";
         return e.getCustom(query);
     }
     

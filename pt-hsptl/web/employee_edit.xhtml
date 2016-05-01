@@ -16,6 +16,7 @@
                 <div class="row">
                     <div class="offset-by-three six columns">
                         <ui:repeat value="#{employeeEditor.getRequestedEmployee()}" var="doctor">
+                            <h4>Editing #{doctor.get("login")}</h4>
                             <h:form>
                                 <label for="login">Login</label>
                                 <h:inputText value="#{employeeEditor.login}"
@@ -29,8 +30,11 @@
                                                          class="u-full-width"/>
                                 <h:message for="password" style="color:red;margin:8px;"/>
                                 <hr/>
+                                
+                                <h:commandButton value="delete" action="#{employeeEditor.delete}"
+                                                 class="button u-pull-left"/>
                                 <h:commandButton value="update" action="#{employeeEditor.updateEmployee}"
-                                                 class="button-primary u-full-width"/>
+                                                 class="button-primary u-pull-right"/>
                             </h:form>
                         </ui:repeat>
                     </div>
