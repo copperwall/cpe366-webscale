@@ -94,7 +94,7 @@ public class Employee extends DBO<Employee> {
         
         String q = "SELECT * "
                 + "FROM employees "
-                + "WHERE role = '" + type + "'"
+                + "WHERE role = " + type
                 + " and employeeid not in (SELECT employeeid "
                                         + "FROM day_off_requests "
                                         + "WHERE '" + s.getDate() + "' " + "= date)";
