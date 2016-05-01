@@ -2,6 +2,7 @@ package models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import static java.util.Locale.US;
@@ -62,6 +63,10 @@ public class Shift extends DBO<Shift> {
         return new Week(Integer.parseInt(this.get("weekid")));
     }
     
+    public boolean isTechnician() {
+        return this.get("shift_type").equals("technician");
+    }
+
     private int mapDay(String day) {
         switch (day) {
             case "MONDAY":
@@ -121,6 +126,12 @@ public class Shift extends DBO<Shift> {
         }
         //return cal.getTime().toString();
         return format1.format(cal.getTime());
+    }
+
+    public static ArrayList<Shift> getUnassignedShifts() {
+        Shift s = new Shift(0);
+        String query = "SELECT * FROM shifts LEFT JOIN employee_shifts USING (shiftid) WHERE employee_shiftid IS NULL ORDER BY shiftid";
+        return s.getCustom(query);
     }
 
 }
