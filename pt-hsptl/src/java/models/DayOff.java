@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 /*
  * Copyright (C) 2016 scottvanderlind
  *
@@ -47,4 +50,45 @@ public class DayOff extends DBO<DayOff> {
         }
     }
 
+    public boolean save() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        // If the type is Sick Day than it can't be today
+        // and there cannot be four other sick days for that user
+        
+        if (this.hasTooManyDays()) {
+            return false;
+        }
+        
+        // If the type is Vacation Day then the date must be three weeks in advance
+        // There cannot be eight other sick days 
+        return super.save();
+    }
+    
+    private boolean hasTooManyDays() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        StringBuilder query = new StringBuilder();
+        
+        query.append("SELECT * FROM day_off_requests");
+        query.append(" WHERE EXTRACT(YEAR FROM date) = ");
+        query.append(String.valueOf(year));
+        query.append(" AND employeeid = ");
+        query.append(this.get("employeeid"));
+        
+        // TODO: The query to get the number of queries for a certain year. 
+        ArrayList<DayOff> daysOffThisYear = this.getCustom(query.toString());
+        
+        if (this.get("type").equals("vacation")) {
+            if (daysOffThisYear.size() < 8) {
+                return true;
+            }
+        } else {
+            if (daysOffThisYear.size() < 4) {
+                return true;
+            }
+        }
+        
+        return true;
+    }
 }
