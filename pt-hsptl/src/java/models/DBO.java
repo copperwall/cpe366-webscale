@@ -70,7 +70,7 @@ public class DBO<T> implements Serializable {
         return this.id;
     }
     
-    public boolean save() {
+    public boolean save() throws Exception {
         //System.out.println("Save called");
         DB db = new DB();
         Connection conn = db.getConnection();

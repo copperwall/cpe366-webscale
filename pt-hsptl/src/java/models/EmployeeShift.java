@@ -48,7 +48,7 @@ public class EmployeeShift extends DBO<EmployeeShift> {
         }
     }
 
-    public boolean save() {
+    public boolean save() throws Exception {
         this.calculateDate();
         return super.save();
     }

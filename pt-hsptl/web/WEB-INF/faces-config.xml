@@ -24,6 +24,11 @@
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>employeeCreator</managed-bean-name>
+        <managed-bean-class>controllers.EmployeeCreator</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>requestDaysOff</managed-bean-name>
         <managed-bean-class>controllers.RequestDaysOff</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
@@ -56,6 +61,27 @@
                 <view-param>
                     <name>id</name>
                     <value>#{employeeEditor.id}</value>
+                </view-param>
+            </redirect><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>deleted</from-outcome>
+            <to-view-id>/employee_list.xhtml</to-view-id>
+            <redirect/><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>
+            /employee_list.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>updated</from-outcome>
+            <to-view-id>/employee_edit.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{employeeCreator.id}</value>
                 </view-param>
             </redirect><!-- The redirect flag keeps the url updated -->
         </navigation-case>

@@ -66,14 +66,16 @@ public class RequestDaysOff implements Serializable {
         day.set("type", "sick");
         day.set("date", sickDay);
         
-        if (day.save()) {
-            return "success";
-        } else {
+        try {
+            day.save();
+        } catch (Exception e) {
             currentInstance.addMessage(null,
              new FacesMessage(FacesMessage.SEVERITY_ERROR,
-              "Error requesting time", "You can't."));
+              e.getMessage(), "You can't."));
             return "fail";
         }
+
+        return "success";
     }
     
     public ArrayList<SelectItem> getPossibleVacationDays()

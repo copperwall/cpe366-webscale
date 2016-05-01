@@ -50,14 +50,12 @@ public class DayOff extends DBO<DayOff> {
         }
     }
 
-    public boolean save() {
+    public boolean save() throws Exception {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
-        // If the type is Sick Day than it can't be today
-        // and there cannot be four other sick days for that user
         
         if (this.hasTooManyDays()) {
-            return false;
+            throw new Exception("You have already taken too many " + this.get("type") + " days");
         }
         
         // If the type is Vacation Day then the date must be three weeks in advance
@@ -78,14 +76,13 @@ public class DayOff extends DBO<DayOff> {
         
         // TODO: The query to get the number of queries for a certain year. 
         ArrayList<DayOff> daysOffThisYear = this.getCustom(query.toString());
-        
         if (this.get("type").equals("vacation")) {
             if (daysOffThisYear.size() < 8) {
-                return true;
+                return false;
             }
         } else {
             if (daysOffThisYear.size() < 4) {
-                return true;
+                return false;
             }
         }
         
