@@ -77,8 +77,8 @@ public class ScheduleMaker {
                 
                 // Add to schedule
                 EmployeeShift es = new EmployeeShift();
-                es.set("shiftid", s.get("shiftid"));
-                es.set("employeeid", e.get("employeeid"));
+                es.set("shiftid", String.valueOf(s.getPk()));
+                es.set("employeeid", String.valueOf(e.getPk()));
                 es.set("requested", "0");
 
                 try {
