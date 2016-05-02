@@ -37,16 +37,11 @@ public class ScheduleMaker {
         }
 
         ArrayList<Shift> unassigned = Shift.getUnassignedShifts();
-        for (Shift test_shift : unassigned) {
-            System.out.println("DEBUG: Shift " + test_shift.getPk() + " is unassigned");
-        }
 
         // Iterate over every shift that doesn't have an employee tied to
         // it.
         for (Shift s: unassigned) {
-            System.out.println("before eligible");
             ArrayList<Employee> eligible = Employee.getEligibleEmployees(s);
-            System.out.println("after eligible");
             // TODO: Foreach employee, given their employeeid
             // Determine if they have any shifts within 10 hours of this one.
             // This can be determined by adding 11 hours onto the starttime
@@ -56,15 +51,12 @@ public class ScheduleMaker {
                     System.out.println("too close");
                     continue;
                 }
-                System.out.println("not too close");
-                System.out.println(s.get("shift_type"));
+
                 if (s.get("shift_type").equals("surgery")) {
                     if (e.tooManySurgeries(s)) {
                         System.out.println("too many surgeries");
                         continue;
                     }
-                    
-                    System.out.println("not too many surgeries");
                 }
                 
                 if (s.get("shift_type").equals("appointment")) {
@@ -72,7 +64,6 @@ public class ScheduleMaker {
                         System.out.println("too many overnights");
                         continue;
                     }
-                    System.out.println("not too many overnights");
                 }
                 
                 // Add to schedule
@@ -82,7 +73,6 @@ public class ScheduleMaker {
                 es.set("requested", "0");
 
                 try {
-                    System.out.println("Trying to save");
                    es.save();
                 } catch (Exception ex) {
                     System.err.println(ex.getMessage());
