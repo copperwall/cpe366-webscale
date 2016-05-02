@@ -19,6 +19,7 @@ package misc;
 import java.util.ArrayList;
 import models.Shift;
 import models.Employee;
+import models.EmployeeShift;
 /**
  *
  * @author scottvanderlind
@@ -55,7 +56,18 @@ public class ScheduleMaker {
                     }
                 }
                 
-                noProximityConflict.add(e);
+                // Add to schedule
+                EmployeeShift es = new EmployeeShift();
+                es.set("shiftid", s.get("shiftid"));
+                es.set("employeeid", e.get("employeeid"));
+                es.set("requested", "0");
+                es.set("date", s.getDate());
+
+                try {
+                   es.save();
+                } catch (Exception ex) {
+                    System.err.println(ex.getMessage());
+                }
             }
         }
     }
