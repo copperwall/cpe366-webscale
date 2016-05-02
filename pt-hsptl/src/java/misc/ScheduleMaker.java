@@ -27,6 +27,13 @@ import models.EmployeeShift;
 public class ScheduleMaker {
 
     public static void run() {
+        // Clean all dynamically allocated employee_shifts
+        ArrayList<EmployeeShift> cleanList = EmployeeShift.getAll();
+
+        for (EmployeeShift es : cleanList) {
+            es.delete();
+        }
+
         ArrayList<Shift> unassigned = Shift.getUnassignedShifts();
 
         // Iterate over every shift that doesn't have an employee tied to

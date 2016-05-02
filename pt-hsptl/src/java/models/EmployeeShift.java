@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 /*
  * Copyright (C) 2016 scottvanderlind
  *
@@ -53,10 +55,16 @@ public class EmployeeShift extends DBO<EmployeeShift> {
         return super.save();
     }
 
+    public static ArrayList<EmployeeShift> getAll() {
+        EmployeeShift es = new EmployeeShift();
+        String query = "SELECT * FROM employee_shifts";
+
+        return es.getCustom(query);
+    }
+
     private void calculateDate() {
-        // TODO: Somehow, map a day_of_week,time_of_day combo to an actual
-        //       date and set it in the object.
-        this.set("date", "2016-04-14 00:00:00");
+        Shift s = new Shift(Integer.parseInt(this.get("shiftid")));
+        this.set("date", s.getShiftTimestamp());
     }
 
 }
