@@ -134,4 +134,16 @@ public class Shift extends DBO<Shift> {
         return s.getCustom(query);
     }
 
+    // Get all the employees working this same shift (of all types)
+    public ArrayList<Employee> getEmployeesOnShift() {
+        Employee e = new Employee(0);
+        String query = "SELECT * FROM employees e " +
+                       "JOIN employee_shifts es USING (employeeid) " +
+                       "JOIN shifts s USING (shiftid) " +
+                       "WHERE s.day_of_week = '" + this.get("day_of_week") + "' " +
+                       "AND s.time_of_day = '" + this.get("time_of_day") + "' " +
+                       "AND s.weekid = " + this.get("weekid");
+        return e.getCustom(query);
+    }
+
 }
