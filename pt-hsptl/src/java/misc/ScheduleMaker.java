@@ -32,6 +32,31 @@ public class ScheduleMaker {
         // it.
         for (Shift s: unassigned) {
             ArrayList<Employee> eligible = Employee.getEligibleEmployees(s);
+            ArrayList<Employee> noProximityConflict = new ArrayList<>();
+            
+            // TODO: Foreach employee, given their employeeid
+            // Determine if they have any shifts within 10 hours of this one.
+            // This can be determined by adding 11 hours onto the starttime
+            // of the shift s.
+            for (Employee e : eligible) {
+                if (e.otherShiftTooClose(s)) {
+                    continue;
+                }
+                
+                if (s.get("type").equals("surgery")) {
+                    if (e.tooManySurgeries(s)) {
+                        continue;
+                    }
+                }
+                
+                if (s.get("type").equals("appointment")) {
+                    if (e.tooManyOvernights(s)) {
+                        continue;
+                    }
+                }
+                
+                noProximityConflict.add(e);
+            }
         }
     }
 }
