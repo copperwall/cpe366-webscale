@@ -1,0 +1,13 @@
+Assumptions:
+
+1. Weeks start with Monday and end with Sunday
+2. Two-week periods start with the first and third full weeks of the month
+3. An admin will not request shifts nor vacation/sickdays
+4. An Employee will not want to change their own password
+5. No two users will be using the application at the same time
+6. No invalid login/password will be entered when creating a new employee
+7. Sick days will not be requested more than 3 weeks away. 
+8. An employee will not want to un-request a shift they have requested
+9. An employee will not request a shift that conflicts with other requested shifts 
+   or selected days off.
+10. An employee will not request a shift that violates the 10 hour rule or two-surgery rule.
