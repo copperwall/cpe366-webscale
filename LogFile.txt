@@ -1,6 +1,12 @@
 LogFile
 
-Kyle Cornelison
+Kyle Cornelison -- Total time: 20 hours
+*RequestDaysOff.java
+*EmployeePreferences.java(deprecated, original RequestShift.java)
+*Employee.java (scheduling methods)
+*SessionBean.java - minor edits
+*requestDaysOff.xhtml
+*selectDays.xhtml
 
 Chris Opperwall -- Total time: 20 hours
 * most of the scheduling algorithm

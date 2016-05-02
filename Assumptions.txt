@@ -11,3 +11,4 @@ Assumptions:
 9. An employee will not request a shift that conflicts with other requested shifts 
    or selected days off.
 10. An employee will not request a shift that violates the 10 hour rule or two-surgery rule.
+11. The doctors/technicians come pre-initialized in the database
