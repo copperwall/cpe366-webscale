@@ -47,12 +47,44 @@ public class RequestDaysOff implements Serializable {
         sickYear = "";
     }
     
-    public void applyVacDays()
+    public String applyVacDays()
     {
         //make sure first date is before second date, make new table entry for each date
         //pass current employee id into this function from xhtml page??
-        System.out.println(vacStart);
-        System.out.println(vacEnd);
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        Date start = null;
+        Date end = null;
+        
+        try {
+            start = df.parse(vacStart);
+            end = df.parse(vacEnd);
+        }
+        catch (Exception e) {System.out.println("Exception while parsing vacaction days: " + e.getMessage());}
+        
+        ArrayList<Date> vacation = getDatesBetween(start, end);
+        
+        for (Date d : vacation)
+        {
+            int employeeid = SessionBean.getCurrentEmployee().getPk();
+            FacesContext currentInstance = FacesContext.getCurrentInstance();
+
+            //MAKE 3 SEPARATE selectOneMenu IN HTML for DAY, MONTH, YEAR!!!
+            DayOff day = new DayOff(0);
+            day.set("employeeid", "" + employeeid);
+            day.set("type", "vacation");
+            day.set("date", df.format(d));
+
+            try {
+                day.save();
+            } catch (Exception e) {
+                currentInstance.addMessage(null,
+                 new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                  e.getMessage(), "You can't."));
+                return "fail";
+            }
+        }
+        
+        return "success";
     }
     
     public String applySickDays()
@@ -122,6 +154,26 @@ public class RequestDaysOff implements Serializable {
         Date enddate = temp.getTime();
         
         while (calendar.getTime().before(enddate))
+        {
+            Date result = calendar.getTime();
+            dates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        return dates;
+    }
+    
+    public ArrayList<Date> getDatesBetween(Date startdate, Date enddate)
+    {
+        ArrayList<Date> dates = new ArrayList<Date>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startdate);
+        
+        Calendar temp = new GregorianCalendar();
+        temp.setTime(enddate);
+        temp.add(Calendar.DATE, 1);
+        Date end = temp.getTime();
+        
+        while (calendar.getTime().before(end))
         {
             Date result = calendar.getTime();
             dates.add(result);
