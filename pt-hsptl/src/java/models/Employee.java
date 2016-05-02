@@ -91,7 +91,19 @@ public class Employee extends DBO<Employee> {
         // Grab weekid from shift
         // Select employee_shifts for shifts for this employeeid and shifts from
         // the weekid from the candidate shift and of type surgery.
-        return true;
+        
+        String q = "SELECT * "
+                + "FROM shifts s "
+                + "JOIN employee_shifts es "
+                + "USING (shiftid) "
+                + "WHERE s.weekid = " + s.get("weekid") 
+                     + " AND s.shift_type = 'surgery' "
+                     + "AND es.employeeid = " + this.get("employeeid");
+        
+        if (s.getCustom(q).size() == 0)
+            return false;
+        else
+            return true;
     }
     
     public boolean tooManyOvernights(Shift s) {
