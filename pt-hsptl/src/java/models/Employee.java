@@ -78,12 +78,41 @@ public class Employee extends DBO<Employee> {
         roles.add("admin");
         return roles;
     }
+    
+    public boolean otherShiftTooClose(Shift s) {
+        // Grab timestamp from shift
+        // Select employee_shifts where the date is less than 10 hours before
+        // the timestamp of the shift, or less than 10 hours after the timestamp
+        // of the shift + 11 hours.
+        return true;
+    }
+    
+    public boolean tooManySurgeries(Shift s) {
+        // Grab weekid from shift
+        // Select employee_shifts for shifts for this employeeid and shifts from
+        // the weekid from the candidate shift and of type surgery.
+        return true;
+    }
+    
+    public boolean tooManyOvernights(Shift s) {
+        // Grab weekid from shift
+        // Select employee_shifts for shifts for this employeeid and shifts from
+        // the weekid from the candidate shift and of time_of_day overnight.
+        return true;
+    }
 
     public EmployeePreferences getEmployeePreferences()
     {
         return ep;
     }
     
+    /**
+     * Returns a list of Employees who do not have a day off on the day of the
+     * given shift 's'.
+     * 
+     * @param s The candidate shift.
+     * @return List of employees.
+     */
     public static ArrayList<Employee> getEligibleEmployees(Shift s)
     {
         String type;
@@ -92,12 +121,20 @@ public class Employee extends DBO<Employee> {
         else
            type = "'doctor'";
         
+        String datestring = s.getShiftTimestamp();
+        
         String q = "SELECT * "
-                + "FROM employees "
+                + "FROM employees e "
+                + "LEFT JOIN day_off_requests d "
+                + "ON e.employeeid = d.employeeid AND d.date = DATE '" + datestring + "' "
+                + "WHERE role = " + type
+                + " and d.employeeid IS NULL";
+               /* + "FROM employees "
                 + "WHERE role = " + type
                 + " and employeeid not in (SELECT employeeid "
                                         + "FROM day_off_requests "
-                                        + "WHERE '" + s.getDate() + "' " + "= date)";
+                                        + "WHERE '" + s.getDate() + "' " + "= date)";*/
+                
         
         return s.getCustom(q);
     }

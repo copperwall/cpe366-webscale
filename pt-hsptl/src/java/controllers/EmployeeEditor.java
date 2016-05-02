@@ -100,7 +100,7 @@ public class EmployeeEditor implements Serializable
     }
     
     public String delete() {
-        
+        this.editing.delete();
         return "deleted";
     }
 

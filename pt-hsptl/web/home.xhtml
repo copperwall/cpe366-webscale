@@ -27,6 +27,12 @@
                            <f:facet name="header">Time</f:facet>
                            #{shift.getShiftTime()}
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Working This Shift:</f:facet>
+                            <ui:repeat value="#{shift.getEmployeesOnShift()}" var="employee">
+                                #{employee.get("login")} (#{employee.get("role")}) <br/>
+                            </ui:repeat>
+                        </h:column>
                     </h:dataTable>
                 </div>
                 

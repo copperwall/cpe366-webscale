@@ -106,6 +106,28 @@ public class Shift extends DBO<Shift> {
         return "";
     }
     
+    public String getShiftTimestamp() {
+        return this.getDate() + " " + this.getStartTime();
+    }
+    
+    public String getStartTime() {
+        switch (this.get("time_of_day")) {
+            case "EARLY_MORNING":
+                return "07:30:00";
+            case "SURGERY":
+                return "07:30:00";
+            case "DAY":
+                return "08:30:00";
+            case "LATE":
+                return "09:30:00";
+            case "OVERNIGHT":
+                return "20:00:00";
+            case "SUNDAY":
+                return "08:00:00";
+        }
+        return "";
+    }
+    
     // Return a date string for the date of the shift
     public String getDate() {
         Calendar cal = Calendar.getInstance();
@@ -132,6 +154,18 @@ public class Shift extends DBO<Shift> {
         Shift s = new Shift(0);
         String query = "SELECT * FROM shifts LEFT JOIN employee_shifts USING (shiftid) WHERE employee_shiftid IS NULL ORDER BY shiftid";
         return s.getCustom(query);
+    }
+
+    // Get all the employees working this same shift (of all types)
+    public ArrayList<Employee> getEmployeesOnShift() {
+        Employee e = new Employee(0);
+        String query = "SELECT * FROM employees e " +
+                       "JOIN employee_shifts es USING (employeeid) " +
+                       "JOIN shifts s USING (shiftid) " +
+                       "WHERE s.day_of_week = '" + this.get("day_of_week") + "' " +
+                       "AND s.time_of_day = '" + this.get("time_of_day") + "' " +
+                       "AND s.weekid = " + this.get("weekid");
+        return e.getCustom(query);
     }
 
 }
