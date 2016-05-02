@@ -9,7 +9,28 @@ Chris Opperwall -- Total time: 20 hours
 * Added navbar layout template
 * Set the lower bound on day off select dropdowns
 
-Scott Vanderlind
+Scott Vanderlind -- Total Time: 20 hours
+* Created NetBeans project
+* Created page layout and template hierarchy
+* Added Skeleton.css (on recommendation of Chris) and
+  implemented general page style.
+* Created login pages and logic, authentication system
+* Wrote ORM object to generate queries to manipulate
+  data in an objective way.
+* Wrote objects for Employee, EmployeeShift, Shift, Week
+* Organized classes into proper packages, instituted
+  MVC paradigm.
+* Created employee list, creator, and editor.
+* Created Shift Request page, controller, and logic.
+* Connected part of Kyle's sick day request form.
+* Moved Kyle's schedule template to home page.
+* Added a table of days off to the home page.
+* Added support for joins and custom queries to ORM.
+* Added support for delete to ORM.
+* Added information about fellow employees working at
+  the same time to the schedule.
+* Brainstormed assumptions
+* Wrote the User Manual
 
 The following is the git log from our project. It has a full breakdown of who
 did what.
