@@ -96,7 +96,7 @@ public class Employee extends DBO<Employee> {
         // DATE 'datestring' - 10 hours AND DATE 'datestring' + 11 hours
         query.append(" TIMESTAMP '");
         query.append(datestring);
-        query.append("' - INTERVAL '10' HOUR");
+        query.append("' - INTERVAL '21' HOUR");
         query.append(" AND TIMESTAMP '");
         query.append(datestring);
         // Make sure the shift is within 10 hours of the end of the shift, which
@@ -122,7 +122,7 @@ public class Employee extends DBO<Employee> {
                      + " AND s.shift_type = 'surgery' "
                      + "AND es.employeeid = " + this.getPk();
         
-        System.out.println(q);
+        //System.out.println(q);
         
         return !(s.getCustom(q).isEmpty());
     }
@@ -165,9 +165,7 @@ public class Employee extends DBO<Employee> {
         else
            type = "'doctor'";
         
-        System.out.println("before datestring");
         String datestring = s.getShiftTimestamp();
-        System.out.println("after datestring");
         
         String q = "SELECT e.* "
                 + "FROM employees e "
