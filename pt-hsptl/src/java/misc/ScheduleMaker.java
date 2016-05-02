@@ -31,7 +31,9 @@ public class ScheduleMaker {
         ArrayList<EmployeeShift> cleanList = EmployeeShift.getAll();
 
         for (EmployeeShift es : cleanList) {
-            es.delete();
+            if (es.get("requested").equals("0")) {
+                es.delete();
+            }
         }
 
         ArrayList<Shift> unassigned = Shift.getUnassignedShifts();
@@ -40,41 +42,43 @@ public class ScheduleMaker {
         // it.
         for (Shift s: unassigned) {
             ArrayList<Employee> eligible = Employee.getEligibleEmployees(s);
-            ArrayList<Employee> noProximityConflict = new ArrayList<>();
-            
             // TODO: Foreach employee, given their employeeid
             // Determine if they have any shifts within 10 hours of this one.
             // This can be determined by adding 11 hours onto the starttime
             // of the shift s.
             for (Employee e : eligible) {
                 if (e.otherShiftTooClose(s)) {
+                    System.out.println("too close");
                     continue;
                 }
-                
-                if (s.get("type").equals("surgery")) {
+
+                if (s.get("shift_type").equals("surgery")) {
                     if (e.tooManySurgeries(s)) {
+                        System.out.println("too many surgeries");
                         continue;
                     }
                 }
                 
-                if (s.get("type").equals("appointment")) {
+                if (s.get("shift_type").equals("appointment")) {
                     if (e.tooManyOvernights(s)) {
+                        System.out.println("too many overnights");
                         continue;
                     }
                 }
                 
                 // Add to schedule
                 EmployeeShift es = new EmployeeShift();
-                es.set("shiftid", s.get("shiftid"));
-                es.set("employeeid", e.get("employeeid"));
+                es.set("shiftid", String.valueOf(s.getPk()));
+                es.set("employeeid", String.valueOf(e.getPk()));
                 es.set("requested", "0");
-                es.set("date", s.getDate());
 
                 try {
                    es.save();
                 } catch (Exception ex) {
                     System.err.println(ex.getMessage());
                 }
+                
+                break;
             }
         }
     }
