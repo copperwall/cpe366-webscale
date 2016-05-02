@@ -1,0 +1,167 @@
+User Manual
+
+Welcome to Pt Hsptl, the most enterprise software avaialble for running a
+real pet hospital!
+
+Table of Contents:
+
+0. Things To Know
+ * UI Basics
+ * Disclaimers
+
+1. Initial Setup
+ * Default Accounts
+ * Changing Default Passwords
+
+2. Admin Actions
+ * Adding Employees
+ * Editing Employees
+ * Deleting Employees
+
+3. Employee Use
+ * Logging In
+ * Requesting Time Off
+ * Requesting a Specific Shift
+
+
+
+
+Content:
+
+0. Things To Know
+
+   * UI Basics
+
+   Here are some helpful basics for navigating the UI.
+
+      * From anywhere on the site, clicking the "Pt Hsptl" text in the upper left
+        of each page will return you to the home page.
+
+
+   * Disclaimers
+
+   There are some things to be aware of:
+
+      * When a schedule is being generated, it may take some time. Please allow
+        up to 30 seconds for a new schedule to be computed.
+
+      * Employee schedules are recomputed on several occasions:
+        * After Shift requests
+        * After sick day requests
+        * At the start of a new work period
+        * Upon the login of a user for the first time
+
+   Thank you for reading our Helpful Tips and Tricks!
+
+====================
+
+1. Intial Setup
+
+   * Running this software
+
+   Import the pt-hsptl directory into netbeans and run the project.
+   The webapp can be found at http://localhost:8080/pt-hsptl/
+
+   * Default Accounts
+
+   There is a default account for the administrator. The login is `admin` and the
+   password is `password`.
+
+   * Changing Default Passwords
+
+   Please see the section for Editing Employees for information on changing
+   the password for the admin account.
+
+====================
+
+2. Admin Actions
+
+   Only administrators can perform admin actions. Administrators can see the
+   features of the application available to doctors, and can even request
+   shifts or vacation days, however this behavior is not specified and can
+   result in undetermined behavior.
+
+   * Adding Employees
+
+   To add an employee, start by loggin into the application with an admin
+   account. In the navigation bar, click "Manage Users" to be presented
+   with a listing of all registered employees and users. Scroll to the
+   bottom of this page to find the Create Employee form.
+
+   Specify the login, password, and role for the Employee to be created
+   and click "Create". Upon successful creation you will be redirected
+   to the edit page for the new employee. At this point, you may
+   return to the home page by clicking the "Pt Hsptl" text,
+   or return to the employee list page by clicking "Manage Users".
+
+   * Editing Employees
+
+   To edit an employee's attributes, start by logging into the application
+   with an admin account. In the nagigation bar, click "Manage Users"
+   to be presented with a list of all registered employees and users.
+
+   Select the employee you would like to edit. You will be navigated to
+   the edit page for that employee, where you can change its attributes.
+   Clicking the "Update" button will update the employee.
+
+   Upon successful edit, the edit page will be reloaded and you will see
+   that your edit has been saved. You are free to leave the page.
+
+   * Deleting Employees
+
+   To delete an employee, log in as an admin user. Click "Manage Users"
+   in the navigation bar. Select the user you wish to delete.
+
+   You will be brought to the Employee edit page, where you can click
+   "Delete" in the bottom left. Upon successful deletion you will be
+   returned to the employee list page.
+
+====================
+
+3. Employee Use
+
+   What fun would the application be if it were just for administrators? We
+   care deeply about our employee users and want to make their experience
+   effortless and lovely.
+
+ * Logging In
+
+   To log in, visit the application using a web browser. You will be presented
+   with a login page requesting your login and your password. Enter these and
+   click "login". Upon successful login, you will be brought to your dashboard.
+
+ * Viewing Your Schedule
+
+   To view your schedule, log in as described above. You will be brought to
+   your dashboard, where your current work schedule and your current
+   time-off schedule is shown. If you haven't requested any time off, the
+   time-off table will be empty. If you haven't requested any specific
+   work shifts, your schedule will be popuated with auto-generated
+   shift assignments.
+
+ * Requesting Time Off
+
+   To request time off, log in as above. Click "Request Days Off"
+   from the navigation bar.
+
+   If you are requesting a sick day, select it from the drop down.
+   You cannot select the current day as a sick day, and you can only
+   select from the next 20 days. Once you have made your selection,
+   click "Request Sick Day". Upon success, you will be redireted to
+   your dashboard.
+
+   If you are requesting vacation, select the range of dates you
+   are requesting from the dropdowns. You can only select
+   from dates that are three weeks or more in the future but within
+   100 days of today's date. Once you have made your selection,
+   click "Request Vacation Day". Upon success, you will be redirected
+   to your dashboard. If there is a conflict and your request cannot
+   be granted, you will be informed why.
+
+ * Requesting a Specific Shift
+
+   To request a specific shfit, log in as above. Click "Request Shifts"
+   from the nav bar. You will be shown a list of all shifts that you may be
+   eligible to work. Find the shift that you would like to request and
+   click "request". Upon success, you will be redirected to your dashbaord
+   to view your new schedule.
