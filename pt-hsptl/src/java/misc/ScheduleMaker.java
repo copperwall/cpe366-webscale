@@ -17,6 +17,7 @@
 package misc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import models.Shift;
 import models.Employee;
 import models.EmployeeShift;
@@ -42,10 +43,8 @@ public class ScheduleMaker {
         // it.
         for (Shift s: unassigned) {
             ArrayList<Employee> eligible = Employee.getEligibleEmployees(s);
-            // TODO: Foreach employee, given their employeeid
-            // Determine if they have any shifts within 10 hours of this one.
-            // This can be determined by adding 11 hours onto the starttime
-            // of the shift s.
+            
+            Collections.shuffle(eligible);
             for (Employee e : eligible) {
                 if (e.otherShiftTooClose(s)) {
                     System.out.println("too close");
