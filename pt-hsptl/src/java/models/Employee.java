@@ -84,7 +84,28 @@ public class Employee extends DBO<Employee> {
         // Select employee_shifts where the date is less than 10 hours before
         // the timestamp of the shift, or less than 10 hours after the timestamp
         // of the shift + 11 hours.
-        return true;
+        String datestring = s.getShiftTimestamp();
+        EmployeeShift es = new EmployeeShift();
+        StringBuilder query = new StringBuilder();
+        
+        query.append("SELECT * ");
+        query.append("FROM employee_shifts ");
+        query.append("WHERE employeeid = ");
+        query.append(this.get("employeeid"));
+        query.append(" AND date BETWEEN ");
+        // DATE 'datestring' - 10 hours AND DATE 'datestring' + 11 hours
+        query.append(" DATE_SUB('");
+        query.append(datestring);
+        query.append("', INTERVAL 10 HOUR");
+        query.append(" AND DATE_ADD('");
+        query.append(datestring);
+        // Make sure the shift is within 10 hours of the end of the shift, which
+        // is another 11 hours. Totalling 21 hours.
+        query.append("', INTERVAL 21 HOUR)");
+        
+        ArrayList<EmployeeShift> shifts = es.getCustom(query.toString());
+        
+        return shifts.isEmpty();
     }
     
     public boolean tooManySurgeries(Shift s) {
