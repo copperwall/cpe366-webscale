@@ -193,7 +193,27 @@ public class DBO<T> implements Serializable {
     public String get(String attribute) {
         return this.attributes.get(attribute);
     }
-    
+
+    public boolean delete() {
+        DB db = new DB();
+        Connection conn = db.getConnection();
+
+        PreparedStatement deleteObject;
+        String query = "DELETE FROM " + this.table
+         + " WHERE " + this.pk + " = ?";
+
+        try {
+            deleteObject = conn.prepareStatement(query);
+            deleteObject.setInt(1, this.id);
+            deleteObject.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("DBO DELETE EXCEPTION: " + e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
     // Load the object from the db
     public boolean load() {
         if (!this.fromDb) {
