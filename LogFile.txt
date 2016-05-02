@@ -7,6 +7,7 @@ Kyle Cornelison -- Total time: 20 hours
 *SessionBean.java - minor edits
 *requestDaysOff.xhtml
 *selectDays.xhtml
+*Login.java - minor edits to checkCredentials and validate
 
 Chris Opperwall -- Total time: 20 hours
 * most of the scheduling algorithm
