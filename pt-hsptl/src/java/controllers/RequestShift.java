@@ -25,6 +25,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import misc.ScheduleMaker;
 import misc.SessionBean;
 import models.DBO;
 import models.EmployeeShift;
@@ -97,6 +98,7 @@ public class RequestShift
         try
         {
             shift.save();
+            ScheduleMaker.run();
             return "success";
         }
         catch (Exception ex) {
@@ -105,6 +107,7 @@ public class RequestShift
             currentInstance.addMessage(null,
                         new FacesMessage(FacesMessage.SEVERITY_ERROR,
                                 ex.getMessage(), "You can't."));
+            shift.delete();
                 return "fail";
         }
     }
