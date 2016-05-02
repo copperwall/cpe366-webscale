@@ -1,0 +1,434 @@
+LogFile
+
+Kyle Cornelison
+
+Chris Opperwall -- Total time: 20 hours
+* most of the scheduling algorithm
+* postgresql administration
+* Overrode DayOff.save()
+* Added navbar layout template
+* Set the lower bound on day off select dropdowns
+
+Scott Vanderlind
+
+The following is the git log from our project. It has a full breakdown of who
+did what.
+--
+commit 7024f1ea71a68678ad765277847aaa5205bf0065
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Run schedule maker on request shift
+
+commit 59c52bcd6be34b94ceb0e6c09c91bcbe88e882dd
+Merge: 8625b7e 32d554e
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 8625b7eed987018495f63fbe25fbb588b1d34b2f
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Randomize the list of potential employees
+
+commit 32d554e3af9f53e425574c353eef88fc4096b2aa
+Merge: 62ccef5 49418ae
+Author: krcornel <krcornel@calpoly.edu>
+
+    Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+
+commit 49418ae36802043acb38544a1f3d2459ac55c845
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Remove most of the debugging printlns
+
+commit 873ba07783ad01162ee6f3339b7969fca4eda909
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Use getPk for primary keys of tables
+
+commit ea61f02b476371bae758e6eccb75147b0797109a
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Fixes from debugging the schedule maker
+
+commit 62ccef5cfe768089e6acb36871e61e5005a4fc73
+Author: krcornel <krcornel@calpoly.edu>
+
+    Vacation days get put into the DB!
+
+commit e72ad86c39cf5ed72ec057756929d82005f79dd1
+Merge: cb31cc8 b8f3c8e
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Merge remote-tracking branch 'origin/master'
+
+commit cb31cc81f2cee2f1cbb51ff509de7da91ced87ed
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Cleanup all dynamically assigned employee shifts when generating a new schedule
+
+commit b8f3c8e56b324e85758cd2c917fa408114550215
+Merge: a9f0afb bf73410
+Author: krcornel <krcornel@calpoly.edu>
+
+    Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+
+commit bf73410d454c17d1d784577e2c3578fd4a0d33dd
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Insert new EmployeeShift if an employee is okay for a shift
+
+commit a9f0afbe2219c5bebb0b88781a95e7407cc0801f
+Author: krcornel <krcornel@calpoly.edu>
+
+    toomanysleepovers
+
+commit d12ff6f2929484d855ebb2cdd6849bc11b3bf37e
+Author: krcornel <krcornel@calpoly.edu>
+
+    toomany surgeries up in here
+
+commit bd98b8f2c7e35376f7a961cb8077d50f7d0aaf3c
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Employee: Implement otherShiftTooClose
+
+commit 6b2bedb2b6429e08c000bac305fbad34fb8ac53a
+Merge: 7de3c78 8d89327
+Author: krcornel <krcornel@calpoly.edu>
+
+    Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+
+commit 8d893270fcfe342ceb6e14fe21fa81f2483e35d4
+Merge: 1c47a6f 3da58c7
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 1c47a6f4fbad0816b8363f37fcbf2ba65c7af5b0
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add DBO DELETE support!
+
+commit 996e162ea3c5da81b6660de3741e26871f138968
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Show who is working a given shift
+
+commit 3da58c7d1833c5f495fb779439d441ba17d7715d
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add skeleton methods for ScheduleMaker constraints
+
+commit 7de3c785d59eaa0cd0e4f09badbfb856a9547b28
+Author: krcornel <krcornel@calpoly.edu>
+
+    woops
+
+commit d08dec7ea6b02e79363fa791536a5118841737e2
+Author: krcornel <krcornel@calpoly.edu>
+
+    Quick fix to getEligibleEmployees
+
+commit e252d5cdcbf8b3a2e0b8999837d701310249ab66
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Move navbar to layout.xhtml, add base.css
+
+commit 8e1228bb5441a0b1c194b7efca6e2d3ee0784ccc
+Merge: e0aa56b 3958272
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit e0aa56b761a650a6c852d67cf7549fdecfaae60c
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add role to employee edit/create
+
+commit 395827210ef8aa7b6d606ab1534b6727c45cdb4a
+Merge: 2145c93 8ef863e
+Author: krcornel <krcornel@calpoly.edu>
+
+    Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+
+commit 2145c931de404f04d7a84a492b0db8f6b19fbc34
+Author: krcornel <krcornel@calpoly.edu>
+
+    Bit more to the algorithm
+
+commit 8ef863e59179ebba6c8e3094b6ee1f1678baecc6
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Use correct boolean values for tooManyDays()
+
+commit 0a57a156d2c4a54f122555282cfbf181e8b8f40c
+Merge: f55c073 fcd0619
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit f55c07341f432cad6d3688fdea808ab2745c0cfa
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add employee creator
+
+commit fcd0619ae394c4507fed64c33a5db513e52d5a91
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add exception handling capability to EmployeeEditor
+
+commit 60018749b08e0f6245f6cc62c891125145732f72
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Allow DBO.save to throw an exception for callers to catch
+
+commit 67d8b4a75f93d6cf8250de042f96e8525b6b0ded
+Merge: 481402d 77b8612
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 481402d406f5a419df018ba9844b0c165ed36aaa
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Beginnings of ScheduleMaker
+
+commit 77b86125f7caf8b559f6e7e954c8775a208477c6
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add validation to DaysOff for max number of days off
+
+commit 3808ba89ef8abcc9070b1049343b5eda29267407
+Merge: 4eb426b d3809d1
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 4eb426b45f5d7aa2792e528f1696e377c1916bee
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Start the sick days select with today + 1 and vacation select with today + 21 days
+
+commit d3809d1ca770d5591477ebf3a043320aeda12d24
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Update homepage schedule formatting
+
+commit 8e1685f6f035cee9e814369816d192128f23f00f
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add date formatters to shift/week
+
+commit 5499af2a2904a4cb99e736a73ed571edfdc52d44
+Merge: 6d463b9 4f48506
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 6d463b9c62c300af716218564bbe20f22b690290
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Hook up requesting sick days
+
+commit 4f4850613b3c16786ef8c2788da25e60eaa97010
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add weekid attribute to Shift model
+
+commit 36e78dbe87cbfa5ad54a10903b3101ce09a4cee5
+Author: krcornel <krcornel@calpoly.edu>
+
+    First part of requestDaysOff
+
+commit c34ed3640117f85eb87723440cba2e75e1c527e1
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Update available shift query to respect requested
+
+commit 55a713bca0a13e8b412aee356295f2847e99db2d
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Remove unused page templates
+
+commit cf7f6f06af04081bf6d9bf5f2f4c4d14e677bda2
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Delete useless User class
+
+commit 10015644668e6bc750d65b8e415815919df440bf
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add support for requesting shifts
+
+commit 92f8f016a8cca50510dadf95d1e36286d9da1620
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add request handler in RequestShift
+
+commit 0f78869fc8c7c7ed0e0d0701cebc083f8167a269
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Only show eligible shifts to employees
+
+commit bc7731ff7ba388d7fe64a956ecfa6f8d4894ee1d
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add custom query support to DBO!!
+
+commit 44a6f9f78f2f2723650334efef609842f9e8046e
+Author: krcornel <krcornel@calpoly.edu>
+
+    Working on letting the user select their preferred work days
+
+commit 33d6ed13c5dea72c1cd4e6cf3733c6c880f74c75
+Author: krcornel <krcornel@calpoly.edu>
+
+    showSchedule for currently logged in employee
+
+commit 023eb16f654624a7d2052a1c68b71958e5d69673
+Author: krcornel <krcornel@calpoly.edu>
+
+    quick update
+
+commit a9ef48a15d4e8f8ae207970aad45738dc24965e6
+Author: krcornel <krcornel@calpoly.edu>
+
+    Got showSchedule working...
+
+commit fa865049b76f7478621d719eea9096955045b6ef
+Author: krcornel <krcornel@calpoly.edu>
+
+    A few xhtml pages for the user...
+
+commit 130140114641581f670f0a35d643d9e4c4c8e828
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Make the DB a singleton
+
+commit bdcb8bfeabd8aab024f56babd29ac07e8ed7ed25
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    CORRECTLY do get parameters
+
+commit 17184886d675efa57ce963e22783e0f23a87cba0
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Actually hook up the employee editor
+
+commit 94c373904adbff54c9291427a62ce752977417db
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Refactor packages!
+
+commit 1703676affefa020891dc12d40e3018c6e403b15
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add Shift object, EmployeeEditor bean
+
+commit 67eeb192750a2892b1179c2150a98c8206c02f6c
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Fix loading bug in ORM
+
+commit bad66aefc4610ad094eeaf13376185964f55e9d4
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Create DBO ORM!
+
+commit a67067a854d98c0267e7e18926de4182b5d31799
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Start User object
+
+commit 5070851681f5414e68ca2adf7b4ff458ed16378c
+Merge: d2ea8e2 7e3cc2c
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit d2ea8e2ab1d2fd3eeb62af4b9770286a5c6a8395
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Fix login errors
+
+commit 7e3cc2c7814005476076e6a2c725bba5d3ada773
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Home: Add button links to other pages
+
+commit 68b7ece1a0550f57f17fc9bc4dc5abe2c6d3d260
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add db validation to login page
+
+commit 321ffff0403d5a626ae8fa4ca6d8cc935b09c88d
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add JDBC postgres driver
+
+commit 8aee8a86d164105a28fe240789b360a833965799
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Remove ugly /faces/ from url pattern
+
+commit 8b521595333a1d3af9eb01dcd1d68d17a6872384
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Create AuthFilter
+
+commit be6d39b75e0773aea4819d36df80ecde4dee257c
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Create SessionBean, login process
+
+commit 6e3a07d36814666192d486bdca708894bf2920aa
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Correct misspelling of pt hsptl
+
+commit 8faef00d76e0b4d8f434151ca307d2d3d021a830
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Don't use the horrendous JSF element things
+
+commit b068910cabd679e404a4a100488c107d95975349
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add skeleton.css, set up page layout template
+
+commit 584fed06aed585a8fae503fb2ddaf62e07f76313
+Merge: 40210ff 6872112
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 40210ff8175117a9a4534d6c05e519d7b27c1554
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Add login webpage and faces-config
+
+commit 6872112f0c812876134816777545edddd5f79616
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add src directory and DB connector class
+
+commit 869c413582ce21b925c43f2e7cd267ed97f75ffd
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Change license and source directory
+
+commit f3ec8f15c07db1760f051a188d15b0ffd909466a
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+
+    Initial NetBeans Commit
+
+commit 954ece10f838521afb9609f1655c5e6a033223ca
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Add sql schema
+
+commit c6401684aa4fe2d1f5b7d3a5240242e185dc816b
+Author: Chris Opperwall <chriso@ifixit.com>
+
+    Initial commit
