@@ -100,17 +100,82 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: days_off; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: day_off_requests; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE days_off (
-    employeeid integer NOT NULL,
-    date date NOT NULL,
+CREATE TABLE day_off_requests (
+    day_off_requestid integer NOT NULL,
+    employeeid integer,
+    date date,
     type dayoff_type
 );
 
 
-ALTER TABLE days_off OWNER TO postgres;
+ALTER TABLE day_off_requests OWNER TO postgres;
+
+--
+-- Name: day_off_requests_day_off_requestid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE day_off_requests_day_off_requestid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE day_off_requests_day_off_requestid_seq OWNER TO postgres;
+
+--
+-- Name: day_off_requests_day_off_requestid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE day_off_requests_day_off_requestid_seq OWNED BY day_off_requests.day_off_requestid;
+
+
+--
+-- Name: employee_shifts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE employee_shifts (
+    employee_shiftid integer NOT NULL,
+    employeeid integer NOT NULL,
+    shiftid integer NOT NULL,
+    requested integer DEFAULT 0 NOT NULL,
+    date timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE employee_shifts OWNER TO postgres;
+
+--
+-- Name: COLUMN employee_shifts.requested; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN employee_shifts.requested IS 'Whether or not the shift was requested by a human or assigned by the algorithm.';
+
+
+--
+-- Name: employee_shifts_employee_shiftid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE employee_shifts_employee_shiftid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE employee_shifts_employee_shiftid_seq OWNER TO postgres;
+
+--
+-- Name: employee_shifts_employee_shiftid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE employee_shifts_employee_shiftid_seq OWNED BY employee_shifts.employee_shiftid;
+
 
 --
 -- Name: employees; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -148,19 +213,6 @@ ALTER SEQUENCE employees_employeeid_seq OWNED BY employees.employeeid;
 
 
 --
--- Name: employees_to_shifts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE employees_to_shifts (
-    employeeid integer,
-    shiftid integer,
-    date timestamp without time zone NOT NULL
-);
-
-
-ALTER TABLE employees_to_shifts OWNER TO postgres;
-
---
 -- Name: shifts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -168,7 +220,8 @@ CREATE TABLE shifts (
     shiftid integer NOT NULL,
     day_of_week day_of_week NOT NULL,
     time_of_day time_of_day NOT NULL,
-    type shift_type NOT NULL
+    shift_type shift_type NOT NULL,
+    weekid integer DEFAULT 1 NOT NULL
 );
 
 
@@ -196,6 +249,53 @@ ALTER SEQUENCE shifts_shiftid_seq OWNED BY shifts.shiftid;
 
 
 --
+-- Name: weeks; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE weeks (
+    weekid integer NOT NULL,
+    start_date date NOT NULL
+);
+
+
+ALTER TABLE weeks OWNER TO postgres;
+
+--
+-- Name: weeks_weekid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE weeks_weekid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE weeks_weekid_seq OWNER TO postgres;
+
+--
+-- Name: weeks_weekid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE weeks_weekid_seq OWNED BY weeks.weekid;
+
+
+--
+-- Name: day_off_requestid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY day_off_requests ALTER COLUMN day_off_requestid SET DEFAULT nextval('day_off_requests_day_off_requestid_seq'::regclass);
+
+
+--
+-- Name: employee_shiftid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY employee_shifts ALTER COLUMN employee_shiftid SET DEFAULT nextval('employee_shifts_employee_shiftid_seq'::regclass);
+
+
+--
 -- Name: employeeid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -210,11 +310,26 @@ ALTER TABLE ONLY shifts ALTER COLUMN shiftid SET DEFAULT nextval('shifts_shiftid
 
 
 --
--- Name: days_off_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: weekid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY days_off
-    ADD CONSTRAINT days_off_pkey PRIMARY KEY (employeeid, date);
+ALTER TABLE ONLY weeks ALTER COLUMN weekid SET DEFAULT nextval('weeks_weekid_seq'::regclass);
+
+
+--
+-- Name: day_off_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY day_off_requests
+    ADD CONSTRAINT day_off_requests_pkey PRIMARY KEY (day_off_requestid);
+
+
+--
+-- Name: employee_shifts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY employee_shifts
+    ADD CONSTRAINT employee_shifts_pkey PRIMARY KEY (employee_shiftid);
 
 
 --
@@ -242,27 +357,43 @@ ALTER TABLE ONLY shifts
 
 
 --
--- Name: days_off_employeeid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: weeks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY days_off
-    ADD CONSTRAINT days_off_employeeid_fkey FOREIGN KEY (employeeid) REFERENCES employees(employeeid);
-
-
---
--- Name: employees_to_shifts_employeeid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY employees_to_shifts
-    ADD CONSTRAINT employees_to_shifts_employeeid_fkey FOREIGN KEY (employeeid) REFERENCES employees(employeeid);
+ALTER TABLE ONLY weeks
+    ADD CONSTRAINT weeks_pkey PRIMARY KEY (weekid);
 
 
 --
--- Name: employees_to_shifts_shiftid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: day_off_request_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY employees_to_shifts
-    ADD CONSTRAINT employees_to_shifts_shiftid_fkey FOREIGN KEY (shiftid) REFERENCES shifts(shiftid);
+ALTER TABLE ONLY day_off_requests
+    ADD CONSTRAINT day_off_request_fk1 FOREIGN KEY (employeeid) REFERENCES employees(employeeid);
+
+
+--
+-- Name: employee_shift_employeeid; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY employee_shifts
+    ADD CONSTRAINT employee_shift_employeeid FOREIGN KEY (employeeid) REFERENCES employees(employeeid) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: employee_shifts_shiftid; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY employee_shifts
+    ADD CONSTRAINT employee_shifts_shiftid FOREIGN KEY (shiftid) REFERENCES shifts(shiftid) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: shifts_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY shifts
+    ADD CONSTRAINT shifts_fk1 FOREIGN KEY (weekid) REFERENCES weeks(weekid);
 
 
 --
