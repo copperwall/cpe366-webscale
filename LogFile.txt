@@ -42,421 +42,788 @@ Scott Vanderlind -- Total Time: 20 hours
 The following is the git log from our project. It has a full breakdown of who
 did what.
 --
+
+commit 7f8733e52881a57b7e546aec44a9c6cc06910c77
+Merge: 93f23e2 b7e0b25
+Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:38:46 2016 -0700
+
+    Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+
+commit b7e0b256e62cee21fea1765235d9d09d9fd03e6b
+Merge: 7d544f2 b0a171a
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 23:39:29 2016 -0700
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 7d544f2b5c679420f755a525e8d2807049fcc649
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 23:39:17 2016 -0700
+
+    Add Scott's Log to the Logfile
+
+commit 93f23e208d7414a11fae903ed4151af1adb339b6
+Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:38:37 2016 -0700
+
+    update
+
+commit b0a171a756fb88cf2f018503883118626a05196b
+Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:37:29 2016 -0700
+
+    Move assumptions to root, add information about running in netbeans to manual
+
+commit 4f4c111f1ce5ae91fab148b880cc8d68cf240d6c
+Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:36:45 2016 -0700
+
+    move assumptions/log update
+
+commit 90cd46d18771598e8a7aa0007c03648400fce125
+Merge: 1aa0d6a 157acb0
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 23:30:35 2016 -0700
+
+    Merge branch 'master' of github.com:copperwall/cpe366-webscale
+
+commit 1aa0d6aa7ff9d52fccb6b0c94e9c57d0d7b46d6c
+Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 23:30:27 2016 -0700
+
+    Add a User Manual
+    
+    We need it
+
+commit 157acb05daa490129414990faaf46ebdd51e0027
+Merge: 266ccf3 70096cf
+Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:30:12 2016 -0700
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 266ccf3cf4015927fd58c5f72c263c4e4f7415e2
+Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:30:01 2016 -0700
+
+    Update schema file
+
+commit 70096cfddf0d9802ab4a49338398265f9dfb3f25
+Merge: a66fbc3 7667bd2
+Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:25:12 2016 -0700
+
+    Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+
+commit 7667bd2d6c2773b9f1eb70174c0cae8e21715454
+Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:25:12 2016 -0700
+
+    Add logfile
+
+commit a66fbc3380025d5d578994040a5e900737e9c6cb
+Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:25:00 2016 -0700
+
+    More assumptions
+
 commit 7024f1ea71a68678ad765277847aaa5205bf0065
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:12:40 2016 -0700
 
     Run schedule maker on request shift
 
 commit 59c52bcd6be34b94ceb0e6c09c91bcbe88e882dd
 Merge: 8625b7e 32d554e
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:09:37 2016 -0700
 
     Merge remote-tracking branch 'origin/master'
 
 commit 8625b7eed987018495f63fbe25fbb588b1d34b2f
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:09:27 2016 -0700
 
     Randomize the list of potential employees
+
+commit 5a29c34a20d069f890b5d65da760a6fb6bc7fdd2
+Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:08:49 2016 -0700
+
+    Assumptions
 
 commit 32d554e3af9f53e425574c353eef88fc4096b2aa
 Merge: 62ccef5 49418ae
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 23:03:42 2016 -0700
 
     Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
 
 commit 49418ae36802043acb38544a1f3d2459ac55c845
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 23:00:16 2016 -0700
 
     Remove most of the debugging printlns
 
 commit 873ba07783ad01162ee6f3339b7969fca4eda909
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 22:34:04 2016 -0700
 
     Use getPk for primary keys of tables
 
 commit ea61f02b476371bae758e6eccb75147b0797109a
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 22:23:47 2016 -0700
 
     Fixes from debugging the schedule maker
 
 commit 62ccef5cfe768089e6acb36871e61e5005a4fc73
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 21:20:57 2016 -0700
 
     Vacation days get put into the DB!
+    
+    woo
 
 commit e72ad86c39cf5ed72ec057756929d82005f79dd1
 Merge: cb31cc8 b8f3c8e
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 20:30:17 2016 -0700
 
     Merge remote-tracking branch 'origin/master'
 
 commit cb31cc81f2cee2f1cbb51ff509de7da91ced87ed
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 20:29:42 2016 -0700
 
     Cleanup all dynamically assigned employee shifts when generating a new schedule
 
 commit b8f3c8e56b324e85758cd2c917fa408114550215
 Merge: a9f0afb bf73410
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 19:16:17 2016 -0700
 
     Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
 
 commit bf73410d454c17d1d784577e2c3578fd4a0d33dd
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 19:02:53 2016 -0700
 
     Insert new EmployeeShift if an employee is okay for a shift
 
 commit a9f0afbe2219c5bebb0b88781a95e7407cc0801f
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 18:27:08 2016 -0700
 
     toomanysleepovers
 
 commit d12ff6f2929484d855ebb2cdd6849bc11b3bf37e
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 18:20:38 2016 -0700
 
     toomany surgeries up in here
 
 commit bd98b8f2c7e35376f7a961cb8077d50f7d0aaf3c
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 18:11:01 2016 -0700
 
     Employee: Implement otherShiftTooClose
+    
+    This takes a timestamp from the given Shift and selects all employee_shifts
+    that are within 10 hours of the given shift. If there are any results, the
+    function returns true, and otherwise returns false.
 
 commit 6b2bedb2b6429e08c000bac305fbad34fb8ac53a
 Merge: 7de3c78 8d89327
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 18:01:34 2016 -0700
 
     Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
+    
+    # Conflicts:
+    #	pt-hsptl/src/java/models/Employee.java
 
 commit 8d893270fcfe342ceb6e14fe21fa81f2483e35d4
 Merge: 1c47a6f 3da58c7
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 17:52:07 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit 1c47a6f4fbad0816b8363f37fcbf2ba65c7af5b0
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 17:51:36 2016 -0700
 
     Add DBO DELETE support!
+    
+    It works!
 
 commit 996e162ea3c5da81b6660de3741e26871f138968
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sun May 1 17:42:13 2016 -0700
 
     Show who is working a given shift
+    
+    In the schedule view, show everyone who will be working
+    at the same time.
 
 commit 3da58c7d1833c5f495fb779439d441ba17d7715d
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sun May 1 17:31:35 2016 -0700
 
     Add skeleton methods for ScheduleMaker constraints
+    
+    This adds new methods for generating the timestamp of a shift, determining if
+    an employee has a shift too close to the current shift, if a doctor has already
+    performed too many surgeries this week, and if a doctor has had too many
+    overnight shifts this week.
 
 commit 7de3c785d59eaa0cd0e4f09badbfb856a9547b28
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 16:43:14 2016 -0700
 
     woops
 
 commit d08dec7ea6b02e79363fa791536a5118841737e2
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sun May 1 16:40:05 2016 -0700
 
     Quick fix to getEligibleEmployees
 
 commit e252d5cdcbf8b3a2e0b8999837d701310249ab66
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 23:39:33 2016 -0700
 
     Move navbar to layout.xhtml, add base.css
+    
+    The navbar now shows on all pages where the user is logged in. This also adds a
+    link to the title in the header to go to the main page.
 
 commit 8e1228bb5441a0b1c194b7efca6e2d3ee0784ccc
 Merge: e0aa56b 3958272
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 22:56:27 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit e0aa56b761a650a6c852d67cf7549fdecfaae60c
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 22:56:08 2016 -0700
 
     Add role to employee edit/create
+    
+    It's kinda important
 
 commit 395827210ef8aa7b6d606ab1534b6727c45cdb4a
 Merge: 2145c93 8ef863e
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sat Apr 30 22:49:59 2016 -0700
 
     Merge branch 'master' of https://github.com/copperwall/cpe366-webscale
 
 commit 2145c931de404f04d7a84a492b0db8f6b19fbc34
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sat Apr 30 22:49:49 2016 -0700
 
     Bit more to the algorithm
+    
+    I added a function to get all eligible employees for a shift if they
+    arent sick or vacationing and are the right role.
 
 commit 8ef863e59179ebba6c8e3094b6ee1f1678baecc6
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 22:48:31 2016 -0700
 
     Use correct boolean values for tooManyDays()
+    
+    I had the true and false results mixed up, so I edited them to be correct.
 
 commit 0a57a156d2c4a54f122555282cfbf181e8b8f40c
 Merge: f55c073 fcd0619
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 22:40:39 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit f55c07341f432cad6d3688fdea808ab2745c0cfa
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 22:40:06 2016 -0700
 
     Add employee creator
+    
+    It's at the bottom of the list page.
+    TODO: Finish hooking up deletion. The DBO doesn't
+    support it yet.
 
 commit fcd0619ae394c4507fed64c33a5db513e52d5a91
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 22:33:51 2016 -0700
 
     Add exception handling capability to EmployeeEditor
+    
+    When I added the "throws Exception" directive to the DBO.save method, it broke
+    other uses that call save, but do not have any exception handling in place.
+    
+    This adds a "throws Exception" directive to EmployeeShift and catchs any
+    exceptions in EmployeeEditor.
 
 commit 60018749b08e0f6245f6cc62c891125145732f72
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 21:15:56 2016 -0700
 
     Allow DBO.save to throw an exception for callers to catch
+    
+    This allows some of the controllers to give better error messages based on the
+    result of calling save.
 
 commit 67d8b4a75f93d6cf8250de042f96e8525b6b0ded
 Merge: 481402d 77b8612
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 21:06:25 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit 481402d406f5a419df018ba9844b0c165ed36aaa
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 21:05:15 2016 -0700
 
     Beginnings of ScheduleMaker
+    
+    Start on that algo. Right now it just fetches every shift that's
+    unassigned and iterates over them. TODO: Check what kind of shift
+    it is and find an employee to give it to.
 
 commit 77b86125f7caf8b559f6e7e954c8775a208477c6
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 21:04:06 2016 -0700
 
     Add validation to DaysOff for max number of days off
 
 commit 3808ba89ef8abcc9070b1049343b5eda29267407
 Merge: 4eb426b d3809d1
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 20:57:43 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit 4eb426b45f5d7aa2792e528f1696e377c1916bee
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 20:57:32 2016 -0700
 
     Start the sick days select with today + 1 and vacation select with today + 21 days
 
 commit d3809d1ca770d5591477ebf3a043320aeda12d24
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 19:37:01 2016 -0700
 
     Update homepage schedule formatting
+    
+    Use the fancy functions on the homepage table.
 
 commit 8e1685f6f035cee9e814369816d192128f23f00f
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 19:10:12 2016 -0700
 
     Add date formatters to shift/week
+    
+    Now we know what the date and time of a shift is!
 
 commit 5499af2a2904a4cb99e736a73ed571edfdc52d44
 Merge: 6d463b9 4f48506
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 18:23:46 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit 6d463b9c62c300af716218564bbe20f22b690290
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 18:23:05 2016 -0700
 
     Hook up requesting sick days
+    
+    Requesting sick days now does the thing.
+    TODO: Write validators for making sure the Employee is
+    eligible for sick days.
 
 commit 4f4850613b3c16786ef8c2788da25e60eaa97010
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Sat Apr 30 18:14:59 2016 -0700
 
     Add weekid attribute to Shift model
 
 commit 36e78dbe87cbfa5ad54a10903b3101ce09a4cee5
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Sat Apr 30 16:12:09 2016 -0700
 
     First part of requestDaysOff
+    
+    UI is mostly there, and it is linked to the bean.
+    
+    All that is left is add day/mo/year instead of date to sick day and add
+    values to DB that reflect sick day request.
 
 commit c34ed3640117f85eb87723440cba2e75e1c527e1
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 14:45:50 2016 -0700
 
     Update available shift query to respect requested
+    
+    Since we want to show shifts as available if they haven't been
+    assigned OR they were assigned but they weren't explicitly requested
+    by the employee they're assigned to, we need to update the query
+    to check for that condition.
 
 commit 55a713bca0a13e8b412aee356295f2847e99db2d
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 14:21:39 2016 -0700
 
     Remove unused page templates
+    
+    Also rewrite the getSchedule function to use the DBOs new
+    getCustom method
 
 commit cf7f6f06af04081bf6d9bf5f2f4c4d14e677bda2
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 14:11:53 2016 -0700
 
     Delete useless User class
+    
+    It wasn't important
 
 commit 10015644668e6bc750d65b8e415815919df440bf
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 14:10:02 2016 -0700
 
     Add support for requesting shifts
+    
+    This changes the table that is used for keeping track of shifts.
+    But it also hooks up the shift requestor logic.
 
 commit 92f8f016a8cca50510dadf95d1e36286d9da1620
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 13:37:08 2016 -0700
 
     Add request handler in RequestShift
+    
+    Add a function to actually request a shift, and to throw
+    an error if for some reason you can't have that shift
+    (eg someone claims it before you can race condition).
+    
+    Also creates EmployeeShift object, however this needs
+    a DB change to work properly. DBO needs every table to have
+    a unique, serial primary key to do its select/updates etc.
 
 commit 0f78869fc8c7c7ed0e0d0701cebc083f8167a269
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 12:45:59 2016 -0700
 
     Only show eligible shifts to employees
+    
+    When an employee visits the request a shift page,
+    only show them shifts that they can actually take.
 
 commit bc7731ff7ba388d7fe64a956ecfa6f8d4894ee1d
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Sat Apr 30 12:30:30 2016 -0700
 
     Add custom query support to DBO!!
+    
+    This was a real biatch to implement because of how reflection works in java
+    but it works!! We can now query for arbitrary sets of an object, which is
+    cool. It's way faster than the old way I was mass-instantiating objects,
+    so I updated the employee editor to use it as well as to create a page
+    showing the shifts that are available.
 
 commit 44a6f9f78f2f2723650334efef609842f9e8046e
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Fri Apr 29 17:56:36 2016 -0700
 
     Working on letting the user select their preferred work days
+    
+    Made a new class that holds the employee's preferences since I needed a
+    writeable object and I cant have one in employee. So now employee holds
+    an EmployeePreferences object.
+    
+    Added getters/setters in employee. Along with a function that will be
+    used in the future for setting their schedule based on the preferences
+    checked.
+    
+    Added a button for selectDays in home
+    
+    Adjusted format for selectDays
 
 commit 33d6ed13c5dea72c1cd4e6cf3733c6c880f74c75
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Fri Apr 29 15:39:37 2016 -0700
 
     showSchedule for currently logged in employee
+    
+    With the wonderful assistance of scott, I now know how this thing works
+    and it will retrieve the schedule of the currently logged in employee.
+    
+    Simply click view schedule on the home page!
 
 commit 023eb16f654624a7d2052a1c68b71958e5d69673
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Fri Apr 29 11:43:20 2016 -0700
 
     quick update
 
 commit a9ef48a15d4e8f8ae207970aad45738dc24965e6
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Fri Apr 29 11:42:46 2016 -0700
 
     Got showSchedule working...
+    
+    Just need to figure out if users or employees will be our main user
+    class. Currently it just finds the schedule of id 5. Change to current
+    id when available.
+    
+    There was some weird import in SessionBean that didn't exist so i
+    commented it out.
+    
+    I also accidentaly had selectDays as html instead of xhtml, still trying
+    to figure out how to get that page working with java and the db
 
 commit fa865049b76f7478621d719eea9096955045b6ef
 Author: krcornel <krcornel@calpoly.edu>
+Date:   Tue Apr 26 22:11:44 2016 -0700
 
     A few xhtml pages for the user...
+    
+    I'm still not entirely sure how to link these properly to java
+    classes...
+    
+    Also I added some methods/data that don't exist yet just as
+    placeholders, i'm not sure if that will break anything.
+    
+    I'm tryna learn bois
 
 commit 130140114641581f670f0a35d643d9e4c4c8e828
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 18:13:09 2016 -0700
 
     Make the DB a singleton
+    
+    Because reestablishing the connection every time was making
+    things really freaking slow.
 
 commit bdcb8bfeabd8aab024f56babd29ac07e8ed7ed25
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 17:48:44 2016 -0700
 
     CORRECTLY do get parameters
+    
+    This is nifty, I was doing get params wrong and this makes it a lot easier.
+    
+    So, for reference: In the xhtml file you define what are incoming get
+    parameters and which bean instance variables to bind them to.
+    
+    In the navigation rule, you define which attributes of the page
+    you're leaving to bind to new view parameters which are then passed
+    to the page you're navigating to. :light-bulb:
 
 commit 17184886d675efa57ce963e22783e0f23a87cba0
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 17:44:24 2016 -0700
 
     Actually hook up the employee editor
+    
+    This was tricky to get working properly. Navigation Rules are hard to convince
+    to keep their view parameters around.
 
 commit 94c373904adbff54c9291427a62ce752977417db
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 17:00:53 2016 -0700
 
     Refactor packages!
+    
+    We were putting everything in the default package, which was confusing
+    when trying to keep straight what classes are page controller beans,
+    what classes are utilities, what classes are models...
 
 commit 1703676affefa020891dc12d40e3018c6e403b15
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 16:49:59 2016 -0700
 
     Add Shift object, EmployeeEditor bean
+    
+    Create a DBO Shift object.
+    
+    Create a list page for all employees (slow, something to work on).
+    Create an edit page for employees that accepts an `id` param. It doesn't
+    actually edit objects yet.
 
 commit 67eeb192750a2892b1179c2150a98c8206c02f6c
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 12:40:46 2016 -0700
 
     Fix loading bug in ORM
+    
+    I didn't update the load query to split the custom column type out
+    and it was not properly fetching the column.
 
 commit bad66aefc4610ad094eeaf13376185964f55e9d4
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Mon Apr 25 11:59:46 2016 -0700
 
     Create DBO ORM!
+    
+    Adds a basic ORM! Woo!
 
 commit a67067a854d98c0267e7e18926de4182b5d31799
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Fri Apr 22 11:52:22 2016 -0700
 
     Start User object
+    
+    It still needs a little work (queries written) but this should
+    be helpful for managing users and permissions and such.
 
 commit 5070851681f5414e68ca2adf7b4ff458ed16378c
 Merge: d2ea8e2 7e3cc2c
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Fri Apr 22 11:51:48 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit d2ea8e2ab1d2fd3eeb62af4b9770286a5c6a8395
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Fri Apr 22 11:50:40 2016 -0700
 
     Fix login errors
+    
+    The forced redirect was muting flash messages. Fix 'em.
 
 commit 7e3cc2c7814005476076e6a2c725bba5d3ada773
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Fri Apr 22 11:12:35 2016 -0700
 
     Home: Add button links to other pages
+    
+    This adds View Schedule, Submit Days Off, and Manage Users buttons to the main
+    page. This could probably be abstracted to layout.xhtml, but I'm not really
+    sure how best to do that yet.
+    
+    Manage Users will only show up when the logged in user is the admin.
+    
+    This also assumes that home.xhtml will be the place where the table of hours is
+    shown for to the user.
 
 commit 68b7ece1a0550f57f17fc9bc4dc5abe2c6d3d260
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Fri Apr 22 10:23:56 2016 -0700
 
     Add db validation to login page
 
 commit 321ffff0403d5a626ae8fa4ca6d8cc935b09c88d
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Fri Apr 22 10:19:50 2016 -0700
 
     Add JDBC postgres driver
 
 commit 8aee8a86d164105a28fe240789b360a833965799
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 19:32:37 2016 -0700
 
     Remove ugly /faces/ from url pattern
+    
+    Also check for the ses object before we try to get attributes
+    from it. This was causing errors!! IT was driving me insane.
 
 commit 8b521595333a1d3af9eb01dcd1d68d17a6872384
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 19:28:24 2016 -0700
 
     Create AuthFilter
+    
+    Now, requests will only go through if you're logged in. Otherwise you'll
+    be redirected to the login page.
 
 commit be6d39b75e0773aea4819d36df80ecde4dee257c
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 18:30:00 2016 -0700
 
     Create SessionBean, login process
+    
+    Also move the login page to /faces/login.xhtml and make the
+    root responder be the dashboard. Eventually we need to build an
+    AuthFilter (middleware) which will test for login on each request and
+    redirect to login if the user is not logged in.
 
 commit 6e3a07d36814666192d486bdca708894bf2920aa
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 17:14:22 2016 -0700
 
     Correct misspelling of pt hsptl
 
 commit 8faef00d76e0b4d8f434151ca307d2d3d021a830
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 17:05:18 2016 -0700
 
     Don't use the horrendous JSF element things
+    
+    Use just plain HTML where we can. There was weird table weirdness
+    because of the <h: business.
 
 commit b068910cabd679e404a4a100488c107d95975349
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 16:44:00 2016 -0700
 
     Add skeleton.css, set up page layout template
+    
+    The layout template will let us easily create pages that are
+    styled properly. This also brings in skeleton.css for awesome
+    responsive css goodness (thanks Chris!).
+    
+    Currently, when you click the login button, it should take you
+    to a page saying you logged in correctly (regardless of if you
+    have actually logged in.. because that part isn't set up yet).
 
 commit 584fed06aed585a8fae503fb2ddaf62e07f76313
 Merge: 40210ff 6872112
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 12:50:42 2016 -0700
 
     Merge branch 'master' of github.com:copperwall/cpe366-webscale
 
 commit 40210ff8175117a9a4534d6c05e519d7b27c1554
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 12:50:00 2016 -0700
 
     Add login webpage and faces-config
+    
+    We now have a login page as our default page :)
 
 commit 6872112f0c812876134816777545edddd5f79616
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Wed Apr 20 11:59:38 2016 -0700
 
     Add src directory and DB connector class
 
 commit 869c413582ce21b925c43f2e7cd267ed97f75ffd
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Wed Apr 20 11:59:08 2016 -0700
 
     Change license and source directory
 
 commit f3ec8f15c07db1760f051a188d15b0ffd909466a
 Author: Scott Vanderlind <scott.vanderlind2@gmail.com>
+Date:   Wed Apr 20 11:38:55 2016 -0700
 
     Initial NetBeans Commit
+    
+    Yay!
 
 commit 954ece10f838521afb9609f1655c5e6a033223ca
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Wed Apr 20 11:32:10 2016 -0700
 
     Add sql schema
 
 commit c6401684aa4fe2d1f5b7d3a5240242e185dc816b
 Author: Chris Opperwall <chriso@ifixit.com>
+Date:   Wed Apr 20 11:26:46 2016 -0700
 
     Initial commit
