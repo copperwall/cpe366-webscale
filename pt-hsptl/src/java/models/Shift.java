@@ -106,6 +106,28 @@ public class Shift extends DBO<Shift> {
         return "";
     }
     
+    public String getShiftTimestamp() {
+        return this.getDate() + " " + this.getStartTime();
+    }
+    
+    public String getStartTime() {
+        switch (this.get("time_of_day")) {
+            case "EARLY_MORNING":
+                return "07:30:00";
+            case "SURGERY":
+                return "07:30:00";
+            case "DAY":
+                return "08:30:00";
+            case "LATE":
+                return "09:30:00";
+            case "OVERNIGHT":
+                return "20:00:00";
+            case "SUNDAY":
+                return "08:00:00";
+        }
+        return "";
+    }
+    
     // Return a date string for the date of the shift
     public String getDate() {
         Calendar cal = Calendar.getInstance();
