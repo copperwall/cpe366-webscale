@@ -112,14 +112,37 @@ public class Employee extends DBO<Employee> {
         // Grab weekid from shift
         // Select employee_shifts for shifts for this employeeid and shifts from
         // the weekid from the candidate shift and of type surgery.
-        return true;
+        
+        String q = "SELECT * "
+                + "FROM shifts s "
+                + "JOIN employee_shifts es "
+                + "USING (shiftid) "
+                + "WHERE s.weekid = " + s.get("weekid") 
+                     + " AND s.shift_type = 'surgery' "
+                     + "AND es.employeeid = " + this.get("employeeid");
+        
+        if (s.getCustom(q).size() == 0)
+            return false;
+        else
+            return true;
     }
     
     public boolean tooManyOvernights(Shift s) {
         // Grab weekid from shift
         // Select employee_shifts for shifts for this employeeid and shifts from
         // the weekid from the candidate shift and of time_of_day overnight.
-        return true;
+        String q = "SELECT * "
+                + "FROM shifts s "
+                + "JOIN employee_shifts es "
+                + "USING (shiftid) "
+                + "WHERE s.weekid = " + s.get("weekid") 
+                     + " AND s.time_of_day = 'OVERNIGHT' "
+                     + "AND es.employeeid = " + this.get("employeeid");
+        
+        if (s.getCustom(q).size() == 0)
+            return false;
+        else
+            return true;
     }
 
     public EmployeePreferences getEmployeePreferences()
@@ -150,6 +173,12 @@ public class Employee extends DBO<Employee> {
                 + "ON e.employeeid = d.employeeid AND d.date = DATE '" + datestring + "' "
                 + "WHERE role = " + type
                 + " and d.employeeid IS NULL";
+               /* + "FROM employees "
+                + "WHERE role = " + type
+                + " and employeeid not in (SELECT employeeid "
+                                        + "FROM day_off_requests "
+                                        + "WHERE '" + s.getDate() + "' " + "= date)";*/
+                
         
         return s.getCustom(q);
     }
