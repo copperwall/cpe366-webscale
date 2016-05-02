@@ -57,6 +57,11 @@ Content:
 
 1. Intial Setup
 
+   * Running this software
+
+   Import the pt-hsptl directory into netbeans and run the project.
+   The webapp can be found at http://localhost:8080/pt-hsptl/
+
    * Default Accounts
 
    There is a default account for the administrator. The login is `admin` and the
