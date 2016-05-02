@@ -152,7 +152,7 @@ public class Shift extends DBO<Shift> {
 
     public static ArrayList<Shift> getUnassignedShifts() {
         Shift s = new Shift(0);
-        String query = "SELECT * FROM shifts LEFT JOIN employee_shifts USING (shiftid) WHERE employee_shiftid IS NULL ORDER BY shiftid";
+        String query = "SELECT shifts.* FROM shifts LEFT JOIN employee_shifts USING (shiftid) WHERE employee_shiftid IS NULL ORDER BY shiftid";
         return s.getCustom(query);
     }
 

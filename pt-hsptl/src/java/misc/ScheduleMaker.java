@@ -31,36 +31,48 @@ public class ScheduleMaker {
         ArrayList<EmployeeShift> cleanList = EmployeeShift.getAll();
 
         for (EmployeeShift es : cleanList) {
-            es.delete();
+            if (es.get("requested").equals("0")) {
+                es.delete();
+            }
         }
 
         ArrayList<Shift> unassigned = Shift.getUnassignedShifts();
+        for (Shift test_shift : unassigned) {
+            System.out.println("DEBUG: Shift " + test_shift.getPk() + " is unassigned");
+        }
 
         // Iterate over every shift that doesn't have an employee tied to
         // it.
         for (Shift s: unassigned) {
+            System.out.println("before eligible");
             ArrayList<Employee> eligible = Employee.getEligibleEmployees(s);
-            ArrayList<Employee> noProximityConflict = new ArrayList<>();
-            
+            System.out.println("after eligible");
             // TODO: Foreach employee, given their employeeid
             // Determine if they have any shifts within 10 hours of this one.
             // This can be determined by adding 11 hours onto the starttime
             // of the shift s.
             for (Employee e : eligible) {
                 if (e.otherShiftTooClose(s)) {
+                    System.out.println("too close");
                     continue;
                 }
-                
-                if (s.get("type").equals("surgery")) {
+                System.out.println("not too close");
+                System.out.println(s.get("shift_type"));
+                if (s.get("shift_type").equals("surgery")) {
                     if (e.tooManySurgeries(s)) {
+                        System.out.println("too many surgeries");
                         continue;
                     }
+                    
+                    System.out.println("not too many surgeries");
                 }
                 
-                if (s.get("type").equals("appointment")) {
+                if (s.get("shift_type").equals("appointment")) {
                     if (e.tooManyOvernights(s)) {
+                        System.out.println("too many overnights");
                         continue;
                     }
+                    System.out.println("not too many overnights");
                 }
                 
                 // Add to schedule
@@ -68,13 +80,15 @@ public class ScheduleMaker {
                 es.set("shiftid", s.get("shiftid"));
                 es.set("employeeid", e.get("employeeid"));
                 es.set("requested", "0");
-                es.set("date", s.getDate());
 
                 try {
+                    System.out.println("Trying to save");
                    es.save();
                 } catch (Exception ex) {
                     System.err.println(ex.getMessage());
                 }
+                
+                break;
             }
         }
     }

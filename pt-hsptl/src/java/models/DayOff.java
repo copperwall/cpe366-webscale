@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import misc.ScheduleMaker;
 
 /*
  * Copyright (C) 2016 scottvanderlind
@@ -50,6 +51,7 @@ public class DayOff extends DBO<DayOff> {
         }
     }
 
+    @Override
     public boolean save() throws Exception {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -58,9 +60,19 @@ public class DayOff extends DBO<DayOff> {
             throw new Exception("You have already taken too many " + this.get("type") + " days");
         }
         
+        super.save();
+        
+        try {
+            ScheduleMaker.run();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            super.delete();
+            throw new Exception("There will not be enough people for shifts with that day off");
+        }
+        
         // If the type is Vacation Day then the date must be three weeks in advance
         // There cannot be eight other sick days 
-        return super.save();
+        return true;
     }
     
     private boolean hasTooManyDays() {

@@ -88,24 +88,25 @@ public class Employee extends DBO<Employee> {
         EmployeeShift es = new EmployeeShift();
         StringBuilder query = new StringBuilder();
         
-        query.append("SELECT * ");
-        query.append("FROM employee_shifts ");
+        query.append("SELECT es.* ");
+        query.append("FROM employee_shifts es ");
         query.append("WHERE employeeid = ");
-        query.append(this.get("employeeid"));
+        query.append(this.getPk());
         query.append(" AND date BETWEEN ");
         // DATE 'datestring' - 10 hours AND DATE 'datestring' + 11 hours
-        query.append(" DATE_SUB('");
+        query.append(" TIMESTAMP '");
         query.append(datestring);
-        query.append("', INTERVAL 10 HOUR");
-        query.append(" AND DATE_ADD('");
+        query.append("' - INTERVAL '10' HOUR");
+        query.append(" AND TIMESTAMP '");
         query.append(datestring);
         // Make sure the shift is within 10 hours of the end of the shift, which
         // is another 11 hours. Totalling 21 hours.
-        query.append("', INTERVAL 21 HOUR)");
+        query.append("' + INTERVAL '21' HOUR");
         
+        //System.out.println(query.toString());
         ArrayList<EmployeeShift> shifts = es.getCustom(query.toString());
         
-        return shifts.isEmpty();
+        return !shifts.isEmpty();
     }
     
     public boolean tooManySurgeries(Shift s) {
@@ -113,31 +114,30 @@ public class Employee extends DBO<Employee> {
         // Select employee_shifts for shifts for this employeeid and shifts from
         // the weekid from the candidate shift and of type surgery.
         
-        String q = "SELECT * "
+        String q = "SELECT s.* "
                 + "FROM shifts s "
                 + "JOIN employee_shifts es "
                 + "USING (shiftid) "
                 + "WHERE s.weekid = " + s.get("weekid") 
                      + " AND s.shift_type = 'surgery' "
-                     + "AND es.employeeid = " + this.get("employeeid");
+                     + "AND es.employeeid = " + this.getPk();
         
-        if (s.getCustom(q).size() == 0)
-            return false;
-        else
-            return true;
+        System.out.println(q);
+        
+        return !(s.getCustom(q).isEmpty());
     }
     
     public boolean tooManyOvernights(Shift s) {
         // Grab weekid from shift
         // Select employee_shifts for shifts for this employeeid and shifts from
         // the weekid from the candidate shift and of time_of_day overnight.
-        String q = "SELECT * "
+        String q = "SELECT s.* "
                 + "FROM shifts s "
                 + "JOIN employee_shifts es "
                 + "USING (shiftid) "
                 + "WHERE s.weekid = " + s.get("weekid") 
                      + " AND s.time_of_day = 'OVERNIGHT' "
-                     + "AND es.employeeid = " + this.get("employeeid");
+                     + "AND es.employeeid = " + this.getPk();
         
         if (s.getCustom(q).size() == 0)
             return false;
@@ -165,9 +165,11 @@ public class Employee extends DBO<Employee> {
         else
            type = "'doctor'";
         
+        System.out.println("before datestring");
         String datestring = s.getShiftTimestamp();
+        System.out.println("after datestring");
         
-        String q = "SELECT * "
+        String q = "SELECT e.* "
                 + "FROM employees e "
                 + "LEFT JOIN day_off_requests d "
                 + "ON e.employeeid = d.employeeid AND d.date = DATE '" + datestring + "' "
@@ -180,7 +182,7 @@ public class Employee extends DBO<Employee> {
                                         + "WHERE '" + s.getDate() + "' " + "= date)";*/
                 
         
-        return s.getCustom(q);
+        return (new Employee()).getCustom(q);
     }
     
     public static ArrayList<Employee> getAll() {
