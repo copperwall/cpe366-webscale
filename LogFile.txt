@@ -8,6 +8,7 @@ Kyle Cornelison -- Total time: 20 hours
 *requestDaysOff.xhtml
 *selectDays.xhtml
 *Login.java - minor edits to checkCredentials and validate
+*Schedule table on the home page
 
 Chris Opperwall -- Total time: 20 hours
 * most of the scheduling algorithm
