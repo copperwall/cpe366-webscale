@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="css/normalize.css" rel="stylesheet" type="text/css" />
+        <link href="css/skeleton.css" rel="stylesheet" type="text/css" />
+        <link href="css/base.css" rel="stylesheet" type="text/css" />
+        <title>Holidank Inn - <ui:insert name="title"></ui:insert></title>
+    </h:head>
+    <h:body>
+        <div class="container" id="header">
+            <div class="row">
+                <div class="eight columns">
+                    <h1>
+                        <ui:insert name="header">
+                            <a href="/pt-hsptl">Holidank Inn</a>
+                        </ui:insert>
+                    </h1>
+                </div>
+                <div class="four columns">
+                    <c:if test="#{not empty sessionBean.login}">
+                        <p>Logged in as #{sessionBean.login}</p>
+                        <p><h:form><h:commandLink action="#{login.logout}" value="logout"/></h:form></p>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="mainContainer">
+            <c:if test="${userlogin != null}">
+                <div class="row" id="navbar">
+                    <a class="button button-primary" href="#">Nav Item</a>
+                </div>
+                <hr></hr>
+            </c:if>
+            <div class="row" id="messages">
+                <h:messages/>
+            </div>
+            <ui:insert name="content">content</ui:insert>
+        </div>
+        <div class="container" id="footer">
+            <!-- thank mr skeletal --><ui:insert name="footer"></ui:insert>
+        </div>
+    </h:body>
+
+</html>

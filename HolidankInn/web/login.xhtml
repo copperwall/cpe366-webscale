@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+            <ui:define name="title">Login</ui:define>
+            <ui:define name="content">
+                <div class="row">
+                    <div class="offset-by-three five columns">
+                        <h:form>
+                            <label for="login">Login</label>
+                            <h:inputText value="#{login.login}" required ="true"
+                                                requiredMessage="Login field is required."
+                                                id="login"
+                                                class="u-full-width"/>
+                            <h:message for="login" style="color:red;margin:8px;"/>
+                            
+                            <label for="password">Password</label>
+                            <h:inputSecret value="#{login.password}" required ="true"
+                                                     requiredMessage="Password field is required."
+                                                     id="password"
+                                                     class="u-full-width"/>
+                            <h:message for="password" style="color:red;margin:8px;"/>
+                            <hr/>
+                            <h:commandButton value="login" action="#{login.checkCredentials}"
+                                             class="button-primary u-full-width"/> 
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
