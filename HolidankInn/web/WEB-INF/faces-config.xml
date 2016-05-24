@@ -30,6 +30,9 @@
             <redirect /><!-- The redirect flag keeps the url updated -->
         </navigation-case>
     </navigation-rule>
-    
-    
+    <managed-bean>
+        <managed-bean-name>signupPage</managed-bean-name>
+        <managed-bean-class>controllers.SignupPage</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
