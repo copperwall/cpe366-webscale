@@ -66,7 +66,7 @@ public class Login implements Serializable {
         return "login";
     }
 
-    /**
+    /**ignup.xhtml
      * This should probably move to an Auth class, or maybe into a User
      * object.
      */
@@ -75,7 +75,7 @@ public class Login implements Serializable {
         Connection conn = db.getConnection();
 
         PreparedStatement checkCredentials;
-        String check = "SELECT employeeid FROM employees WHERE login = ? and password = ?";
+        String check = "SELECT userid FROM users WHERE login = ? and password = ?";
         ResultSet rs;
         Boolean isValid = false;
         int id = 0;

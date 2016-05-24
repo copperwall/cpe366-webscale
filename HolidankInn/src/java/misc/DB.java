@@ -24,7 +24,7 @@ public class DB {
         }
         try {
             this.conn = DriverManager.getConnection(
-                    "jdbc:postgresql://devopps.me/project1", "postgres",
+                    "jdbc:postgresql://devopps.me/acme_hotel", "postgres",
                     "databasesrcool");
         } catch (SQLException e) {
             System.out.println("Could not connect to postgresql");

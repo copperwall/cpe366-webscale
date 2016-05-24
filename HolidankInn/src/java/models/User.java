@@ -5,6 +5,8 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author scott
@@ -22,11 +24,24 @@ public class User extends DBO {
         this.bind("password", "password");
         this.bind("role", "role:role_enum");
         
+        this.bind("firstname", "firstname");
+        this.bind("lastname", "lastname");
+        this.bind("email", "email");
+        
         if (id != 0) {
             this.id = id;
             this.fromDb = true;
             this.load();
         }
+    }
+    
+    public ArrayList<CreditCard> getCreditCards() {
+        CreditCard cc = new CreditCard(0);
+        
+        String query = "SELECT * FROM credit_cards"
+                + "WHERE userid = " + this.getPk();
+        
+        return cc.getCustom(query);
     }
     
 }

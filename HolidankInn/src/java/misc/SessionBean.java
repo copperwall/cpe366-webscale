@@ -25,6 +25,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import models.User;
 //import models.Employee;
 /**
  *
@@ -50,6 +51,7 @@ public class SessionBean implements Serializable
     public static void setUserLogin(String login, int id) {
         HttpSession session = getSession();
         session.setAttribute("userlogin", login);
+        session.setAttribute("userid", id);
         
         //currentEmployee = new Employee(id);
     }
@@ -71,11 +73,14 @@ public class SessionBean implements Serializable
         return getUserLogin();
     }
     
-    /**
-    public static Employee getCurrentEmployee()
-    {
-        return currentEmployee;
+    public static User getCurrentUser() {
+        if (!isLoggedIn()) {
+            return null;
+        }
+        
+        HttpSession session = getSession();
+        int userid = Integer.parseInt((String) session.getAttribute("userid"));
+        return new User(userid);
     }
-    */
 
 }
