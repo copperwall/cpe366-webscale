@@ -28,4 +28,8 @@ public class Charge extends DBO {
         }
     }
     
+    public double getAmount() {
+        return Double.parseDouble(this.get("amount"));
+    }
+
 }

@@ -47,68 +47,90 @@ public class Booking extends DBO {
         this.set("cancelled", "1");
         return true;
     }
-    
+
     // Add a room to the booking reservation
     public boolean addRoom(int roomid, String startDate, String endDate) {
-        // Find the room that we want to reserve.
-        Room room = new Room(roomid);
-        
-        // If the room is not available during those dates, throw a fit.
-        if (!room.isAvailable(startDate, endDate)) {
-            // TODO: THROW EXCEPTION TO NOTIFY USER
-            return false;
-        }
-        
-        // If it is available, create a new RoomBooking
         // GET THE PRICE! This is funky. TODO Rethink how this works
         float price = 0;
         RoomBooking roomBooking =
-         new RoomBooking(this.getPk(), startDate, endDate, price);
-        
+         new RoomBooking(this.getPk(), roomid, startDate, endDate, price);
+
         // TODO: Don't swallow this exception
+        // There will be an exception here if the room is not available
+        // during those dates
         try {
             // Save!
             roomBooking.save();
         } catch (Exception ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return true;
     }
-    
-    
+
+
     /// Some helpful getters
-    
+
     // Get the room bookings for this stay
     public ArrayList<RoomBooking> getRooms() {
-        return new ArrayList<RoomBooking>();
+        RoomBooking rb = new RoomBooking(0);
+        String query = "SELECT * FROM room_bookings WHERE bookingid = "
+         + this.getPk();
+
+        return rb.getCustom(query);
     }
-    
+
     // Get all the charges for this stay
     public ArrayList<Charge> getCharges() {
-        return new ArrayList<Charge>();
+        Charge c = new Charge(0);
+        String query = "SELECT * FROM charges WHERE bookingid = "
+         + this.getPk();
+
+        return c.getCustom(query);
     }
-    
+
     // Get all the payments made toward this stay
     public ArrayList<Payment> getPayments() {
-        return new ArrayList<Payment>();
+        Payment p = new Payment(0);
+        String query = "SELECT * FROM payments WHERE bookingid = "
+         + this.getPk();
+
+        return p.getCustom(query);
     }
-    
+
     // Get the total amount owed on this booking
     public double getTotalAmount() {
+        double total = 0;
         // get all the rooms
+        ArrayList<RoomBooking> rooms = this.getRooms();
         // get all the charges
+        ArrayList<Charge> charges = this.getCharges();
         // Add them up!
-        return 0.00;
+
+        for (int i = 0; i < rooms.size(); i++) {
+            total += rooms.get(i).getPrice();
+        }
+
+        for (int n = 0; n < charges.size(); n++) {
+            total += charges.get(n).getAmount();
+        }
+
+        return total;
     }
-    
+
     // Get the total amount paid on this booking
     public double getPaidAmount() {
+        double paid = 0;
         // get al the payments
+        ArrayList<Payment> payments = this.getPayments();
         // Add them up!
-        return 0.00;
+        for (int i = 0; i < payments.size(); i++) {
+            paid += payments.get(i).getAmount();
+        }
+
+        return paid;
     }
-    
+
     // Get the unpaid balance on this doublebooking
     public double getBalance() {
         double total = this.getTotalAmount();
@@ -117,7 +139,5 @@ public class Booking extends DBO {
         // The balance is the total - the amount paid
         return total - paid;
     }
-    
-    
-    
+
 }

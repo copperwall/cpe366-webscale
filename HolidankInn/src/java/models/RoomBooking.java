@@ -30,11 +30,32 @@ public class RoomBooking extends DBO {
         }
     }
     
-    public RoomBooking(int bookingid, String startDate, String endDate, float price) {
+    public RoomBooking(int bookingid, int roomid, String startDate, String endDate, float price) {
         super(0);
         
+        this.set("bookingid", bookingid);
+        this.set("roomid", roomid);
         this.set("start_date", startDate);
         this.set("end_date", endDate);
-        this.set("price", "" + price);
+        this.set("price", price);
+    }
+
+    public double getPrice() {
+        return Double.parseDouble(this.get("price"));
+    }
+
+    public boolean save() throws Exception{
+        // If this is not an existing booking, make sure the room is
+        // available before allowing the booking to be created
+        // If the room is not available during those dates, throw a fit.
+        if (!this.fromDb) {
+            Room r = new Room(Integer.parseInt(this.get("roomid")));
+            if (!r.isAvailable(this.get("start_date"), this.get("end_date"))) {
+                throw new
+                 Exception("The room is not available during those dates");
+            }
+        }
+
+        return super.save();
     }
 }

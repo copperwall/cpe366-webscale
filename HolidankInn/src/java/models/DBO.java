@@ -189,7 +189,15 @@ public class DBO<T> implements Serializable {
         this.attributes.put(attribute, value);
         this.isDirty = true;
     }
-    
+
+    public void set(String attribute, int value) {
+        this.set(attribute, "" + value);
+    }
+
+    public void set(String attribute, double value) {
+        this.set(attribute, "" + value);
+    }
+
     public String get(String attribute) {
         return this.attributes.get(attribute);
     }
