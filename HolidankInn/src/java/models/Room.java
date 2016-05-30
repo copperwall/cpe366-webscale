@@ -21,6 +21,8 @@ public class Room extends DBO {
         
         // Bind our room attributes
         this.bind("number", "number:integer");
+        this.bind("view_type", "view_type:room_view");
+        this.bind("bed_type", "bed_type:room_bed");
         
         if (id != 0) {
             this.id = id;
@@ -35,6 +37,30 @@ public class Room extends DBO {
         // 1. Does it have any RoomPrice overrides during the date passed in?
         // 2. If so, return the price. If not, return 100.
         return 100.0;
+    }
+    
+    public String getView() {
+        switch(this.get("view_type")) {
+            case "ocean":
+                return "Ocean view";
+            case "pool":
+                return "Pool view";
+        }
+        return "";
+    }
+    
+    public String getBed() {
+        switch(this.get("bed_type")) {
+            case "single":
+                return "Single king";
+            case "double":
+                return "Double queen";
+        }
+        return "";
+    }
+    
+    public String getDescription() {
+        return this.getView() + ", " + this.getBed();
     }
     
     // Is the room available given a date?
@@ -58,20 +84,6 @@ public class Room extends DBO {
         // ALSO join the bookings table and make sure the booking is still
         // active
         return true;
-    }
-    
-    // Get the type of beds the room has
-    public String getBedType() {
-        // if room number %2 == 0, double queen
-        // if room number %2 != 0, single king
-        return "double queen"; // OR SINGLE KING
-    }
-    
-    // Get the type of view the room has
-    public String getView() {
-        // if room rumber [x01-x06], ocean view
-        // if room number [x07-x12], pool view
-        return "ocean"; // OR POOL
     }
     
     public static ArrayList<Room> getAvailableRooms(String start, String end) {

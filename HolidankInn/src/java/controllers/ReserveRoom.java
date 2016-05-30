@@ -30,6 +30,11 @@ public class ReserveRoom implements Serializable {
     private Booking booking;
     private int bookingId;
     
+    private String startDate;
+    private String endDate;
+    private String view;
+    private String bed;
+    
     public ReserveRoom() {
     }
     
@@ -51,42 +56,42 @@ public class ReserveRoom implements Serializable {
     }
     
     public String getStartDate() {
-        return "";
+        return this.startDate;
     }
     
     public void setStartDate(String date) {
-        
+        this.startDate = date;
     }
     
     public String getEndDate() {
-        return "";
+        return this.endDate;
     }
     
     public void setEndDate(String date) {
-        
+        this.endDate = date;
     }
     
     public String getRequestedView() {
-        return "";
+        return this.view;
     }
     
     public void setRequestedView(String type) {
-        
+        this.view = type;
     }
     
     public String getRequestedBed() {
-        return "";
+        return this.bed;
     }
     
     public void setRequestedBed(String type) {
-        
+        this.bed = type;
     }
     
     public ArrayList<SelectItem> getViewTypes() {
         ArrayList<SelectItem> views = new ArrayList<>();
         
-        views.add(new SelectItem("Ocean"));
-        views.add(new SelectItem("Pool"));
+        views.add(new SelectItem("ocean", "Ocean"));
+        views.add(new SelectItem("pool", "Pool"));
         
         return views;
     }
@@ -94,14 +99,13 @@ public class ReserveRoom implements Serializable {
     public ArrayList<SelectItem> getBedTypes() {
         ArrayList<SelectItem> beds = new ArrayList<>();
         
-        beds.add(new SelectItem("Single King"));
-        beds.add(new SelectItem("Two Queens"));
+        beds.add(new SelectItem("single", "Single King"));
+        beds.add(new SelectItem("double", "Two Queens"));
         
         return beds;
     }
     
     public String createReservation() {
-        
         // TODO: Find rooms that meet the input criteria.
         //       If there are no rooms available, throw an error
         //       Select a room to book, get that room's price (a function of the Room object)

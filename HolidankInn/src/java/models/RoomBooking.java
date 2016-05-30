@@ -43,6 +43,11 @@ public class RoomBooking extends DBO {
     public double getPrice() {
         return Double.parseDouble(this.get("price"));
     }
+    
+    public String getDescription() {
+        Room r = new Room(Integer.parseInt(this.get("roomid")));
+        return r.getDescription();
+    }
 
     public boolean save() throws Exception{
         // If this is not an existing booking, make sure the room is

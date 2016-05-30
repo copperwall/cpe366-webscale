@@ -31,7 +31,7 @@
                         <h:dataTable value="#{bookingEditor.getRooms()}" var="room">
                             <h:column>
                                 <f:facet name="header">Room</f:facet>
-                                #{room.get("roomid")}
+                                #{room.getDescription()}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Start Date</f:facet>
