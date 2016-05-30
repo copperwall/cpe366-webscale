@@ -22,7 +22,7 @@ public class User extends DBO {
         // Bind our user attributes
         this.bind("login", "login");
         this.bind("password", "password");
-        this.bind("role", "role:role_enum");
+        this.bind("type", "type:user_type");
         
         this.bind("firstname", "firstname");
         this.bind("lastname", "lastname");
