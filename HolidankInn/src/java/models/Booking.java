@@ -118,24 +118,40 @@ public class Booking extends DBO {
 
         return p.getCustom(query);
     }
-
-    // Get the total amount owed on this booking
-    public double getTotalAmount() {
+    
+    public double getRoomCharges() {
         double total = 0;
         // get all the rooms
         ArrayList<RoomBooking> rooms = this.getRooms();
-        // get all the charges
-        ArrayList<Charge> charges = this.getCharges();
         // Add them up!
 
         for (int i = 0; i < rooms.size(); i++) {
             total += rooms.get(i).getPrice();
         }
 
+        return total;
+    }
+    
+    public double getOtherCharges() {
+        double total = 0;
+        // get all the charges
+        ArrayList<Charge> charges = this.getCharges();
+        // Add them up!
+
         for (int n = 0; n < charges.size(); n++) {
             total += charges.get(n).getAmount();
         }
 
+        return total;
+    }
+
+    // Get the total amount owed on this booking
+    public double getTotalAmount() {
+        double total = 0;
+        
+        total += this.getRoomCharges();
+        total += this.getOtherCharges();
+        
         return total;
     }
 

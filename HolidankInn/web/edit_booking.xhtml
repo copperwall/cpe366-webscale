@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+            <ui:define name="pagescript">
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('.datepicker').datepicker();
+                    });
+                </script>
+            </ui:define>
+            <ui:define name="title">Edit Booking</ui:define><!-- Put page title here -->
+            <ui:define name="content">
+                <f:metadata>
+                    <f:viewParam name="id" value="#{bookingEditor.bookingId}" />
+                    <f:viewAction action="#{bookingEditor.onLoad}" />
+                </f:metadata>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h4>Editing <i>#{bookingEditor.bookingName}</i></h4>
+                        
+                        <h5>Reserved Rooms:</h5>
+                        <a href="reserve_room.xhtml?id=#{bookingEditor.bookingId}">Add Room</a>
+
+                        <h:dataTable value="#{bookingEditor.getRooms()}" var="room">
+                            <h:column>
+                                <f:facet name="header">Room</f:facet>
+                                #{room.get("roomid")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Start Date</f:facet>
+                                #{room.get("start_date")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">End Date</f:facet>
+                                #{room.get("end_date")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Rate</f:facet>
+                                #{room.getPrice()}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Actions</f:facet>
+<!--                                <c:if test="#{booking.isConfirmed()}">
+                                    Cancel
+                                </c:if>
+
+                                <c:if test="#{!booking.isConfirmed()}">
+                                    <a href="edit_booking.xhtml?id=#{booking.getPk()}">Edit</a>
+                                </c:if>-->
+                            </h:column>
+                        </h:dataTable>
+                        
+                        <h5>Invoice:</h5>
+                        <table class="u-full-width">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Room Charges</td>
+                                    <td>$#{bookingEditor.booking.getRoomCharges()}</td>
+                                </tr>
+                                <tr>
+                                    <td>Other Charges</td>
+                                    <td>$#{bookingEditor.booking.getOtherCharges()}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Charges</td>
+                                    <td>$#{bookingEditor.booking.getTotalAmount()}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount Paid</td>
+                                    <td>$#{bookingEditor.booking.getPaidAmount()}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount Owed</td>
+                                    <td>$#{bookingEditor.booking.getBalance()}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h:form>
+                            <h:commandButton value="Confirm Booking" action="#{bookingEditor.confirmBooking}"
+                                             class="button-primary pull-right"/>
+                        </h:form>
+                    </div>
+                </div>
+                <!-- Put content here -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

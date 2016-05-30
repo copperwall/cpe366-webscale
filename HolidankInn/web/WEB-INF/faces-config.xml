@@ -43,6 +43,33 @@
         </navigation-case>
     </navigation-rule>
     
+    <navigation-rule>
+        <from-view-id>
+            /edit_booking.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect /><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>
+            /reserve_room.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>reserved</from-outcome>
+            <to-view-id>/edit_booking.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{reserveRoom.bookingId}</value>
+                </view-param>
+            </redirect><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
+    
     
     <managed-bean>
         <managed-bean-name>signupPage</managed-bean-name>
@@ -58,5 +85,15 @@
         <managed-bean-name>homeController</managed-bean-name>
         <managed-bean-class>controllers.HomeController</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>bookingEditor</managed-bean-name>
+        <managed-bean-class>controllers.BookingEditor</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>reserveRoom</managed-bean-name>
+        <managed-bean-class>controllers.ReserveRoom</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>
