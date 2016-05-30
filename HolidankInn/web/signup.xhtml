@@ -13,20 +13,74 @@
                     <div class="offset-by-three five columns">
                         <h:form>
                             <label for="login">Login</label>
-                            <h:inputText value="#{login.login}" required ="true"
+                            <h:inputText value="#{signupPage.login}" required ="true"
                                                 requiredMessage="Login field is required."
                                                 id="login"
                                                 class="u-full-width"/>
                             <h:message for="login" style="color:red;margin:8px;"/>
                             
                             <label for="password">Password</label>
-                            <h:inputSecret value="#{login.password}" required ="true"
+                            <h:inputSecret value="#{signupPage.password}" required ="true"
                                                      requiredMessage="Password field is required."
                                                      id="password"
                                                      class="u-full-width"/>
                             <h:message for="password" style="color:red;margin:8px;"/>
+                            <label for="email">Email</label>
+                            <h:inputText value="#{signupPage.email}" required ="true"
+                                                     requiredMessage="Email field is required."
+                                                     id="email"
+                                                     class="u-full-width"/>
+                            <h:message for="email" style="color:red;margin:8px;"/>
+                            <label for="firstName">First Name</label>
+                            <h:inputText value="#{signupPage.firstName}" required ="true"
+                                                     requiredMessage="First Name field is required."
+                                                     id="firstName"
+                                                     class="u-full-width"/>
+                            <h:message for="firstName" style="color:red;margin:8px;"/>
+                            <label for="lastName">Last Name</label>
+                            <h:inputText value="#{signupPage.lastName}" required ="true"
+                                                     requiredMessage="Last Name field is required."
+                                                     id="lastName"
+                                                     class="u-full-width"/>
+                            <h:message for="lastName" style="color:red;margin:8px;"/>
+                            <label for="steetAddress">Address</label>
+                            <h:inputText value="#{signupPage.streetAddress}" required ="true"
+                                                     requiredMessage="Address field is required."
+                                                     id="streetAddress"
+                                                     class="u-full-width"/>
+                            <h:message for="streetAddress" style="color:red;margin:8px;"/>
+                            <label for="state">State</label>
+                            <h:inputText value="#{signupPage.state}" required ="true"
+                                                     requiredMessage="State field is required."
+                                                     id="state"
+                                                     class="u-full-width"/>
+                            <h:message for="state" style="color:red;margin:8px;"/>
+                            <label for="zipcode">Zipcode</label>
+                            <h:inputText value="#{signupPage.zipcode}" required ="true"
+                                                     requiredMessage="Zipcode field is required."
+                                                     id="zipcode"
+                                                     class="u-full-width"/>
+                            <h:message for="zipcode" style="color:red;margin:8px;"/>
+                            <label for="ccnum">Credit Card #</label>
+                            <h:inputText value="#{signupPage.ccnum}" required ="true"
+                                                     requiredMessage="Credit Card field is required."
+                                                     id="ccnum"
+                                                     class="u-full-width"/>
+                            <h:message for="ccnum" style="color:red;margin:8px;"/>
+                            <label for="exp">Expiration Date</label>
+                            <h:inputText value="#{signupPage.exp}" required ="true"
+                                                     requiredMessage="Expiration Date field is required."
+                                                     id="exp"
+                                                     class="u-full-width"/>
+                            <h:message for="exp" style="color:red;margin:8px;"/>
+                            <label for="cvv">CVV</label>
+                            <h:inputText value="#{signupPage.cvv}" required ="true"
+                                                requiredMessage="CVV field is required."
+                                                id="cvv"
+                                                class="u-full-width"/>
+                            <h:message for="cvv" style="color:red;margin:8px;"/>
                             <hr/>
-                            <h:commandButton value="login" action="#{login.checkCredentials}"
+                            <h:commandButton value="Sign Up" action="#{signupPage.createUser}"
                                              class="button-primary u-full-width"/> 
                         </h:form>
                     </div>
