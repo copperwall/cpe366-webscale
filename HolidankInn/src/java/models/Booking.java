@@ -23,6 +23,8 @@ public class Booking extends DBO {
         
         this.bind("userid", "userid:integer");
         this.bind("cancelled", "cancelled:integer");
+        this.bind("confirmed", "confirmed:integer");
+        this.bind("name", "name:text");
         
         if (id != 0) {
             this.id = id;
@@ -34,6 +36,25 @@ public class Booking extends DBO {
     // Get the user that has created this booking
     public User getUser() {
         return new User(Integer.parseInt(this.get("userid")));
+    }
+    
+    // Get the name of this booking
+    public String getName() {
+        return this.get("name");
+    }
+    
+    // Is the booking confirmed?
+    public boolean isConfirmed() {
+        return Integer.parseInt(this.get("confirmed")) == 1;
+    }
+    
+    public String getStatus() {
+        System.out.println("getting status");
+        if (this.isConfirmed()) {
+            return "Confirmed";
+        } else {
+            return "Unconfirmed";
+        }
     }
     
     // Some helpful setters

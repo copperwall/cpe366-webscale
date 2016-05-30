@@ -44,4 +44,39 @@ public class User extends DBO {
         return cc.getCustom(query);
     }
     
+    public ArrayList<Booking> getAllBookings() {
+        Booking b = new Booking(0);
+        String query = "SELECT * FROM bookings"
+                + " WHERE userid = " + this.getPk();
+        
+        return b.getCustom(query);
+    }
+    
+    public ArrayList<Booking> getConfirmedBookings() {
+        Booking b = new Booking(0);
+        String query = "SELECT * FROM bookings"
+                + " WHERE userid = " + this.getPk()
+                + " AND confirmed = 1 AND cancelled = 0";
+        
+        return b.getCustom(query);
+    }
+    
+    public ArrayList<Booking> getUnconfirmedBookings() {
+        Booking b = new Booking(0);
+        String query = "SELECT * FROM bookings"
+                + " WHERE userid = " + this.getPk()
+                + " AND confirmed = 0 AND cancelled = 0";
+        
+        return b.getCustom(query);
+    }
+    
+    public ArrayList<Booking> getCancelledBookings() {
+        Booking b = new Booking(0);
+        String query = "SELECT * FROM bookings"
+                + " WHERE userid = " + this.getPk()
+                + " AND cancelled = 1";
+        
+        return b.getCustom(query);
+    }
+    
 }

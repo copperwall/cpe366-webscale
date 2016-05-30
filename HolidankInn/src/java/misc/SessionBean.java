@@ -79,7 +79,7 @@ public class SessionBean implements Serializable
         }
         
         HttpSession session = getSession();
-        int userid = Integer.parseInt((String) session.getAttribute("userid"));
+        int userid = Integer.parseInt(session.getAttribute("userid").toString());
         return new User(userid);
     }
 

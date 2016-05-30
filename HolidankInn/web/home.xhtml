@@ -10,10 +10,19 @@
         <ui:composition template="./layout.xhtml">
             <ui:define name="title">Holidank Inn</ui:define>
             <ui:define name="content">
-                <!-- Put content here -->
-                <hr/>
                 <div class="row" id="schedule">
                     <h4>Welcome to the HolidankInn</h4>
+                    
+                    <h:dataTable value="#{homeController.getBookings()}" var="booking">
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            #{booking.get("name")}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Status</f:facet>
+                            #{booking.getStatus()}
+                        </h:column>
+                    </h:dataTable>
                 </div>
             </ui:define>
         </ui:composition>

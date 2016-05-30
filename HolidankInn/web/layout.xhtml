@@ -7,9 +7,16 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <!-- CDN stuff -->
+        <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" integrity="sha256-DI6NdAhhFRnO2k51mumYeDShet3I8AKCQf/tf7ARNhI=" crossorigin="anonymous"></script>
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/cupertino/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        
         <link href="css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="css/skeleton.css" rel="stylesheet" type="text/css" />
         <link href="css/base.css" rel="stylesheet" type="text/css" />
+        <ui:insert name="pagescript"></ui:insert>
         <title><ui:insert name="title"></ui:insert> - Holidank Inn</title>
     </h:head>
     <h:body>
@@ -33,9 +40,11 @@
         <div class="container" id="mainContainer">
             <c:if test="${userlogin != null}">
                 <div class="row" id="navbar">
-                    <a class="button button-primary" href="#">Nav Item</a>
+                    <a class="button" href="home.xhtml">Home</a>
+                    <a class="button" href="#">My Account</a>
+                    <a class="button" href="new_booking.xhtml">New Booking</a>
+                    <hr/>
                 </div>
-                <hr></hr>
             </c:if>
             <div class="row" id="messages">
                 <h:messages/>

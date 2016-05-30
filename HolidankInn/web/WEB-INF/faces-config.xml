@@ -12,7 +12,8 @@
         <managed-bean-name>sessionBean</managed-bean-name>
         <managed-bean-class>misc.SessionBean</managed-bean-class>
     
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>  
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>  
     
     
     <navigation-rule>
@@ -30,9 +31,32 @@
             <redirect /><!-- The redirect flag keeps the url updated -->
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>
+            /new_booking.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect /><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
+    
+    
     <managed-bean>
         <managed-bean-name>signupPage</managed-bean-name>
         <managed-bean-class>controllers.SignupPage</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>newBooking</managed-bean-name>
+        <managed-bean-class>controllers.NewBooking</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>homeController</managed-bean-name>
+        <managed-bean-class>controllers.HomeController</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 </faces-config>
