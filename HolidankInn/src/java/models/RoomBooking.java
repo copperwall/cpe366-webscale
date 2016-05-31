@@ -5,6 +5,9 @@
  */
 package models;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author scott
@@ -30,14 +33,16 @@ public class RoomBooking extends DBO {
         }
     }
     
-    public RoomBooking(int bookingid, int roomid, String startDate, String endDate, float price) {
-        super(0);
+    public static RoomBooking factory(int bookingid, int roomid, String startDate, String endDate) {
+        RoomBooking rb = new RoomBooking(0);
         
-        this.set("bookingid", bookingid);
-        this.set("roomid", roomid);
-        this.set("start_date", startDate);
-        this.set("end_date", endDate);
-        this.set("price", price);
+        rb.set("bookingid", bookingid);
+        rb.set("roomid", roomid);
+        rb.set("start_date", startDate);
+        rb.set("end_date", endDate);
+        //this.set("price", price);
+        
+        return rb;
     }
 
     public double getPrice() {
@@ -59,6 +64,20 @@ public class RoomBooking extends DBO {
                 throw new
                  Exception("The room is not available during those dates");
             }
+            
+            // We also need to calculate the total price for this booking.
+            double total = 0;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm/DD/yyyy");
+            // Iterate over every day in the booking, get the price for that day
+            LocalDate start = LocalDate.parse(this.get("start_date"), formatter),
+                      end   = LocalDate.parse(this.get("end_date"), formatter);
+            
+            LocalDate next = start.minusDays(1);
+            while((next = next.plusDays(1)).isBefore(end.plusDays(1))) {
+                total += r.getPrice(next.toString());
+            }
+            
+            this.set("price", total);
         }
 
         return super.save();

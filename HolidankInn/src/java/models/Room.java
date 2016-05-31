@@ -65,12 +65,9 @@ public class Room extends DBO {
     
     // Is the room available given a date?
     public boolean isAvailable(String date) {
-        // To determine whether the room is available:
-        // Query for all RoomBookings referring to this room during the date
-        // passed in. If count(bookings) > 0, this room is not available.
-        // NOTE: Make sure to join the bookings table and make sure the booking
-        // is still active and not cancelled.
-        return true;
+        // Checking for a single date is the same as for a date range
+        // since it's just an OR statement in SQL.
+        return this.isAvailable(date, date);
     }
     
     public boolean isAvailable(String startDate, String endDate) {
@@ -83,16 +80,46 @@ public class Room extends DBO {
         // OR rb.startDate < ?EndDate < rb.endDate
         // ALSO join the bookings table and make sure the booking is still
         // active
-        return true;
+        RoomBooking rb = new RoomBooking(0);
+        String query = "SELECT * FROM room_bookings rb " +
+            "JOIN rooms r USING (roomid) " +
+            "JOIN bookings b ON (rb.room_bookingid = b.bookingid) " +
+            "WHERE  (( " +
+            "	rb.start_date <= '" + startDate + "' " +
+            "	AND rb.end_date >= '" + startDate + "' " +
+            ") OR ( " +
+            "	rb.start_date <= '" + endDate + "' " +
+            "	AND rb.end_date >= '" + endDate + "' " +
+            ")) " +
+            "AND r.roomid = " + this.getPk() + " " +
+            "AND b.confirmed = 1 " +
+            "AND b.cancelled = 0;";
+        
+        ArrayList<RoomBooking> confirmedBookings = rb.getCustom(query);
+        
+        // If there are _ANY_ confirmed bookings for this room during those
+        // dates, the room is NOT available.
+        return confirmedBookings.isEmpty();
     }
     
-    public static ArrayList<Room> getAvailableRooms(String start, String end) {
+    public static ArrayList<Room> getAvailableRooms(String start, String end,
+     String view, String bed) {
         Room r = new Room(0);
         
-        // TODO write a query to return all the available rooms for the date
-        // range
-        String q = "";
-        
-        return r.getCustom(q);
+        String query = "SELECT * FROM rooms r " +
+            "LEFT JOIN room_bookings rb USING (roomid) " +
+            "LEFT JOIN bookings b ON (rb.room_bookingid = b.bookingid) " +
+            "WHERE  ((( " +
+            "	rb.start_date <= '" + start + "' " +
+            "	AND rb.end_date >= '" + start + "' " +
+            ") OR ( " +
+            "	rb.start_date <= '" + end + "' " +
+            "	AND rb.end_date >= '" + end + "' " +
+            ")) AND (b.confirmed = 0 OR b.cancelled = 1) " +
+            "OR (rb.room_bookingid IS NULL )) " +
+            "AND r.view_type = '" + view + "' " +
+            "AND r.bed_type = '" + bed + "';";
+        System.out.println("QUERY " + query);
+        return r.getCustom(query);
     }
 }

@@ -71,10 +71,8 @@ public class Booking extends DBO {
 
     // Add a room to the booking reservation
     public boolean addRoom(int roomid, String startDate, String endDate) {
-        // GET THE PRICE! This is funky. TODO Rethink how this works
-        float price = 0;
         RoomBooking roomBooking =
-         new RoomBooking(this.getPk(), roomid, startDate, endDate, price);
+         new RoomBooking(this.getPk(), roomid, startDate, endDate);
 
         // TODO: Don't swallow this exception
         // There will be an exception here if the room is not available

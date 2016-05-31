@@ -105,11 +105,24 @@ public class ReserveRoom implements Serializable {
         return beds;
     }
     
-    public String createReservation() {
+    public String createReservation() throws Exception {
         // TODO: Find rooms that meet the input criteria.
         //       If there are no rooms available, throw an error
-        //       Select a room to book, get that room's price (a function of the Room object)
-        //       call `new RoomBooking(this.bookingId, room.getPk(), startDate, endDate, price)`
+        ArrayList<Room> availableRooms =
+         Room.getAvailableRooms(this.startDate, this.endDate,
+         this.view, this.bed);
+        
+        if (availableRooms.isEmpty()) {
+            // We have large problems, mi amigo.
+            throw new Exception("There are no rooms available meeting your criteria.");
+        }
+        // Select a room to book, get that room's price (a function of the Room object)
+        Room chosenRoom = availableRooms.get(0);
+        System.out.println("Chosen roomid: " + chosenRoom.getPk());
+
+        RoomBooking rb = RoomBooking.factory(this.bookingId, chosenRoom.getPk(),
+                this.startDate, this.endDate);
+        rb.save();
         
         return "reserved";
     }
