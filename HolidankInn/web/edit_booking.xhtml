@@ -35,11 +35,11 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Start Date</f:facet>
-                                #{room.get("start_date")}
+                                #{room.getCheckinDate()}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">End Date</f:facet>
-                                #{room.get("end_date")}
+                                #{room.getCheckoutDate()}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Rate</f:facet>
@@ -47,6 +47,10 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Actions</f:facet>
+                                <h:form>
+                                    <h:commandLink value="Remove" action="#{bookingEditor.removeRoomBooking(room.getPk())}"
+                                             class=""/>
+                                </h:form>
 <!--                                <c:if test="#{booking.isConfirmed()}">
                                     Cancel
                                 </c:if>

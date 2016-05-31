@@ -63,4 +63,10 @@ public class BookingEditor implements Serializable {
         return "home";
     }
     
+    public String removeRoomBooking(int roombookingid) {
+        System.out.println("Removing RoomBooking " + roombookingid);
+        this.booking.removeRoomBooking(roombookingid);
+        return "removed";
+    }
+    
 }

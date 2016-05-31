@@ -70,9 +70,10 @@ public class Booking extends DBO {
     }
 
     // Add a room to the booking reservation
+    // I don't think we actually use this ever.
     public boolean addRoom(int roomid, String startDate, String endDate) {
         RoomBooking roomBooking =
-         new RoomBooking(this.getPk(), roomid, startDate, endDate);
+         RoomBooking.factory(this.getPk(), roomid, startDate, endDate);
 
         // TODO: Don't swallow this exception
         // There will be an exception here if the room is not available
@@ -84,6 +85,12 @@ public class Booking extends DBO {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return true;
+    }
+    
+    public boolean removeRoomBooking(int id) {
+        RoomBooking rb = new RoomBooking(id);
+        rb.delete();
         return true;
     }
 

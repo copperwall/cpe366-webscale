@@ -53,6 +53,14 @@ public class RoomBooking extends DBO {
         Room r = new Room(Integer.parseInt(this.get("roomid")));
         return r.getDescription();
     }
+    
+    public String getCheckinDate() {
+        return this.get("start_date");
+    }
+    
+    public String getCheckoutDate() {
+        return this.get("end_date");
+    }
 
     public boolean save() throws Exception{
         // If this is not an existing booking, make sure the room is

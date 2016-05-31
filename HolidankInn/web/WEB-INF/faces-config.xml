@@ -52,6 +52,16 @@
             <to-view-id>/home.xhtml</to-view-id>
             <redirect /><!-- The redirect flag keeps the url updated -->
         </navigation-case>
+        <navigation-case>
+            <from-outcome>removed</from-outcome>
+            <to-view-id>/edit_booking.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{bookingEditor.bookingId}</value>
+                </view-param>
+            </redirect><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
