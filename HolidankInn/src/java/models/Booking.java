@@ -152,6 +152,12 @@ public class Booking extends DBO {
         rb.delete();
         return true;
     }
+    
+    public boolean removeCharge(int id) {
+        Charge c = new Charge(id);
+        c.delete();
+        return true;
+    }
 
 
     /// Some helpful getters

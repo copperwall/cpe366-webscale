@@ -60,17 +60,17 @@
                         <h:dataTable class="u-full-width" value="#{bookingEditor.getCharges()}" var="charge">
                             <h:column>
                                 <f:facet name="header">Description</f:facet>
-                                #{room.get("description")}
+                                #{charge.get("description")}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Amount</f:facet>
-                                #{room.get("amount")}
+                                #{charge.get("amount")}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Actions</f:facet>
                                 <c:if test="#{bookingEditor.canEditCharges()}">
                                 <h:form>
-                                    <h:commandLink value="Remove"
+                                    <h:commandLink value="Remove" action="#{bookingEditor.removeCharge(charge.getPk())}"
                                              class=""/>
                                 </h:form>
                                 </c:if>

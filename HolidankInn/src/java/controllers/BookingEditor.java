@@ -113,4 +113,9 @@ public class BookingEditor implements Serializable {
         return "removed";
     }
     
+    public String removeCharge(int chargeid) {
+        this.booking.removeCharge(chargeid);
+        return "removed";
+    }
+    
 }

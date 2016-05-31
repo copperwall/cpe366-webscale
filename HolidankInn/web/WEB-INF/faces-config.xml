@@ -92,6 +92,22 @@
     
     <navigation-rule>
         <from-view-id>
+            /add_charge.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>added</from-outcome>
+            <to-view-id>/edit_booking.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>id</name>
+                    <value>#{addCharge.bookingId}</value>
+                </view-param>
+            </redirect><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>
             /employee_edit.xhtml
         </from-view-id>
         <navigation-case>
@@ -161,6 +177,11 @@
     <managed-bean>
         <managed-bean-name>reserveRoom</managed-bean-name>
         <managed-bean-class>controllers.ReserveRoom</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>addCharge</managed-bean-name>
+        <managed-bean-class>controllers.AddCharge</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>
