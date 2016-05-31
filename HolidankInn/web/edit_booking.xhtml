@@ -28,7 +28,7 @@
                         <h5>Reserved Rooms:</h5>
                         <a href="reserve_room.xhtml?id=#{bookingEditor.bookingId}">Add Room</a>
 
-                        <h:dataTable value="#{bookingEditor.getRooms()}" var="room">
+                        <h:dataTable class="u-full-width" value="#{bookingEditor.getRooms()}" var="room">
                             <h:column>
                                 <f:facet name="header">Room</f:facet>
                                 #{room.getDescription()}
