@@ -27,8 +27,12 @@
 
                         <h:dataTable class="u-full-width" value="#{bookingEditor.getRooms()}" var="room">
                             <h:column>
-                                <f:facet name="header">Room</f:facet>
+                                <f:facet name="header">Description</f:facet>
                                 #{room.getDescription()}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Room Number</f:facet>
+                                #{room.getRoomNumber()}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Start Date</f:facet>
