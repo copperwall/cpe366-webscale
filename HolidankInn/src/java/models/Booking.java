@@ -257,5 +257,15 @@ public class Booking extends DBO {
         
         return super.save();
     }
+    
+    public ArrayList<Booking> bookingSearch(String search) {
+        Booking u = new Booking(0);
+        String query = "SELECT * FROM bookings b " +
+                "JOIN users u USING (userid) " +
+                "WHERE u.firstname ILIKE '%" + search + "%' " +
+                "OR u.lastname ILIKE '%" + search + "%' ";
+        
+        return u.getCustom(query);
+    }
 
 }

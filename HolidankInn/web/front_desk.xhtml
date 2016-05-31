@@ -20,6 +20,16 @@
                 <div class="row">
                     <div class="twelve columns">
                         <h1>Front Desk</h1>
+                        <h5>Guest Search:</h5>
+                        <h:form>
+                           <h:inputText value="#{frontDesk.searchTerm}"
+                                                id="search"
+                                                class="u-full-width"/>
+                            <h:message for="search" style="color:red;margin:8px;"/>
+                            <h:commandButton value="Search" action="#{frontDesk.guestSearch}"
+                                             class="button-primary u-pull-right"/>
+                        </h:form>
+                        
                         <h5>Guests Checking In Today:</h5>
                         <h:dataTable value="#{frontDesk.getTodaysCheckins()}" var="booking" class="u-full-width">
                             <h:column>

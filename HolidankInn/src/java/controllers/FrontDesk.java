@@ -23,6 +23,8 @@ import org.jboss.weld.util.LazyValueHolder.Serializable;
  */
 public class FrontDesk extends Serializable {
     
+    private String searchTerm;
+    
     public ArrayList<Booking> getTodaysCheckins() {
         Booking b = new Booking(0);
         String query = "SELECT * FROM bookings";
@@ -35,6 +37,21 @@ public class FrontDesk extends Serializable {
         String query = "SELECT * FROM bookings";
         
         return b.getCustom(query);
+    }
+    
+    public String guestSearch() {
+        User u = new User(0);
+        ArrayList<User> results = u.userSearch(this.searchTerm);
+        
+        System.out.println(results);
+        
+        return "guest-search";
+    }
+    public void setSearchTerm(String term) {
+        this.searchTerm = term;
+    }
+    public String getSearchTerm() {
+        return this.searchTerm;
     }
 
     @Override

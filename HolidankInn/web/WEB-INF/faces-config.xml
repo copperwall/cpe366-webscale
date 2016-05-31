@@ -128,6 +128,22 @@
     
     <navigation-rule>
         <from-view-id>
+            /front_desk.xhtml
+        </from-view-id>
+        <navigation-case>
+            <from-outcome>guest-search</from-outcome>
+            <to-view-id>/guest_search.xhtml</to-view-id>
+            <redirect>
+                <view-param>
+                    <name>searchTerm</name>
+                    <value>#{frontDesk.searchTerm}</value>
+                </view-param>
+            </redirect><!-- The redirect flag keeps the url updated -->
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>
             /employee_edit.xhtml
         </from-view-id>
         <navigation-case>
@@ -202,6 +218,11 @@
     <managed-bean>
         <managed-bean-name>addCharge</managed-bean-name>
         <managed-bean-class>controllers.AddCharge</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>guestSearch</managed-bean-name>
+        <managed-bean-class>controllers.GuestSearch</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>

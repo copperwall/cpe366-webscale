@@ -91,4 +91,13 @@ public class User extends DBO {
         return b.getCustom(query);
     }
     
+    public ArrayList<User> userSearch(String search) {
+        User u = new User(0);
+        String query = "SELECT * FROM users " +
+                "WHERE firstname ILIKE '%" + search + "%' " +
+                "OR lastname ILIKE '%" + search + "%' ";
+        
+        return u.getCustom(query);
+    }
+    
 }
