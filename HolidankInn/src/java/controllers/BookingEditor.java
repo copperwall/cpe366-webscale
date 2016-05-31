@@ -15,6 +15,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import misc.SessionBean;
 import models.Booking;
+import models.Charge;
 import models.Room;
 import models.RoomBooking;
 import models.User;
@@ -54,8 +55,44 @@ public class BookingEditor implements Serializable {
         return this.booking;
     }
     
+    public boolean canEditCharges() {
+        User u = SessionBean.getCurrentUser();
+        return u.isEmployee() && !this.booking.isCheckedOut();
+    }
+    
+    public boolean canEditBooking() {
+        User u = SessionBean.getCurrentUser();
+        return u.isEmployee() && !this.booking.isCheckedOut();
+    }
+    
+    public boolean canCheckIn() {
+        User u = SessionBean.getCurrentUser();
+        return u.isEmployee() && !this.booking.isCheckedIn();
+    }
+    
+    public boolean canCheckOut() {
+        User u = SessionBean.getCurrentUser();
+        return u.isEmployee() && this.booking.isCheckedIn() && !this.booking.isCheckedOut();
+    }
+    
+    public String checkIn() throws Exception {
+        this.booking.checkIn();
+        this.booking.save();
+        return "checked-in";
+    }
+    
+    public String checkOut() throws Exception {
+        this.booking.checkOut();
+        this.booking.save();
+        return "checked-out";
+    }
+    
     public ArrayList<RoomBooking> getRooms() {
         return this.booking.getRooms();
+    }
+    
+    public ArrayList<Charge> getCharges() {
+        return this.booking.getCharges();
     }
     
     public String confirmBooking() throws Exception {

@@ -25,6 +25,8 @@ public class Booking extends DBO {
         this.bind("cancelled", "cancelled:integer");
         this.bind("confirmed", "confirmed:integer");
         this.bind("name", "name:text");
+        this.bind("checked_in", "checked_in:integer");
+        this.bind("checked_out", "checked_out:integer");
         
         if (id != 0) {
             this.id = id;
@@ -43,6 +45,10 @@ public class Booking extends DBO {
         return this.get("name");
     }
     
+    public User getGuest() {
+        return new User(Integer.parseInt(this.get("userid")));
+    }
+    
     // Is the booking confirmed?
     public boolean isConfirmed() {
         return Integer.parseInt(this.get("confirmed")) == 1;
@@ -59,7 +65,7 @@ public class Booking extends DBO {
     
     public boolean canCancel() {
         // TODO: Compare today's date to the start date of the booking
-        return !this.isCancelled() && this.isConfirmed();
+        return !this.isCancelled() && this.isConfirmed() && !this.isCheckedIn() && !this.isCheckedIn();
     }
     
     public void confirm() {
@@ -69,9 +75,39 @@ public class Booking extends DBO {
         this.set("confirmed", 1);
     }
     
+    public void checkIn() {
+        this.set("checked_in", 1);
+    }
+    
+    public boolean isCheckedIn() {
+        return Integer.parseInt(this.get("checked_in")) == 1;
+    }
+    
+    public void checkOut() {
+        this.set("checked_out", 1);
+    }
+    
+    public boolean isCheckedOut() {
+        return Integer.parseInt(this.get("checked_out")) == 1;
+    }
+    
+    public String getCheckIn() {
+        // TODO: Return the earliest start_date of any RoomBooking
+        return "TODO";
+    }
+    
+    public String getCheckOut() {
+        // TODO: Return the latest end_date of any RoomBooking
+        return "TODO";
+    }
+    
     public String getStatus() {
         System.out.println("getting status");
-        if (this.isCancelled()) {
+        if (this.isCheckedOut()) {
+            return "Checked Out";
+        } else if (this.isCheckedIn()) {
+            return "Checked In";
+        } else if (this.isCancelled()) {
             return "Cancelled";
         } else if (this.isConfirmed()) {
             return "Confirmed";
@@ -203,6 +239,17 @@ public class Booking extends DBO {
         
         // The balance is the total - the amount paid
         return total - paid;
+    }
+    
+    public boolean save() throws Exception {
+        if (this.get("checked_in") == null) {
+            this.set("checked_in", 0);
+        }
+        if (this.get("checked_out") == null) {
+            this.set("checked_out", 0);
+        }
+        
+        return super.save();
     }
 
 }

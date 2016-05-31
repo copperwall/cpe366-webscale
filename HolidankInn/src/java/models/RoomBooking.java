@@ -75,14 +75,16 @@ public class RoomBooking extends DBO {
             
             // We also need to calculate the total price for this booking.
             double total = 0;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm/DD/yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             // Iterate over every day in the booking, get the price for that day
             LocalDate start = LocalDate.parse(this.get("start_date"), formatter),
                       end   = LocalDate.parse(this.get("end_date"), formatter);
             
             LocalDate next = start.minusDays(1);
+
             while((next = next.plusDays(1)).isBefore(end.plusDays(1))) {
-                total += r.getPrice(next.toString());
+                double price = r.getPrice(next.toString());
+                total += price;
             }
             
             this.set("price", total);

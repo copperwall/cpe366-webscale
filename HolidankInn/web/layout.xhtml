@@ -45,7 +45,7 @@
                     <a class="button" href="new_booking.xhtml">New Booking</a>
 
                     <c:if test="#{sessionBean.getCurrentUser().isEmployee()}">
-                        <a class="button" href="#">Front Desk</a>
+                        <a class="button" href="front_desk.xhtml">Front Desk</a>
                     </c:if>
                     <c:if test="#{sessionBean.getCurrentUser().isAdmin()}">
                         <a class="button" href="employee_list.xhtml">User List</a>

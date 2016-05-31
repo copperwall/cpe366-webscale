@@ -43,6 +43,10 @@ public class User extends DBO {
         return this.isAdmin() || this.get("type").equals("employee");
     }
     
+    public String getFullName() {
+        return this.get("firstname") + " " + this.get("lastname");
+    }
+    
     public ArrayList<CreditCard> getCreditCards() {
         CreditCard cc = new CreditCard(0);
         

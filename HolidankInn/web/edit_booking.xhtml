@@ -44,9 +44,33 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Actions</f:facet>
-                                <c:if test="#{bookingEditor.booking.isEditable()}">
+                                <c:if test="#{bookingEditor.booking.isEditable() || bookingEditor.canEditBooking()}">
                                 <h:form>
                                     <h:commandLink value="Remove" action="#{bookingEditor.removeRoomBooking(room.getPk())}"
+                                             class=""/>
+                                </h:form>
+                                </c:if>
+                            </h:column>
+                        </h:dataTable>
+                        
+                        <h5>Other Charges:</h5>
+                        <c:if test="#{bookingEditor.canEditCharges()}">
+                        <a href="add_charge.xhtml?id=#{bookingEditor.bookingId}">Add Charge</a>
+                        </c:if>
+                        <h:dataTable class="u-full-width" value="#{bookingEditor.getCharges()}" var="charge">
+                            <h:column>
+                                <f:facet name="header">Description</f:facet>
+                                #{room.get("description")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Amount</f:facet>
+                                #{room.get("amount")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Actions</f:facet>
+                                <c:if test="#{bookingEditor.canEditCharges()}">
+                                <h:form>
+                                    <h:commandLink value="Remove"
                                              class=""/>
                                 </h:form>
                                 </c:if>
@@ -98,6 +122,19 @@
                         <h:form>
                             <h:commandButton value="Cancel Booking" action="#{bookingEditor.cancelBooking}"
                                              class="button-primary red"/>
+                        </h:form>
+                        </c:if>
+                        
+                        <c:if test="#{bookingEditor.canCheckIn()}">
+                        <h:form>
+                            <h:commandButton value="Check In Guest" action="#{bookingEditor.checkIn}"
+                                             class="button-primary"/>
+                        </h:form>
+                        </c:if>
+                        <c:if test="#{bookingEditor.canCheckOut()}">
+                        <h:form>
+                            <h:commandButton value="Check Out Guest" action="#{bookingEditor.checkOut}"
+                                             class="button-primary"/>
                         </h:form>
                         </c:if>
                     </div>

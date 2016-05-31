@@ -149,6 +149,11 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>frontDesk</managed-bean-name>
+        <managed-bean-class>controllers.FrontDesk</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>bookingEditor</managed-bean-name>
         <managed-bean-class>controllers.BookingEditor</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
