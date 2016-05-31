@@ -48,9 +48,32 @@ public class Booking extends DBO {
         return Integer.parseInt(this.get("confirmed")) == 1;
     }
     
+    public boolean isCancelled() {
+        return Integer.parseInt(this.get("cancelled")) == 1;
+    }
+    
+    public boolean isEditable() {
+        return !this.isConfirmed() && !this.isCancelled();
+    }
+    
+    
+    public boolean canCancel() {
+        // TODO: Compare today's date to the start date of the booking
+        return !this.isCancelled() && this.isConfirmed();
+    }
+    
+    public void confirm() {
+        // We need to make sure each of our RoomBookings are still valid.
+        // Otherwise we need to throw an exception and remove the invalid
+        // RoomBookings.
+        this.set("confirmed", 1);
+    }
+    
     public String getStatus() {
         System.out.println("getting status");
-        if (this.isConfirmed()) {
+        if (this.isCancelled()) {
+            return "Cancelled";
+        } else if (this.isConfirmed()) {
             return "Confirmed";
         } else {
             return "Unconfirmed";

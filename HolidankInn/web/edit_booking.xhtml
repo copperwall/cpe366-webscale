@@ -26,7 +26,10 @@
                         <h4>Editing <i>#{bookingEditor.bookingName}</i></h4>
                         
                         <h5>Reserved Rooms:</h5>
+
+                        <c:if test="#{bookingEditor.booking.isEditable()}">
                         <a href="reserve_room.xhtml?id=#{bookingEditor.bookingId}">Add Room</a>
+                        </c:if>
 
                         <h:dataTable class="u-full-width" value="#{bookingEditor.getRooms()}" var="room">
                             <h:column>
@@ -42,22 +45,17 @@
                                 #{room.getCheckoutDate()}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Rate</f:facet>
+                                <f:facet name="header">Total Rate</f:facet>
                                 #{room.getPrice()}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Actions</f:facet>
+                                <c:if test="#{bookingEditor.booking.isEditable()}">
                                 <h:form>
                                     <h:commandLink value="Remove" action="#{bookingEditor.removeRoomBooking(room.getPk())}"
                                              class=""/>
                                 </h:form>
-<!--                                <c:if test="#{booking.isConfirmed()}">
-                                    Cancel
                                 </c:if>
-
-                                <c:if test="#{!booking.isConfirmed()}">
-                                    <a href="edit_booking.xhtml?id=#{booking.getPk()}">Edit</a>
-                                </c:if>-->
                             </h:column>
                         </h:dataTable>
                         
@@ -92,11 +90,22 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+
+                        <c:if test="#{!bookingEditor.booking.isEditable()}">
+                            <h5><b>This booking is <i>locked</i> and cannot be edited.</b></h5>
+                        </c:if>
+                        <c:if test="#{bookingEditor.booking.isEditable()}">
                         <h:form>
                             <h:commandButton value="Confirm Booking" action="#{bookingEditor.confirmBooking}"
                                              class="button-primary pull-right"/>
                         </h:form>
+                        </c:if>
+                        <c:if test="#{bookingEditor.booking.canCancel()}">
+                        <h:form>
+                            <h:commandButton value="Cancel Booking" action="#{bookingEditor.cancelBooking}"
+                                             class="button-primary red"/>
+                        </h:form>
+                        </c:if>
                     </div>
                 </div>
                 <!-- Put content here -->

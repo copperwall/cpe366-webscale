@@ -58,8 +58,15 @@ public class BookingEditor implements Serializable {
         return this.booking.getRooms();
     }
     
-    public String confirmBooking() {
-        System.out.println("HOME");
+    public String confirmBooking() throws Exception {
+        this.booking.confirm();
+        this.booking.save();
+        return "home";
+    }
+    
+    public String cancelBooking() throws Exception {
+        this.booking.cancel();
+        this.booking.save();
         return "home";
     }
     
