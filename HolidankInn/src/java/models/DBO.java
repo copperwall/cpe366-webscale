@@ -326,6 +326,11 @@ public class DBO<T> implements Serializable {
         return null;
     }
     
+    public <T> ArrayList<T> getAll() {
+        String q = "SELECT * FROM " + this.table + ";";
+        return this.getCustom(q);
+    }
+    
     public <T> ArrayList<T> getCustom(String query) {
         ArrayList<T> results = new ArrayList<>();
         

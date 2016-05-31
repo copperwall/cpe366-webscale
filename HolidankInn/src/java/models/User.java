@@ -35,6 +35,14 @@ public class User extends DBO {
         }
     }
     
+    public boolean isAdmin() {
+        return this.get("type").equals("admin");
+    }
+    
+    public boolean isEmployee() {
+        return this.isAdmin() || this.get("type").equals("employee");
+    }
+    
     public ArrayList<CreditCard> getCreditCards() {
         CreditCard cc = new CreditCard(0);
         
