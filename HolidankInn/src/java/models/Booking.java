@@ -6,6 +6,8 @@
 package models;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +68,15 @@ public class Booking extends DBO {
     
     public boolean canCancel() {
         // TODO: Compare today's date to the start date of the booking
-        return !this.isCancelled() && this.isConfirmed() && !this.isCheckedIn() && !this.isCheckedIn();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDate start = LocalDate.parse(this.getCheckIn(), formatter);
+        
+        String timeStamp = new SimpleDateFormat("yyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        LocalDate today = LocalDate.parse(timeStamp, formatter);
+
+        return !this.isCancelled() && this.isConfirmed() 
+         && !this.isCheckedIn() && !this.isCheckedOut()
+         && start.isBefore(today);
     }
     
     public void confirm() {
@@ -109,12 +119,36 @@ public class Booking extends DBO {
     
     public String getCheckIn() {
         // TODO: Return the earliest start_date of any RoomBooking
-        return "TODO";
+        RoomBooking rb = new RoomBooking(0);
+        String query = "SELECT * FROM room_bookings "
+                + "WHERE bookingid = " + this.getPk() + " "
+                + "ORDER BY start_date ASC "
+                + "LIMIT 1";
+        ArrayList<RoomBooking> earliest = rb.getCustom(query);
+        if (earliest.isEmpty()) {
+            // If they haven't added any rooms yet, return unix epoch
+            // to guarantee that today is after it
+            return "01/01/1970 00:00:00";
+        }
+        
+        return earliest.get(0).getCheckinDate();
     }
     
     public String getCheckOut() {
-        // TODO: Return the latest end_date of any RoomBooking
-        return "TODO";
+        // TODO: Return the earliest start_date of any RoomBooking
+        RoomBooking rb = new RoomBooking(0);
+        String query = "SELECT * FROM room_bookings "
+                + "WHERE bookingid = " + this.getPk() + " "
+                + "ORDER BY end_date DESC "
+                + "LIMIT 1";
+        ArrayList<RoomBooking> earliest = rb.getCustom(query);
+        if (earliest.isEmpty()) {
+            // If they haven't added any rooms yet, return a date
+            // far in the future
+            return "01/01/3020 00:00:00";
+        }
+        
+        return earliest.get(0).getCheckoutDate();
     }
     
     public String getStatus() {
