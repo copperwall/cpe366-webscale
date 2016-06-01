@@ -71,7 +71,7 @@ public class Booking extends DBO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDate start = LocalDate.parse(this.getCheckIn(), formatter);
         
-        String timeStamp = new SimpleDateFormat("yyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
         LocalDate today = LocalDate.parse(timeStamp, formatter);
 
         return !this.isCancelled() && this.isConfirmed() 
@@ -128,7 +128,7 @@ public class Booking extends DBO {
         if (earliest.isEmpty()) {
             // If they haven't added any rooms yet, return unix epoch
             // to guarantee that today is after it
-            return "01/01/1970 00:00:00";
+            return "1970-01-01 00:00:00";
         }
         
         return earliest.get(0).getCheckinDate();
@@ -145,7 +145,7 @@ public class Booking extends DBO {
         if (earliest.isEmpty()) {
             // If they haven't added any rooms yet, return a date
             // far in the future
-            return "01/01/3020 00:00:00";
+            return "3020-01-01 00:00:00";
         }
         
         return earliest.get(0).getCheckoutDate();
