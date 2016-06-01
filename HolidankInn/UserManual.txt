@@ -1,0 +1,230 @@
+User Manual
+
+Welcome to Holidank Inn, the dankest web application for running your dank inn!
+
+Table of Contents:
+
+0. Things To Know
+ * UI Basics
+
+1. Initial Setup
+ * Default Accounts
+ * Changing Default Passwords
+
+2. Admin Actions
+ * Adding Employees
+ * Editing Employees
+ * Editing Users
+ * Editing Room Rates
+
+3. Employee Use
+ * Front Desk
+ * Editing a Booking
+ * Adding Additional Charges
+ * Viewing Total Charges
+ * Checking In a Guest
+ * Checking Out a Guest
+
+4. Customer Use
+ * Add Booking
+ * View Bookings
+ * Edit Your Account
+
+
+
+
+Content:
+
+0. Things To Know
+
+   * UI Basics
+
+   Here are some helpful basics for navigating the UI.
+
+      * From anywhere on the site, clicking the "Holidank Inn" text in the upper left
+        of each page will return you to the home page.
+
+      * Every table has an edit button on the right that will bring you to the edit
+        page for that row. 
+
+   Thank you for reading our Helpful Tips and Tricks!
+
+====================
+
+1. Intial Setup
+
+   * Running this software
+
+   Import the HolidankInn directory into netbeans and run the project.
+   The webapp can be found at http://localhost:8080/HolidankInn/
+
+   * Default Accounts
+
+   There is a default account for the administrator. The login is `admin` and the
+   password is `admin`.
+
+   * Changing Default Passwords
+
+   Please see the section for Editing Employees for information on changing
+   the password for the admin account.
+
+====================
+
+2. Admin Actions
+
+   Only administrators can perform admin actions. Administrators can see the
+   features of the application available to employees and users as well.
+
+   * Adding Employees
+
+   To add an employee, start by loggin into the application with an admin
+   account. In the navigation bar, click "User List" to be presented
+   with a listing of all registered employees, users and admins. Scroll to the
+   bottom of this page to find the Create Employee form.
+
+   Specify the login, password, first name, last name, email, and role
+   for the Employee to be created and click "Create". Upon successful 
+   creation you will be redirected to the edit page for the new employee. 
+   At this point, you may return to the home page by clicking the "Holidank Inn" 
+   text, or return to the employee list page by clicking "User List".
+
+   * Editing Employees
+
+   To edit an employee's attributes, start by logging into the application
+   with an admin account. In the navigation bar, click "User List"
+   to be presented with a list of all registered employees and users.
+
+   Find the employee, user, or admin you would like to edit in the list. 
+   Under the "Actions" column in the list, click the "Edit" link in the 
+   same column to bring up the edit page.
+
+   Change any information you would like and press the "Update" button when finished. 
+   Upon successful edit, the edit page will be reloaded and you will see
+   that your edit has been saved. You are free to leave the page.
+
+   * Deleting Employees
+
+   To delete an employee, log in as an admin user. Click "User List"
+   in the navigation bar. Select the user you wish to delete as you did
+   in editing employees.
+
+   You will be brought to the Employee edit page, where you can click
+   "Delete" in the bottom left. Upon successful deletion you will be
+   returned to the employee list page.
+
+   * Editing Room Rates
+   To edit a rate for a room, start by loggin into the application with an 
+   admin account. In the navigation bar, click "Edit Room Rates". This will
+   show you all current rate overrides and allow you to insert a new one.
+
+   To insert a new rate, select the room, duration, and input the rate then
+   press the "Submit" button to the right.
+
+   The page will refresh and you should see your edited rate in the table
+   at the bottom of the page. 
+
+====================
+
+3. Employee Use
+
+   What fun would the application be if it were just for administrators? We
+   care deeply about our employee users and want to make their experience
+   effortless and lovely.
+
+   An employee has access to all the features that a customer has (see Part 4 - 
+   Customer Use below). In addition, we have provided employees with a special
+   "Front Desk" feature that allows them to keep track of guests. 
+
+   * Front Desk
+
+   To access the Front Desk feature, log in to the application with an employee
+   account. In the navigation bar, click on "Front Desk". This will open the Front
+   Desk page. From here you can see a table with all guests that are checking in today
+   and a table with all guests that are checking out today. In addition, the specific
+   check-in and check-out times are provided. 
+
+   * Editing a Booking
+   
+   In these tables, you can click on the corresponding "Edit" button in the right 
+   of each row to bring up the edit page for the booking. Once on the edit page, you 
+   will be shown all information in the system about the booking including confirmation
+   status, room number, start and end dates, rates, payments, and total charges. 
+
+   * Removing a Booking
+
+   To a remove a booking, click the "Front Desk" button in the navigation bar while
+   logged into an employee's account. In the table of guests checking in, press the "Edit"
+   button located at the right of every row. 
+
+   Once on the Edit page, find the table labeled "Reserved Rooms" at the top of the page. 
+   Find the desired booking row and click its corresponding "Remove" button at the right
+   of the table to remove it. 
+
+   * Adding Additional Charges
+
+   While logged into an employee account, click the "Front Desk" button in the 
+   navigation bar to open the bookings for today. In the guest check-in table, find 
+   your desired guest and press the "Edit" button in the corresponding row. 
+
+   Once you're on the edit page, find the table labeled "Other Charges" towards
+   the middle of the page. Directly under the title there is a link labeled 
+   "Add Charge". Press this to open the Add Charge page. Input a description and 
+   amount, then press the "Add Charge" button at the bottom of the page to confirm. 
+   You will be sent back to the edit page and your charge can be seen in the "Other
+   Charges" table. 
+
+   * Viewing Total Charges
+
+   While logged into an employee account, click the "Front Desk" button in the 
+   navigation bar to open the bookings for today. In the guest check-in table, find 
+   your desired guest and press the "Edit" button in the corresponding row. 
+
+   Once you're on the edit page, scroll down to the bottom of the page to find 
+   a table labeled "Invoice". Here you can see the separate charge amounts and
+   the total amount due at the very bottom. 
+
+   * Checking In a Guest
+
+   While logged into an employee account, click the "Front Desk" button in the 
+   navigation bar to open the bookings for today. In the guest check-in table, find 
+   your desired guest and press the "Edit" button in the corresponding row.
+
+   Once you're on the edit page, scroll down to the very bottom of the page and 
+   press the "Check In Guest" button to check the guest in. The page will refresh
+   and the header will notify you that the guest is now "Checked In". 
+
+   * Checking Out a Guest
+
+   While logged into an employee account, click the "Front Desk" button in the 
+   navigation bar to open the bookings for today. In the guest check-in table, find 
+   your desired guest and press the "Edit" button in the corresponding row.
+
+   Once you're on the edit page, scroll down to the very bottom of the page and 
+   press the "Check Out Guest" button to check the guest in. The page will refresh
+   and the header will notify you that the guest is now "Checked Out". Payments will 
+   be shown as fulfilled and bookings complete. 
+
+====================
+
+4. Customer Use
+
+   * Add Booking
+   
+   Once logged into a customer account, click the "New Booking" button in the 
+   navigation bar at the top. Enter a name for your new booking and press the 
+   "Create" button. You will now see a table with your bookings in it.
+
+   Find your desired booking in the table and press the corresponding "Edit"
+   button to the right. 
+
+   
+
+   * View Bookings
+   
+   Once logged into a customer account, you will automatically be directed to the
+   home page. Here you will see a table labeled "Your Bookings" where you will see
+   a list of all your bookings and their status. 
+
+   * Edit Your Account
+
+   
