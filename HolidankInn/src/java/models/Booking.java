@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,7 +84,22 @@ public class Booking extends DBO {
         return Integer.parseInt(this.get("checked_in")) == 1;
     }
     
-    public void checkOut() {
+    public void checkOut() throws Exception {
+        // When we check out, we need to charge the user's card.and create
+        // a payment for the amount owed.
+        double owed = this.getBalance();
+        
+        // If anything is owed
+        if (owed > 0.0) {
+            Payment p = new Payment(0);
+            p.set("bookingid", this.getPk());
+            p.set("amount", owed);
+            
+            String timeStamp = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date());
+            p.set("date", timeStamp);
+            p.save();
+        }
+        
         this.set("checked_out", 1);
     }
     

@@ -17,8 +17,8 @@
                 </f:metadata>
                 <div class="row">
                     <div class="twelve columns">
-                        <h4>Editing <i>#{bookingEditor.bookingName}</i></h4>
-                        
+                        <h3>Editing <i>#{bookingEditor.bookingName}</i> - <b>#{bookingEditor.booking.getStatus()}</b></h3>
+                        <h4>Guest: <b>#{bookingEditor.booking.getGuest().getFullName()}</b></h4>
                         <h5>Reserved Rooms:</h5>
 
                         <c:if test="#{bookingEditor.booking.isEditable()}">
@@ -81,6 +81,22 @@
                             </h:column>
                         </h:dataTable>
                         
+                        <h5>Payments:</h5>
+                        <h:dataTable class="u-full-width" value="#{bookingEditor.getPayments()}" var="payment">
+                            <h:column>
+                                <f:facet name="header">Card</f:facet>
+                                #{payment.getCardDescription()}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Amount</f:facet>
+                                #{payment.getAmount()}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Date</f:facet>
+                                #{payment.get("date")}
+                            </h:column>
+                        </h:dataTable>
+                        
                         <h5>Invoice:</h5>
                         <table class="u-full-width">
                             <thead>
@@ -108,7 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td>Amount Owed</td>
-                                    <td>$#{bookingEditor.booking.getBalance()}</td>
+                                    <td><b>$#{bookingEditor.booking.getBalance()}</b></td>
                                 </tr>
                             </tbody>
                         </table>

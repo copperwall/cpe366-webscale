@@ -16,6 +16,7 @@ import javax.inject.Named;
 import misc.SessionBean;
 import models.Booking;
 import models.Charge;
+import models.Payment;
 import models.Room;
 import models.RoomBooking;
 import models.User;
@@ -93,6 +94,10 @@ public class BookingEditor implements Serializable {
     
     public ArrayList<Charge> getCharges() {
         return this.booking.getCharges();
+    }
+    
+    public ArrayList<Payment> getPayments() {
+        return this.booking.getPayments();
     }
     
     public String confirmBooking() throws Exception {

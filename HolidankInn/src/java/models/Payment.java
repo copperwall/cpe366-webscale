@@ -31,5 +31,9 @@ public class Payment extends DBO {
     public double getAmount() {
         return Double.parseDouble(this.get("amount"));
     }
+    
+    public String getCardDescription() {
+        return "****";
+    }
 
 }
