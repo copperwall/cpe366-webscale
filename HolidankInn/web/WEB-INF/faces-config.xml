@@ -24,6 +24,11 @@
         <managed-bean-class>controllers.EmployeeCreator</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>rateEditor</managed-bean-name>
+        <managed-bean-class>controllers.RateEditor</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
     
     
     <navigation-rule>
