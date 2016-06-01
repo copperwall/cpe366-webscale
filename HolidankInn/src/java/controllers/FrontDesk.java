@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,15 +27,24 @@ public class FrontDesk extends Serializable {
     private String searchTerm;
     
     public ArrayList<Booking> getTodaysCheckins() {
+        String timeStamp = new SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date());
         Booking b = new Booking(0);
-        String query = "SELECT * FROM bookings";
+        String query = "SELECT * FROM bookings b "
+                + "JOIN room_bookings rb USING (bookingid) "
+                + "WHERE rb.start_date = '" + timeStamp + "' "
+                + "AND b.cancelled = 0 AND b.confirmed = 1 "
+                + "AND b.checked_in = 0;";
         
         return b.getCustom(query);
     }
     
     public ArrayList<Booking> getTodaysCheckouts() {
+        String timeStamp = new SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date());
         Booking b = new Booking(0);
-        String query = "SELECT * FROM bookings";
+        String query = "SELECT * FROM bookings b "
+                + "JOIN room_bookings rb USING (bookingid) "
+                + "WHERE rb.end_date = '" + timeStamp + "' "
+                + "AND b.checked_in = 1 AND b.checked_out = 0;";
         
         return b.getCustom(query);
     }

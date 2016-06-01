@@ -31,6 +31,7 @@
                         </h:form>
                         
                         <h5>Guests Checking In Today:</h5>
+                        <p>These guests have <b>confirmed</b> reservations with rooms starting today.</p>
                         <h:dataTable value="#{frontDesk.getTodaysCheckins()}" var="booking" class="u-full-width">
                             <h:column>
                                 <f:facet name="header">Guest Name</f:facet>
@@ -65,6 +66,7 @@
                         </h:dataTable>
                         
                         <h5>Guests Checking Out Today:</h5>
+                        <p>These guests are <b>checked in</b> with rooms <b>checking out</b> today.</p>
                         <h:dataTable value="#{frontDesk.getTodaysCheckouts()}" var="booking" class="u-full-width">
                             <h:column>
                                 <f:facet name="header">Guest Name</f:facet>
