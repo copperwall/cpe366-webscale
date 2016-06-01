@@ -28,7 +28,9 @@ Table of Contents:
 4. Customer Use
  * Add Booking
  * View Bookings
- * Edit Your Account
+ * View Charges
+ * Confirm Booking
+ * Cancel Booking
 
 
 
@@ -217,7 +219,11 @@ Content:
    Find your desired booking in the table and press the corresponding "Edit"
    button to the right. 
 
-   
+   This will bring up the edit booking page. Find the table labeled "Reserved
+   Rooms" and click the "Add Room" button underneath to choose your room. On the
+   Add Room page, choose a start and end date, a type, and a bed arrangement. Click
+   The "Create" button at the bottom once you are done to confirm your room 
+   selection. 
 
    * View Bookings
    
@@ -225,6 +231,33 @@ Content:
    home page. Here you will see a table labeled "Your Bookings" where you will see
    a list of all your bookings and their status. 
 
-   * Edit Your Account
+   * View Charges
 
-   
+   Once logged into a customer account, you will automatically be directed to the
+   home page. Find your desired booking in the table labeled "Your Bookings". Press
+   the "Edit" button to the right to open the edit booking page. 
+
+   Once on the edit booking page, scroll down to the bottom to see your charges
+   with a total at the very bottom. 
+
+   * Confirm Booking
+
+   Once logged into a customer account, you will automatically be directed to the
+   home page. Find your desired booking in the table labeled "Your Bookings". Press
+   the "Edit" button to the right to open the edit booking page. 
+
+   Once on the edit booking page, scroll all the way down to the bottom and find
+   the "Confirm Booking" button. Press this button to confirm your booking. You
+   will be redirected back to the home page and you will see that your booking
+   is now confirmed. 
+
+   * Cancel Booking
+
+   Once logged into a customer account, you will automatically be directed to the
+   home page. Find your desired booking in the table labeled "Your Bookings". Press
+   the "Edit" button to the right to open the edit booking page. 
+
+   Once on the edit booking page, scroll all the way down to the bottom and find
+   the "Cancel Booking" button (note this can only be accessed if a booking has
+   been confirmed). Press this button to cancel your booking. This will remove
+   the booking from the system and you can no longer edit the booking. 
