@@ -29,4 +29,9 @@ public class RoomPrice extends DBO {
         }
     }
     
+    public String getRoomDescription() {
+        Room r = new Room(Integer.parseInt(this.get("roomid")));
+        return r.get("number") + " - " + r.getDescription();
+    }
+    
 }

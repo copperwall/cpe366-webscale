@@ -4,43 +4,35 @@
  * and open the template in the editor.
  */
 package controllers;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
 import models.Room;
 import models.RoomPrice;
 /**
  *
  * @author Kyle
  */
-public class RateEditor {
+@Named(value = "rateEditor")
+@ViewScoped
+@ManagedBean
+public class RateEditor implements Serializable {
     private String room;
     private String start;
     private String end;
     private String rate;
     
-    public ArrayList<SelectItem> getPossibleDays()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Calendar start = Calendar.getInstance();
-        start.add(Calendar.DAY_OF_MONTH, 21);
-        int daysPossible = 100;
-        ArrayList<Date> dates = getDatesFromStart(start.getTime(), daysPossible);
-        ArrayList<SelectItem> days = new ArrayList<SelectItem>();
-        
-        for (Date d : dates)
-        {
-            days.add(new SelectItem(dateFormat.format(d)));
-        }
-        return days;
-    }
-    
+
     public ArrayList<SelectItem> getRooms()
     {
         Room room = new Room(0);
@@ -49,19 +41,29 @@ public class RateEditor {
         
         for (Room r : rooms)
         {
-            allRooms.add(new SelectItem(room.getPk(), room.get("number") + "-" + room.getDescription()));
+            allRooms.add(new SelectItem(r.getPk(),
+             r.get("number") + " - " + r.getDescription()));
         }
         return allRooms;
     }
     
-    public void applyRate(String rate)
-    {
+    public ArrayList<RoomPrice> getAllRateOverrides() {
+        RoomPrice r = new RoomPrice(0);
+        return r.getAll();
+    }
+    
+    public void removeRate(int id) {
+        RoomPrice r = new RoomPrice(id);
+        r.delete();
+    }
+    
+    public void applyRate() {
         //check if rate is double, else throw error
         FacesContext currentInstance = FacesContext.getCurrentInstance();
         
-        double price;
+        double price = 0.0;
         try {
-            price = Double.parseDouble(rate);
+            price = Double.parseDouble(this.rate);
         }
         catch (Exception e)
         {
@@ -84,27 +86,6 @@ public class RateEditor {
                  new FacesMessage(FacesMessage.SEVERITY_ERROR,
                   e.getMessage(), "You can't."));
             }
-    }
-
-    
-    public ArrayList<Date> getDatesFromStart(Date startdate, int range)
-    {
-        ArrayList<Date> dates = new ArrayList<Date>();
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(startdate);
-
-        Calendar temp = new GregorianCalendar();
-        temp.setTime(startdate);
-        temp.add(Calendar.DATE, range);
-        Date enddate = temp.getTime();
-        
-        while (calendar.getTime().before(enddate))
-        {
-            Date result = calendar.getTime();
-            dates.add(result);
-            calendar.add(Calendar.DATE, 1);
-        }
-        return dates;
     }
     
     /**

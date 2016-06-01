@@ -7,27 +7,67 @@
 
     <h:body>
         <ui:composition template="./layout.xhtml">
-            <h:form>
-                    <h:outputText value="Select Room: "/>
-                    <h:selectOneMenu value="#{rateEditor.room}">
-                        <f:selectItems value="#{rateEditor.getRooms()}"/>
-                    </h:selectOneMenu>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <h:outputText value="Select Start Date: "/>
-                    <h:selectOneMenu value="#{rateEditor.start}">
-                        <f:selectItems value="#{rateEditor.getPossibleDays()}"/>
-                    </h:selectOneMenu>
-                    <h:outputText value=" Through "/>
-                    <h:selectOneMenu value="#{rateEditor.end}">
-                        <f:selectItems value="#{rateEditor.getPossibleDays()}"/>
-                    </h:selectOneMenu>
-                    <br></br>
-                    <h:outputText value="Enter rate: "/>
-                    <h:inputText binding="#{rate}" id="rate"/>
-                    <h:commandButton value="Submit" action="#{rateEditor.applyRate(rate.value)}" />
-                </h:form>
+            <ui:define name="pagescript">
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('.datepicker').datepicker();
+                    });
+               startDate </script>
+            </ui:define>
+            <ui:define name="title">Rate Editor</ui:define><!-- Put page title here -->
+            <ui:define name="content">
+                <div class="row">
+                    <div class="twelve columns">
+                        <h:form>
+                            <h:outputText value="Select Room: "/>
+                            <h:selectOneMenu value="#{rateEditor.room}">
+                                <f:selectItems value="#{rateEditor.getRooms()}"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <h:outputText value="Select Start Date: "/>
+                            <h:inputText id="startDate" value="#{rateEditor.start}"
+                                         class="datepicker"></h:inputText>
+                            <br/>
+                            <h:outputText value=" Through "/>
+                            <h:inputText id="endDate" value="#{rateEditor.end}"
+                                         class="datepicker"></h:inputText>
+                            <br/>
+                            <h:outputText value="Enter rate: "/>
+                            <h:inputText value="#{rateEditor.rate}" id="rate"/>
+                            <h:commandButton value="Submit" action="#{rateEditor.applyRate()}" />
+                        </h:form>
+                    </div>
+                    <div class="twelve columns">
+                        <h4>All Rate Overrides</h4>
+                        
+                        <h:dataTable value="#{rateEditor.getAllRateOverrides()}" var="rate" class="u-full-width">
+                            <h:column>
+                                <f:facet name="header">Room</f:facet>
+                                #{rate.getRoomDescription()}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Rate</f:facet>
+                                #{rate.get("price")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Start</f:facet>
+                                #{rate.get("start_date")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">End</f:facet>
+                                #{rate.get("end_date")}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Actions</f:facet>
+                                <h:form>
+                                    <h:commandLink value="Remove" action="#{rateEditor.removeRate(rate.getPk())}"
+                                             class=""/>
+                                </h:form>                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+                <!-- Put content here -->
+            </ui:define>
         </ui:composition>
     </h:body>
 </html>
