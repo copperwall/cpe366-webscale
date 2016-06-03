@@ -36,7 +36,18 @@ public class Room extends DBO {
         // To determine the price of a room:
         // 1. Does it have any RoomPrice overrides during the date passed in?
         // 2. If so, return the price. If not, return 100.
-        return 100.0;
+        
+        RoomPrice rp = new RoomPrice(0);
+        ArrayList<RoomPrice>results = rp.getCustom("SELECT * FROM room_prices WHERE roomid = "
+                + this.getPk()
+                + " AND '" + date + "' BETWEEN start_date AND end_date");
+        if (results.isEmpty()) {
+            // Default price
+            return 100.0;
+        }
+        
+        RoomPrice room = results.get(0);
+        return Double.parseDouble(room.get("price"));
     }
     
     public String getView() {

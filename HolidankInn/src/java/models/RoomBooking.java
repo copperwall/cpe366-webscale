@@ -40,7 +40,6 @@ public class RoomBooking extends DBO {
         rb.set("roomid", roomid);
         rb.set("start_date", startDate);
         rb.set("end_date", endDate);
-        //this.set("price", price);
         
         return rb;
     }
