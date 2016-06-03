@@ -204,7 +204,7 @@ Content:
    Once you're on the edit page, scroll down to the very bottom of the page and 
    press the "Check Out Guest" button to check the guest in. The page will refresh
    and the header will notify you that the guest is now "Checked Out". Payments will 
-   be shown as fulfilled and bookings complete. 
+   be shown as fulfilled and bookings complete. The user's card will be charged.
 
 ====================
 
@@ -230,6 +230,10 @@ Content:
    Once logged into a customer account, you will automatically be directed to the
    home page. Here you will see a table labeled "Your Bookings" where you will see
    a list of all your bookings and their status. 
+
+   * Add Room to Booking
+
+   TODO
 
    * View Charges
 
@@ -261,3 +265,5 @@ Content:
    the "Cancel Booking" button (note this can only be accessed if a booking has
    been confirmed). Press this button to cancel your booking. This will remove
    the booking from the system and you can no longer edit the booking. 
+
+   TODO: And the start date of the earliest room in your booking is not today
