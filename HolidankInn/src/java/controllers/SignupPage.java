@@ -100,8 +100,7 @@ public class SignupPage implements Serializable {
             return "signupPage";
         }
         
-        // TODO: Lol whoops, this needs a customer and a credit card row.
-        
+        SessionBean.setUserLogin(this.login, userid);
         return "home";
     }
         
