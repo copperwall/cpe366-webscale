@@ -67,6 +67,7 @@ public class AuthFilter implements Filter
             // If we're on the login page, go ahead.
             if (reqURI.indexOf("/login.xhtml") >= 0
                 || reqURI.indexOf("/css/") >= 0
+                || reqURI.indexOf("/img/") >= 0
                 || reqURI.indexOf("/signup.xhtml") >= 0
                 || reqURI.contains("javax.faces.resource")
                 //|| SessionBean.isLoggedIn()
