@@ -5,6 +5,8 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author scott
@@ -33,7 +35,21 @@ public class Payment extends DBO {
     }
     
     public String getCardDescription() {
-        return "****";
+        CreditCard cc = new CreditCard(0);
+        String query = "SELECT * FROM credit_cards "
+                + "JOIN bookings USING (userid) "
+                + "WHERE bookingid = " + this.get("bookingid");
+        ArrayList<CreditCard> cards = cc.getCustom(query);
+        String last4;
+        if (cards.isEmpty()) {
+           last4 = "6969";
+        } else {
+            cc = cards.get(0);
+            String full = cc.get("number");
+            last4 = full.substring(Math.max(0, full.length() - 4));
+        }
+
+        return "**** **** **** " + last4;
     }
 
 }
