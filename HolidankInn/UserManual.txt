@@ -233,7 +233,14 @@ Content:
 
    * Add Room to Booking
 
-   TODO
+   Once logged into a customer account, you will automatically be directed to the 
+   home page. Here you will see a table labeled "Your Bookings". Click the "Edit" 
+   button to the right to open up the edit booking page.
+ 
+   Find the table labeled "Reserved Rooms". Click the "Add Room" button located
+   directly under the title. From here you have your choice of start and end dates
+   along with the view type and bed arrangement. When done, click the "Create" 
+   button to confirm your selection. 
 
    * View Charges
 
@@ -263,7 +270,6 @@ Content:
 
    Once on the edit booking page, scroll all the way down to the bottom and find
    the "Cancel Booking" button (note this can only be accessed if a booking has
-   been confirmed). Press this button to cancel your booking. This will remove
+   been confirmed and if the start date of the earliest room in your booking is 
+   not today). Press this button to cancel your booking. This will remove
    the booking from the system and you can no longer edit the booking. 
-
-   TODO: And the start date of the earliest room in your booking is not today
