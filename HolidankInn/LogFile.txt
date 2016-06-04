@@ -1,9 +1,24 @@
 Work Distribution for Project 2
 ====================================
 
+Scott Vanderlind
+-----------------------
+* Wrote the CreateBooking functionality
+* Wrote the ReserveRoom functionality
+* Wrote the ChargeEditor functionality
+* Wrote queries for the Employee FrontDesk view to see expected check-in/outs.
+* Guest Search
+
 Chris Opperwall
 -----------------------
 * Wrote the user sign up functionality
 * Implemented the functionality that applies overriden room prices to bookings.
 * Made the main logo
 * Fixed a bug where signing up a new user caused a NullPointerException
+
+Kyle Cornelison
+------------------------
+* Wrote the User Manual
+* Wrote the controller for editing room rates.
+* Wrote the template for editing room rates.
+* Wrote the ER Diagram
