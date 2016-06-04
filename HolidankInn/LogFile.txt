@@ -1,0 +1,9 @@
+Work Distribution for Project 2
+====================================
+
+Chris Opperwall
+-----------------------
+* Wrote the user sign up functionality
+* Implemented the functionality that applies overriden room prices to bookings.
+* Made the main logo
+* Fixed a bug where signing up a new user caused a NullPointerException
